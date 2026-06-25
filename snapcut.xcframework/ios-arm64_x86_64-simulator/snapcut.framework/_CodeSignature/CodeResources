@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		Wwx3zzv+yyY8avrlPfYNLHVi/1g=
+		QH1cBrdoUGOE2U9eLHPXLNStvLE=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -46,7 +46,11 @@
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		S3CqfDaCXZx+8zyMaZ+J3rE7syg=
+		As/OclmJzwogpZ3RumpJWo32heU=
+		</data>
+		<key>README</key>
+		<data>
+		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -83,7 +87,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			6ZyG2lm2QtDSfri+qEbpQNpomenP7mRcj2+nq9k5Bko=
+			bKiRyAAVUoVuNp7T+iRmZ49g4sfZ7q1g9maEErRGBGQ=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -118,7 +122,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CZXlfvFGaUtwarNEL3wqcIY+VF/k3kHBMqy8ocBPRpE=
+			amwfLM77HdWdrq0+K4nhZNae92a6e5Tv1BQjfbbdmEk=
+			</data>
+		</dict>
+		<key>README</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
 			</data>
 		</dict>
 	</dict>
