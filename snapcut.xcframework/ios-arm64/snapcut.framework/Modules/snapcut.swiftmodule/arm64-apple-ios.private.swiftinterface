@@ -228,6 +228,11 @@ public enum ExportPreset : Swift.String, Swift.Codable, Swift.CaseIterable {
   public typealias Body = @_opaqueReturnTypeOf("$s7snapcut15SnapcutMainViewV4bodyQrvp", 0) __
 }
 
+@_hasMissingDesignatedInitializers public class SnapcutSDK {
+  public static let shared: snapcut.SnapcutSDK
+  public static func initialize(licenseKey: Swift.String)
+  @objc deinit
+}
 extension snapcut.EditorView : Swift.Sendable {}
 extension snapcut.MediaType : Swift.Equatable {}
 extension snapcut.MediaType : Swift.Hashable {}

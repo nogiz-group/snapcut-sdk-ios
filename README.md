@@ -9,7 +9,28 @@ Add this repository via Swift Package Manager (SPM) in Xcode:
 
 ## Usage
 
-You have two choices for integrating the SDK:
+Before using the SDK, you must initialize it with your license key. A good place to do this is in your `App` struct or `AppDelegate`:
+
+```swift
+import SwiftUI
+import snapcut
+
+@main
+struct TestSDKApp: App {
+    init() {
+        // Initialize with your license key
+        SnapcutSDK.initialize(licenseKey: "NOGIZ-SNAPCUT-PRO")
+    }
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+```
+
+You have two choices for integrating the editor UI:
 
 ### 1. Full Integration (with Video Picker & Camera)
 If you want the complete experience (including the built-in video recorder and library picker), use `SnapcutMainView`.

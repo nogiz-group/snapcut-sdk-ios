@@ -589,6 +589,16 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "snapcut",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "CoreImage",
         "printedName": "CoreImage",
         "declKind": "Import",
@@ -618,16 +628,6 @@
         "kind": "Import",
         "name": "SwiftUI",
         "printedName": "SwiftUI",
-        "declKind": "Import",
-        "moduleName": "snapcut",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "snapcut",
         "declAttributes": [
@@ -8312,6 +8312,124 @@
             "mangledName": "$ss8SendableP"
           }
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "snapcut"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SnapcutSDK",
+        "printedName": "SnapcutSDK",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "shared",
+            "printedName": "shared",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SnapcutSDK",
+                "printedName": "snapcut.SnapcutSDK",
+                "usr": "s:7snapcut10SnapcutSDKC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7snapcut10SnapcutSDKC6sharedACvpZ",
+            "mangledName": "$s7snapcut10SnapcutSDKC6sharedACvpZ",
+            "moduleName": "snapcut",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SnapcutSDK",
+                    "printedName": "snapcut.SnapcutSDK",
+                    "usr": "s:7snapcut10SnapcutSDKC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7snapcut10SnapcutSDKC6sharedACvgZ",
+                "mangledName": "$s7snapcut10SnapcutSDKC6sharedACvgZ",
+                "moduleName": "snapcut",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "initialize",
+            "printedName": "initialize(licenseKey:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7snapcut10SnapcutSDKC10initialize10licenseKeyySS_tFZ",
+            "mangledName": "$s7snapcut10SnapcutSDKC10initialize10licenseKeyySS_tFZ",
+            "moduleName": "snapcut",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:7snapcut10SnapcutSDKC",
+        "mangledName": "$s7snapcut10SnapcutSDKC",
+        "moduleName": "snapcut",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
       }
     ],
     "json_format_version": 8
@@ -9986,56 +10104,56 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "Array",
-      "offset": 647,
+      "offset": 646,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 691,
+      "offset": 690,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 739,
+      "offset": 738,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "FloatLiteral",
-      "offset": 800,
+      "offset": 799,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 34342,
+      "offset": 35199,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 35453,
+      "offset": 36310,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 35496,
+      "offset": 36353,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "Array",
-      "offset": 37916,
+      "offset": 38773,
       "length": 42,
       "value": "[0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0]"
     },
@@ -10535,6 +10653,13 @@
       "offset": 602,
       "length": 2,
       "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/Core\/SnapcutSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 201,
+      "length": 5,
+      "value": "false"
     }
   ]
 }
