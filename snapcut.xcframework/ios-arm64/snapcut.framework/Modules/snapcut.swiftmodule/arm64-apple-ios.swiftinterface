@@ -220,6 +220,14 @@ public enum ExportPreset : Swift.String, Swift.Codable, Swift.CaseIterable {
   public static func runAllTests()
   @objc deinit
 }
+@_Concurrency.MainActor @preconcurrency public struct SnapcutMainView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init()
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut15SnapcutMainViewV4bodyQrvp", 0) __
+}
+
 extension snapcut.EditorView : Swift.Sendable {}
 extension snapcut.MediaType : Swift.Equatable {}
 extension snapcut.MediaType : Swift.Hashable {}
@@ -230,3 +238,4 @@ extension snapcut.FilterType : Swift.RawRepresentable {}
 extension snapcut.ExportPreset : Swift.Equatable {}
 extension snapcut.ExportPreset : Swift.Hashable {}
 extension snapcut.ExportPreset : Swift.RawRepresentable {}
+extension snapcut.SnapcutMainView : Swift.Sendable {}
