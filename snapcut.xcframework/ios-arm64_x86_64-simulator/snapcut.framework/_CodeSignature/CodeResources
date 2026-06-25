@@ -10,43 +10,43 @@
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		wAtFT9RiiI4hibvtB7iKXa79Ux0=
+		NXxC3IgHdYrObs0FTXuEhEFn/0U=
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		KBm+bxKyD1iD7ESVV3DoimGso+w=
+		DrkUJi1Tgljg6vdURqHBAZxeS2M=
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		J46k9NBa0dI5bxjInn/mZtTx0l0=
+		Nk5gmmd3T7w+ucxDaYJDp1HP9kQ=
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		KBm+bxKyD1iD7ESVV3DoimGso+w=
+		DrkUJi1Tgljg6vdURqHBAZxeS2M=
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		Wwx3zzv+yyY8avrlPfYNLHVi/1g=
+		N6j5pEOjVSaTIhp620H5bhLqgtQ=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		wAtFT9RiiI4hibvtB7iKXa79Ux0=
+		NXxC3IgHdYrObs0FTXuEhEFn/0U=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		L6S4Fk/LHc1rtSGZJmHWFjE9KV0=
+		DIeaKyuHjW5mIga6SNuJOLBUAo4=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		RltCDY6Jpt11RxGoAKATWrxIXmg=
+		7oEflhFIXvkP2yQ3T3xq6xgaICE=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		L6S4Fk/LHc1rtSGZJmHWFjE9KV0=
+		DIeaKyuHjW5mIga6SNuJOLBUAo4=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		S3CqfDaCXZx+8zyMaZ+J3rE7syg=
+		TuvvqkLpN4ZUFVGMYd9xUx9j4PA=
 		</data>
 		<key>README</key>
 		<data>
@@ -59,70 +59,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			zvmYh30M3bbJx1ygWZQg5Kh29NypMCKPMpkgnLlp5BA=
+			ysh1FcH1sljZeHQnQkDmgipReftj4KCDXX5y6c/S74I=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8m/w7WEx9/0TdEXHT1v46SwGc5AE4sWCgD+jJDJ9FXg=
+			j25k0fAKIEEEW5uX9kxTo1V3vdwxwAa4P8rzQhF0/ho=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Qic4l+SYei2ZYmtDIkSu6HgfswnJ6voxNBAwuU/LWn0=
+			rx4fRwnLudCq6mTHP4iwSbxnGKk9H16LAWn9/qxYO1Q=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8m/w7WEx9/0TdEXHT1v46SwGc5AE4sWCgD+jJDJ9FXg=
+			j25k0fAKIEEEW5uX9kxTo1V3vdwxwAa4P8rzQhF0/ho=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6ZyG2lm2QtDSfri+qEbpQNpomenP7mRcj2+nq9k5Bko=
+			prmkvXsq5UzR/AQPAgWFS17P/+VuANb/Y8vRgxK25Ac=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			zvmYh30M3bbJx1ygWZQg5Kh29NypMCKPMpkgnLlp5BA=
+			ysh1FcH1sljZeHQnQkDmgipReftj4KCDXX5y6c/S74I=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3fkY+qWDP7EpyvaWHLIspDNtZFtQdtieP0WWrGFjXC8=
+			wMN6CsFuqh100CvLy6Pq13dLEJ0B7e3DqmeGSwPNte4=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			AM1I67KWJT2UD8mq4HpXbRpgJF0DDfXreegbOPo18c4=
+			REM3Gt3d8bmSQnWnfGrYP1lK5pxrMiOT1Tj9niNxk4U=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3fkY+qWDP7EpyvaWHLIspDNtZFtQdtieP0WWrGFjXC8=
+			wMN6CsFuqh100CvLy6Pq13dLEJ0B7e3DqmeGSwPNte4=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CZXlfvFGaUtwarNEL3wqcIY+VF/k3kHBMqy8ocBPRpE=
+			5Ks/NGO7JVn+Npduwedq1GzM+OmJYNZZM1yjMsY6+Io=
 			</data>
 		</dict>
 		<key>README</key>
