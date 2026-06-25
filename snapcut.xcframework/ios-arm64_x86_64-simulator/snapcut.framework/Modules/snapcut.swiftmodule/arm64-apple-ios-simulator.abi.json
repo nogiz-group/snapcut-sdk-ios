@@ -8702,128 +8702,79 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 171,
-      "length": 21,
-      "value": "\"Colors\/YellowAccent\""
-    },
-    {
-      "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
-      "kind": "StringLiteral",
-      "offset": 232,
+      "offset": 216,
       "length": 23,
       "value": "\"Colors\/DarkBackground\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 298,
+      "offset": 282,
       "length": 26,
       "value": "\"Colors\/SidebarBackground\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 364,
+      "offset": 348,
       "length": 9,
       "value": "\"#FFE600\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 464,
+      "offset": 448,
       "length": 9,
       "value": "\"#FFFFFF\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 492,
+      "offset": 476,
       "length": 9,
       "value": "\"#000000\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 555,
+      "offset": 539,
       "length": 9,
       "value": "\"#FF3B30\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 581,
+      "offset": 565,
       "length": 9,
       "value": "\"#34C759\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 609,
+      "offset": 593,
       "length": 9,
       "value": "\"#007AFF\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 636,
+      "offset": 620,
       "length": 9,
       "value": "\"#AF52DE\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 665,
+      "offset": 649,
       "length": 9,
       "value": "\"#FF9500\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
       "kind": "StringLiteral",
-      "offset": 694,
+      "offset": 678,
       "length": 9,
       "value": "\"#FF2D55\""
-    },
-    {
-      "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
-      "kind": "StringLiteral",
-      "offset": 2312,
-      "length": 21,
-      "value": "\"Colors\/YellowAccent\""
-    },
-    {
-      "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
-      "kind": "StringLiteral",
-      "offset": 2400,
-      "length": 21,
-      "value": "\"Colors\/YellowAccent\""
-    },
-    {
-      "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
-      "kind": "FloatLiteral",
-      "offset": 2439,
-      "length": 3,
-      "value": "1.0"
-    },
-    {
-      "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
-      "kind": "FloatLiteral",
-      "offset": 2451,
-      "length": 5,
-      "value": "0.902"
-    },
-    {
-      "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
-      "kind": "FloatLiteral",
-      "offset": 2464,
-      "length": 3,
-      "value": "0.0"
-    },
-    {
-      "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/ThemeColors.swift",
-      "kind": "FloatLiteral",
-      "offset": 2476,
-      "length": 3,
-      "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/Helpers\/MockData.swift",
@@ -9906,28 +9857,28 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 34327,
+      "offset": 34342,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 35438,
+      "offset": 35453,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 35481,
+      "offset": 35496,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "Array",
-      "offset": 37901,
+      "offset": 37916,
       "length": 42,
       "value": "[0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0]"
     },
