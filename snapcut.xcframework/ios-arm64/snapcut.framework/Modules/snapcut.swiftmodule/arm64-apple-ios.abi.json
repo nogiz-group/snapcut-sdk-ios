@@ -609,7 +609,10 @@
         "name": "GPUImage",
         "printedName": "GPUImage",
         "declKind": "Import",
-        "moduleName": "snapcut"
+        "moduleName": "snapcut",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
       },
       {
         "kind": "Import",
@@ -653,7 +656,10 @@
         "name": "GPUImage",
         "printedName": "GPUImage",
         "declKind": "Import",
-        "moduleName": "snapcut"
+        "moduleName": "snapcut",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
       },
       {
         "kind": "Import",
@@ -776,7 +782,10 @@
         "name": "PryntTrimmerView",
         "printedName": "PryntTrimmerView",
         "declKind": "Import",
-        "moduleName": "snapcut"
+        "moduleName": "snapcut",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
       },
       {
         "kind": "Import",
@@ -8108,7 +8117,10 @@
         "name": "GPUImage",
         "printedName": "GPUImage",
         "declKind": "Import",
-        "moduleName": "snapcut"
+        "moduleName": "snapcut",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
       },
       {
         "kind": "Import",
@@ -9467,112 +9479,112 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/Filters\/GPUImageFilterProcessor.swift",
       "kind": "StringLiteral",
-      "offset": 327,
+      "offset": 348,
       "length": 35,
       "value": "\"com.VideoEditor.filterRenderQueue\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/Filters\/GPUImageFilterProcessor.swift",
       "kind": "StringLiteral",
-      "offset": 582,
+      "offset": 603,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/Filters\/GPUImageFilterProcessor.swift",
       "kind": "FloatLiteral",
-      "offset": 618,
+      "offset": 639,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/Filters\/GPUImageFilterProcessor.swift",
       "kind": "BooleanLiteral",
-      "offset": 654,
+      "offset": 675,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/Filters\/GPUImageFilterProcessor.swift",
       "kind": "FloatLiteral",
-      "offset": 684,
+      "offset": 705,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/Filters\/GPUImageFilterProcessor.swift",
       "kind": "StringLiteral",
-      "offset": 722,
+      "offset": 743,
       "length": 6,
       "value": "\"none\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/Filters\/GPUImageFilterProcessor.swift",
       "kind": "FloatLiteral",
-      "offset": 766,
+      "offset": 787,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/Filters\/GPUImageFilterProcessor.swift",
       "kind": "FloatLiteral",
-      "offset": 796,
+      "offset": 817,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/Filters\/GPUImageFilterProcessor.swift",
       "kind": "BooleanLiteral",
-      "offset": 856,
+      "offset": 877,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/VideoPlayerView.swift",
       "kind": "StringLiteral",
-      "offset": 1768,
+      "offset": 1789,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/VideoPlayerView.swift",
       "kind": "FloatLiteral",
-      "offset": 1819,
+      "offset": 1840,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/VideoPlayerView.swift",
       "kind": "FloatLiteral",
-      "offset": 1866,
+      "offset": 1887,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/VideoPlayerView.swift",
       "kind": "FloatLiteral",
-      "offset": 1911,
+      "offset": 1932,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/VideoPlayerView.swift",
       "kind": "FloatLiteral",
-      "offset": 1958,
+      "offset": 1979,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/VideoPlayerView.swift",
       "kind": "Array",
-      "offset": 1999,
+      "offset": 2020,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/VideoPlayerView.swift",
       "kind": "BooleanLiteral",
-      "offset": 2082,
+      "offset": 2103,
       "length": 5,
       "value": "false"
     },
@@ -9726,21 +9738,21 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/PryntTrimmerViewWrapper.swift",
       "kind": "FloatLiteral",
-      "offset": 472,
+      "offset": 493,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/PryntTrimmerViewWrapper.swift",
       "kind": "FloatLiteral",
-      "offset": 1723,
+      "offset": 1744,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/PryntTrimmerViewWrapper.swift",
       "kind": "BooleanLiteral",
-      "offset": 1755,
+      "offset": 1776,
       "length": 5,
       "value": "false"
     },
