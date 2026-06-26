@@ -10,7 +10,7 @@
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		o7Hv2ek3sNKGWpdaq+v9GhJw9ss=
+		lkVk//7TYcpzsQfPbBivcvwgDKU=
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		yt9dpawAA6UB1g+s508PM3T3JBg=
+		lL1jGfRrcXmVG6VwTIc317ALG44=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		o7Hv2ek3sNKGWpdaq+v9GhJw9ss=
+		lkVk//7TYcpzsQfPbBivcvwgDKU=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -46,11 +46,7 @@
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		w6jEBCOf6uD1hJucwxgx2IaOi/I=
-		</data>
-		<key>README</key>
-		<data>
-		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+		jFprivPUHWo3OBjzvhJChP6dibE=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -59,7 +55,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			nnBwV1V+IXLSLNULzyMq1RO0zMqRJCNylC4JuOH4wUk=
+			zaTew5RCEo0cgQJxdsrzbmXMwofmHUn7dUNJql4VRBY=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -87,14 +83,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CgCS9V5hl//7Sy5Uhh/HyQBeqBdbOoSYHy3VPeoGFnA=
+			zboiiZeBil4GQvoZJOC6PnlZp+TNgMR46+TlJPuvClw=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nnBwV1V+IXLSLNULzyMq1RO0zMqRJCNylC4JuOH4wUk=
+			zaTew5RCEo0cgQJxdsrzbmXMwofmHUn7dUNJql4VRBY=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -122,14 +118,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3Wr76A6uoRaIX4DA+n3akQ8QnZsJfot75+WXPT9DNWo=
-			</data>
-		</dict>
-		<key>README</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+			sVBgU6hpdfsc9SEgBAkIycxWZO9mMEAih5sd5fa3vpU=
 			</data>
 		</dict>
 	</dict>

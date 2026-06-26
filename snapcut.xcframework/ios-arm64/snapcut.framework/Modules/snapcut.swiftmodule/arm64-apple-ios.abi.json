@@ -17045,84 +17045,84 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "Array",
-      "offset": 754,
+      "offset": 831,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 798,
+      "offset": 875,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 846,
+      "offset": 923,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "FloatLiteral",
-      "offset": 907,
+      "offset": 984,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 39501,
+      "offset": 39578,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 40745,
+      "offset": 40822,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 40788,
+      "offset": 40865,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "Array",
-      "offset": 43343,
+      "offset": 43420,
       "length": 42,
       "value": "[0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0]"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "FloatLiteral",
-      "offset": 47071,
+      "offset": 47148,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "FloatLiteral",
-      "offset": 47120,
+      "offset": 47197,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "FloatLiteral",
-      "offset": 47170,
+      "offset": 47247,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "FloatLiteral",
-      "offset": 47217,
+      "offset": 47294,
       "length": 3,
       "value": "1.0"
     },
@@ -17577,49 +17577,49 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/SnapcutMainView.swift",
       "kind": "StringLiteral",
-      "offset": 406,
+      "offset": 462,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/SnapcutMainView.swift",
       "kind": "StringLiteral",
-      "offset": 423,
+      "offset": 479,
       "length": 6,
       "value": "\"None\""
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/SnapcutMainView.swift",
       "kind": "FloatLiteral",
-      "offset": 533,
+      "offset": 589,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/SnapcutMainView.swift",
       "kind": "BooleanLiteral",
-      "offset": 583,
+      "offset": 639,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/SnapcutMainView.swift",
       "kind": "FloatLiteral",
-      "offset": 633,
+      "offset": 689,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/SnapcutMainView.swift",
       "kind": "FloatLiteral",
-      "offset": 679,
+      "offset": 735,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/SnapcutMainView.swift",
       "kind": "Array",
-      "offset": 732,
+      "offset": 788,
       "length": 2,
       "value": "[]"
     },
