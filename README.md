@@ -25,7 +25,7 @@ struct TestSDKApp: App {
         // 2. Initialize with configuration
         let config = VideoEditorConfiguration(
             licenseKey: "NOGIZ-SNAPCUT-PRO",
-            theme: .custom(myTheme)
+            darkTheme: myTheme
         )
         SnapcutSDK.initialize(config: config)
     }
