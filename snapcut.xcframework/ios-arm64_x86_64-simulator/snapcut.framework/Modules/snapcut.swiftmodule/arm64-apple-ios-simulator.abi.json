@@ -16842,35 +16842,35 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/CameraView.swift",
       "kind": "BooleanLiteral",
-      "offset": 32741,
+      "offset": 33359,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/CameraView.swift",
       "kind": "FloatLiteral",
-      "offset": 42271,
+      "offset": 43431,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/CameraView.swift",
       "kind": "FloatLiteral",
-      "offset": 42318,
+      "offset": 43478,
       "length": 4,
       "value": "15.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/CameraView.swift",
       "kind": "IntegerLiteral",
-      "offset": 42359,
+      "offset": 43519,
       "length": 2,
       "value": "90"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/CameraView.swift",
       "kind": "IntegerLiteral",
-      "offset": 42403,
+      "offset": 43563,
       "length": 1,
       "value": "6"
     },
@@ -16968,77 +16968,77 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "BooleanLiteral",
-      "offset": 11330,
+      "offset": 11404,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "FloatLiteral",
-      "offset": 16378,
+      "offset": 16452,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "FloatLiteral",
-      "offset": 16428,
+      "offset": 16502,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "BooleanLiteral",
-      "offset": 16468,
+      "offset": 16542,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "Array",
-      "offset": 31514,
+      "offset": 31764,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "BooleanLiteral",
-      "offset": 31734,
+      "offset": 31984,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "BooleanLiteral",
-      "offset": 31781,
+      "offset": 32031,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "BooleanLiteral",
-      "offset": 31826,
+      "offset": 32076,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "FloatLiteral",
-      "offset": 31889,
+      "offset": 32139,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "FloatLiteral",
-      "offset": 31941,
+      "offset": 32191,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/AdvancedTimelineView.swift",
       "kind": "FloatLiteral",
-      "offset": 31991,
+      "offset": 32241,
       "length": 3,
       "value": "0.0"
     },
@@ -17073,56 +17073,56 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 39578,
+      "offset": 40199,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 40822,
+      "offset": 41481,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "BooleanLiteral",
-      "offset": 40865,
+      "offset": 41524,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "Array",
-      "offset": 43420,
+      "offset": 44199,
       "length": 42,
       "value": "[0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0]"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "FloatLiteral",
-      "offset": 47148,
+      "offset": 47951,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "FloatLiteral",
-      "offset": 47197,
+      "offset": 48000,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "FloatLiteral",
-      "offset": 47247,
+      "offset": 48050,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/EditorView.swift",
       "kind": "FloatLiteral",
-      "offset": 47294,
+      "offset": 48097,
       "length": 3,
       "value": "1.0"
     },
@@ -17136,14 +17136,14 @@
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/OverlayContainerView.swift",
       "kind": "BooleanLiteral",
-      "offset": 3646,
+      "offset": 3679,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mac5\/Downloads\/VideoEditor\/VideoEditor\/MyVideoSDK\/UI\/OverlayContainerView.swift",
       "kind": "FloatLiteral",
-      "offset": 3711,
+      "offset": 3744,
       "length": 3,
       "value": "1.0"
     },
