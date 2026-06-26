@@ -10,43 +10,43 @@
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		tQaxvGlSyY8NvYwdnoVYdX6R+ZU=
+		o7Hv2ek3sNKGWpdaq+v9GhJw9ss=
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		51U8lZscMKEJDLB5eawyhBnzGsQ=
+		bKCdzAz7dmdTYCO+tYtM2nq2Ado=
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		QViQpTC0l6drWCVpjoxvoYIR8F0=
+		Jqq7re+hOeEgm2uVpVGy93h5wqY=
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		51U8lZscMKEJDLB5eawyhBnzGsQ=
+		bKCdzAz7dmdTYCO+tYtM2nq2Ado=
 		</data>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		6zwGAc1p519yxvufZoNBm8grxNY=
+		yt9dpawAA6UB1g+s508PM3T3JBg=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		tQaxvGlSyY8NvYwdnoVYdX6R+ZU=
+		o7Hv2ek3sNKGWpdaq+v9GhJw9ss=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		RUb58DTDpNiUrFwEHJfEwP3PhRk=
+		Vl9U6Juh6zs96bKXNMv20Ta3E0E=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		58SfJAKL+i6c+W1sH6hax10gcKc=
+		hmXvjYxDxbh5EGwhiV605/+2hIE=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		RUb58DTDpNiUrFwEHJfEwP3PhRk=
+		Vl9U6Juh6zs96bKXNMv20Ta3E0E=
 		</data>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		vjI6BXV9FljRC5hiNm8Pyz4iGAQ=
+		w6jEBCOf6uD1hJucwxgx2IaOi/I=
 		</data>
 		<key>README</key>
 		<data>
@@ -59,70 +59,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8JAxkQTkCM1LYk4iIDOxH2P/X7Dz0fI+cKy8XZkJr18=
+			nnBwV1V+IXLSLNULzyMq1RO0zMqRJCNylC4JuOH4wUk=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IUtiWEoP3IJdPJN+kvJ99hl3UoY0WylUUzL4Wl7pX7s=
+			l5vlsOUkhFk2RScc0kMKuQOjwHW/C7BEuUmlKpDrtoE=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LSP4KWczpBFiZUMl5ZAxNoM9Vv8CjSELcwtH7VLof5U=
+			ZQvbsv9xrJeQlFD2m4vuH5PYioDiquxmvpCZs9aLz+M=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IUtiWEoP3IJdPJN+kvJ99hl3UoY0WylUUzL4Wl7pX7s=
+			l5vlsOUkhFk2RScc0kMKuQOjwHW/C7BEuUmlKpDrtoE=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			vqTy223/7zlZCMz1ReLJQRQkARKn/a4qc3K1FwdDUrE=
+			CgCS9V5hl//7Sy5Uhh/HyQBeqBdbOoSYHy3VPeoGFnA=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8JAxkQTkCM1LYk4iIDOxH2P/X7Dz0fI+cKy8XZkJr18=
+			nnBwV1V+IXLSLNULzyMq1RO0zMqRJCNylC4JuOH4wUk=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7OzbTVV2ymam2LYiu7pnGlFdT5kNjepnkbBHwSopT8M=
+			bPKtBqrm/HmDso4wAI1YPqTw81RJhRuri+DT556+eB8=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			vu/QyZO8nu+KQrPGwmozH3u7PHpt9fR1YMoTVeuMEh0=
+			iEuXxke/FLpf6c/HwhvuAGsgyGFBcp8HPGhEde5KoLQ=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7OzbTVV2ymam2LYiu7pnGlFdT5kNjepnkbBHwSopT8M=
+			bPKtBqrm/HmDso4wAI1YPqTw81RJhRuri+DT556+eB8=
 			</data>
 		</dict>
 		<key>Modules/snapcut.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ukchs0qOnt1ZlDJpPCHQ6/9mKYAZIjBJR4q69ila9y8=
+			3Wr76A6uoRaIX4DA+n3akQ8QnZsJfot75+WXPT9DNWo=
 			</data>
 		</dict>
 		<key>README</key>

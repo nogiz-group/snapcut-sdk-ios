@@ -18,8 +18,16 @@ import snapcut
 @main
 struct TestSDKApp: App {
     init() {
-        // Initialize with your license key
-        SnapcutSDK.initialize(licenseKey: "NOGIZ-SNAPCUT-PRO")
+        // 1. Create a custom theme (Optional)
+        var myTheme = SDKTheme.defaultDark
+        myTheme.colors.accent = Color(hex: "#FFD700") // Custom yellow
+
+        // 2. Initialize with configuration
+        let config = VideoEditorConfiguration(
+            licenseKey: "NOGIZ-SNAPCUT-PRO",
+            theme: .custom(myTheme)
+        )
+        SnapcutSDK.initialize(config: config)
     }
     
     var body: some Scene {

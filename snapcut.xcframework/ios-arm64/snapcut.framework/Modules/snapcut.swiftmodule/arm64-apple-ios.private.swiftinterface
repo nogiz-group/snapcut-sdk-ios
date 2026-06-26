@@ -230,8 +230,137 @@ public enum ExportPreset : Swift.String, Swift.Codable, Swift.CaseIterable {
 
 @_hasMissingDesignatedInitializers public class SnapcutSDK {
   public static let shared: snapcut.SnapcutSDK
+  public static func initialize(config: snapcut.VideoEditorConfiguration)
+  @available(*, deprecated, message: "Use initialize(config:) instead to support dynamic themes.")
   public static func initialize(licenseKey: Swift.String)
   @objc deinit
+}
+public protocol FontProvider {
+  func font(for style: snapcut.SDKTypography.Style) -> UIKit.UIFont
+}
+public struct DefaultSystemFontProvider : snapcut.FontProvider {
+  public init()
+  public func font(for style: snapcut.SDKTypography.Style) -> UIKit.UIFont
+}
+extension snapcut.FontProvider {
+  public func swiftUIFont(for style: snapcut.SDKTypography.Style) -> SwiftUICore.Font
+}
+public struct VideoEditorConfiguration {
+  public var licenseKey: Swift.String
+  public var lightTheme: snapcut.SDKTheme
+  public var darkTheme: snapcut.SDKTheme
+  public var forceColorScheme: SwiftUICore.ColorScheme?
+  public init(licenseKey: Swift.String, lightTheme: snapcut.SDKTheme = .defaultLight, darkTheme: snapcut.SDKTheme = .defaultDark, forceColorScheme: SwiftUICore.ColorScheme? = nil)
+}
+@_hasMissingDesignatedInitializers public class ThemeManager : Combine.ObservableObject {
+  public static let shared: snapcut.ThemeManager
+  @Combine.Published<snapcut.SDKTheme> @_projectedValueProperty($currentTheme) public var currentTheme: snapcut.SDKTheme {
+    get
+  }
+  public var $currentTheme: Combine.Published<snapcut.SDKTheme>.Publisher {
+    get
+  }
+  public func updateTheme(_ theme: snapcut.SDKTheme)
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+extension SwiftUICore.Color {
+  public init(hex: Swift.String)
+}
+public struct SDKColors {
+  public var primary: SwiftUICore.Color
+  public var secondary: SwiftUICore.Color
+  public var accent: SwiftUICore.Color
+  public var background: SwiftUICore.Color
+  public var surface: SwiftUICore.Color
+  public var overlay: SwiftUICore.Color
+  public var textPrimary: SwiftUICore.Color
+  public var textSecondary: SwiftUICore.Color
+  public var border: SwiftUICore.Color
+  public var disabled: SwiftUICore.Color
+  public var error: SwiftUICore.Color
+  public var warning: SwiftUICore.Color
+  public var success: SwiftUICore.Color
+  public var toolbarBackground: SwiftUICore.Color
+  public var navigationBackground: SwiftUICore.Color
+  public var timelineBackground: SwiftUICore.Color
+  public var selection: SwiftUICore.Color
+  public var exportProgress: SwiftUICore.Color
+  public var placeholder: SwiftUICore.Color
+  public init(primary: SwiftUICore.Color, secondary: SwiftUICore.Color, accent: SwiftUICore.Color, background: SwiftUICore.Color, surface: SwiftUICore.Color, overlay: SwiftUICore.Color, textPrimary: SwiftUICore.Color, textSecondary: SwiftUICore.Color, border: SwiftUICore.Color, disabled: SwiftUICore.Color, error: SwiftUICore.Color, warning: SwiftUICore.Color, success: SwiftUICore.Color, toolbarBackground: SwiftUICore.Color, navigationBackground: SwiftUICore.Color, timelineBackground: SwiftUICore.Color, selection: SwiftUICore.Color, exportProgress: SwiftUICore.Color, placeholder: SwiftUICore.Color)
+}
+public struct SDKTypography {
+  public enum Style {
+    case largeTitle
+    case title
+    case subtitle
+    case body
+    case button
+    case caption
+    case label
+    case timeline
+    case toolbar
+    case navigationTitle
+    public static func == (a: snapcut.SDKTypography.Style, b: snapcut.SDKTypography.Style) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var provider: any snapcut.FontProvider
+  public init(provider: any snapcut.FontProvider = DefaultSystemFontProvider())
+}
+public struct SDKIcons {
+  public var back: SwiftUICore.Image
+  public var close: SwiftUICore.Image
+  public var delete: SwiftUICore.Image
+  public var play: SwiftUICore.Image
+  public var pause: SwiftUICore.Image
+  public var undo: SwiftUICore.Image
+  public var redo: SwiftUICore.Image
+  public var crop: SwiftUICore.Image
+  public var rotate: SwiftUICore.Image
+  public var filters: SwiftUICore.Image
+  public var camera: SwiftUICore.Image
+  public var export: SwiftUICore.Image
+  public var settings: SwiftUICore.Image
+  public var trim: SwiftUICore.Image
+  public var music: SwiftUICore.Image
+  public var text: SwiftUICore.Image
+  public var sticker: SwiftUICore.Image
+  public init(back: SwiftUICore.Image = Image(systemName: "chevron.left"), close: SwiftUICore.Image = Image(systemName: "xmark"), delete: SwiftUICore.Image = Image(systemName: "trash.fill"), play: SwiftUICore.Image = Image(systemName: "play.fill"), pause: SwiftUICore.Image = Image(systemName: "pause.fill"), undo: SwiftUICore.Image = Image(systemName: "arrow.uturn.backward"), redo: SwiftUICore.Image = Image(systemName: "arrow.uturn.forward"), crop: SwiftUICore.Image = Image(systemName: "crop"), rotate: SwiftUICore.Image = Image(systemName: "rotate.right"), filters: SwiftUICore.Image = Image(systemName: "camera.filters"), camera: SwiftUICore.Image = Image(systemName: "camera.fill"), export: SwiftUICore.Image = Image(systemName: "square.and.arrow.up"), settings: SwiftUICore.Image = Image(systemName: "gearshape.fill"), trim: SwiftUICore.Image = Image(systemName: "timeline.selection"), music: SwiftUICore.Image = Image(systemName: "music.note"), text: SwiftUICore.Image = Image(systemName: "textformat.alt"), sticker: SwiftUICore.Image = Image(systemName: "star.fill"))
+}
+public struct SDKLayout {
+  public var spacingSmall: CoreFoundation.CGFloat
+  public var spacingMedium: CoreFoundation.CGFloat
+  public var spacingLarge: CoreFoundation.CGFloat
+  public var spacingExtraLarge: CoreFoundation.CGFloat
+  public var paddingSmall: CoreFoundation.CGFloat
+  public var paddingMedium: CoreFoundation.CGFloat
+  public var paddingLarge: CoreFoundation.CGFloat
+  public var toolbarHeight: CoreFoundation.CGFloat
+  public var buttonHeight: CoreFoundation.CGFloat
+  public var cornerRadiusSmall: CoreFoundation.CGFloat
+  public var cornerRadiusMedium: CoreFoundation.CGFloat
+  public var cornerRadiusLarge: CoreFoundation.CGFloat
+  public var shadowRadius: CoreFoundation.CGFloat
+  public var borderWidth: CoreFoundation.CGFloat
+  public init(spacingSmall: CoreFoundation.CGFloat = 4, spacingMedium: CoreFoundation.CGFloat = 8, spacingLarge: CoreFoundation.CGFloat = 16, spacingExtraLarge: CoreFoundation.CGFloat = 24, paddingSmall: CoreFoundation.CGFloat = 8, paddingMedium: CoreFoundation.CGFloat = 16, paddingLarge: CoreFoundation.CGFloat = 24, toolbarHeight: CoreFoundation.CGFloat = 54, buttonHeight: CoreFoundation.CGFloat = 44, cornerRadiusSmall: CoreFoundation.CGFloat = 4, cornerRadiusMedium: CoreFoundation.CGFloat = 8, cornerRadiusLarge: CoreFoundation.CGFloat = 12, shadowRadius: CoreFoundation.CGFloat = 4, borderWidth: CoreFoundation.CGFloat = 1)
+}
+public struct SDKTheme {
+  public var colors: snapcut.SDKColors
+  public var typography: snapcut.SDKTypography
+  public var icons: snapcut.SDKIcons
+  public var layout: snapcut.SDKLayout
+  public init(colors: snapcut.SDKColors, typography: snapcut.SDKTypography = SDKTypography(), icons: snapcut.SDKIcons = SDKIcons(), layout: snapcut.SDKLayout = SDKLayout())
+}
+extension snapcut.SDKTheme {
+  public static var defaultDark: snapcut.SDKTheme {
+    get
+  }
+  public static var defaultLight: snapcut.SDKTheme {
+    get
+  }
 }
 extension snapcut.EditorView : Swift.Sendable {}
 extension snapcut.MediaType : Swift.Equatable {}
@@ -244,3 +373,5 @@ extension snapcut.ExportPreset : Swift.Equatable {}
 extension snapcut.ExportPreset : Swift.Hashable {}
 extension snapcut.ExportPreset : Swift.RawRepresentable {}
 extension snapcut.SnapcutMainView : Swift.Sendable {}
+extension snapcut.SDKTypography.Style : Swift.Equatable {}
+extension snapcut.SDKTypography.Style : Swift.Hashable {}
