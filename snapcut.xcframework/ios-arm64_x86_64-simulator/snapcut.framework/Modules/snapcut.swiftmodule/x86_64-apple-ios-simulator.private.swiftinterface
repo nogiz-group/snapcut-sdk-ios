@@ -14,7 +14,6 @@ import Foundation
 import Foundation/*.Bundle*/
 import Foundation/*.ProcessInfo*/
 import Foundation/*.URL*/
-import GiphyUISDK
 import ImageIO
 import ObjectiveC
 import Photos
@@ -421,16 +420,11 @@ extension UIKit.UIApplication {
   @_Concurrency.MainActor @preconcurrency public let onSelected: (Swift.String) -> Swift.Void
   @_Concurrency.MainActor @preconcurrency public let onDismiss: () -> Swift.Void
   @_Concurrency.MainActor @preconcurrency public init(onSelected: @escaping (Swift.String) -> Swift.Void, onDismiss: @escaping () -> Swift.Void)
-  @_Concurrency.MainActor @preconcurrency public func makeUIViewController(context: snapcut.GiphyPickerView.Context) -> GiphyUISDK.GiphyViewController
-  @_Concurrency.MainActor @preconcurrency public func updateUIViewController(_ uiViewController: GiphyUISDK.GiphyViewController, context: snapcut.GiphyPickerView.Context)
-  @_Concurrency.MainActor @preconcurrency public func makeCoordinator() -> snapcut.GiphyPickerView.Coordinator
-  @objc @_hasMissingDesignatedInitializers public class Coordinator : ObjectiveC.NSObject, GiphyUISDK.GiphyDelegate {
-    @objc public func didSelectMedia(giphyViewController: GiphyUISDK.GiphyViewController, media: GiphyUISDK.GPHMedia)
-    @objc public func didDismiss(controller: GiphyUISDK.GiphyViewController?)
-    @objc deinit
-  }
+  @_Concurrency.MainActor @preconcurrency public func makeUIViewController(context: snapcut.GiphyPickerView.Context) -> UIKit.UIViewController
+  @_Concurrency.MainActor @preconcurrency public func updateUIViewController(_ uiViewController: UIKit.UIViewController, context: snapcut.GiphyPickerView.Context)
   public typealias Body = Swift.Never
-  public typealias UIViewControllerType = GiphyUISDK.GiphyViewController
+  public typealias Coordinator = Swift.Void
+  public typealias UIViewControllerType = UIKit.UIViewController
 }
 public enum StickerType : Swift.String, Swift.Codable {
   case gif
