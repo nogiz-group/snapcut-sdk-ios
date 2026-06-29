@@ -469,6 +469,7 @@ public class HybridStickerProvider : snapcut.StickerProvider {
   @objc deinit
 }
 @_Concurrency.MainActor @preconcurrency public struct SnapcutMainView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init()
   @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
     get
   }
