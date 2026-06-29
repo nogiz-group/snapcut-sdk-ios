@@ -89,6 +89,7 @@ struct TestSDKApp: App {
         // 2. Initialize with configuration
         let config = VideoEditorConfiguration(
             licenseKey: "NOGIZ-SNAPCUT-PRO",
+            giphyAPIKey: "YOUR_GIPHY_API_KEY",
             darkTheme: myTheme
         )
         SnapcutSDK.initialize(config: config)
