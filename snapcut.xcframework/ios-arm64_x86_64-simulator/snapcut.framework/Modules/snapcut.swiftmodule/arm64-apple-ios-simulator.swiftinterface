@@ -55,7 +55,7 @@ public struct SDKConfiguration {
   public static let shared: snapcut.SnapcutSDK
   public static func initialize(config: snapcut.VideoEditorConfiguration)
   @available(*, deprecated, message: "Use initialize(config:) instead to support dynamic themes.")
-  public static func initialize(licenseKey: Swift.String)
+  public static func initialize(licenseKey: Swift.String, giphyAPIKey: Swift.String = "")
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class VideoEditor : snapcut.TimelineModifying, snapcut.AudioMixing, snapcut.FilterApplying {
@@ -84,12 +84,12 @@ public class VideoEditorConfiguration : Foundation.ObservableObject {
   public var lightTheme: snapcut.SDKTheme
   public var darkTheme: snapcut.SDKTheme
   public var forceColorScheme: SwiftUICore.ColorScheme?
-  @Combine.Published<Swift.String?> @_projectedValueProperty($giphyAPIKey) public var giphyAPIKey: Swift.String? {
+  @Combine.Published<Swift.String> @_projectedValueProperty($giphyAPIKey) public var giphyAPIKey: Swift.String {
     get
     @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
     set
   }
-  public var $giphyAPIKey: Combine.Published<Swift.String?>.Publisher {
+  public var $giphyAPIKey: Combine.Published<Swift.String>.Publisher {
     get
     @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
     set
@@ -106,7 +106,7 @@ public class VideoEditorConfiguration : Foundation.ObservableObject {
     @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
     set
   }
-  public init(licenseKey: Swift.String = "", lightTheme: snapcut.SDKTheme = .defaultLight, darkTheme: snapcut.SDKTheme = .defaultDark, forceColorScheme: SwiftUICore.ColorScheme? = nil, giphyAPIKey: Swift.String? = nil)
+  public init(licenseKey: Swift.String, giphyAPIKey: Swift.String, lightTheme: snapcut.SDKTheme = .defaultLight, darkTheme: snapcut.SDKTheme = .defaultDark, forceColorScheme: SwiftUICore.ColorScheme? = nil)
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
