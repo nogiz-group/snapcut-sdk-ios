@@ -14,10 +14,12 @@ import Foundation
 import Foundation/*.Bundle*/
 import Foundation/*.ProcessInfo*/
 import Foundation/*.URL*/
+import GiphyUISDK
 import ImageIO
 import ObjectiveC
 import Photos
 import PhotosUI
+import QuartzCore
 import SceneKit
 import Swift
 import SwiftUI
@@ -240,6 +242,16 @@ public protocol VideoExporting {
   public static func runAllTests()
   @objc deinit
 }
+public struct EditorCropState : Swift.Equatable, Swift.Codable {
+  public var cropRect: CoreFoundation.CGRect
+  public var rotation: Swift.Int
+  public var isFlippedH: Swift.Bool
+  public var isFlippedV: Swift.Bool
+  public static let identity: snapcut.EditorCropState
+  public static func == (a: snapcut.EditorCropState, b: snapcut.EditorCropState) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
 public protocol FontProvider {
   func font(for style: snapcut.SDKTypography.Style) -> UIKit.UIFont
 }
@@ -361,25 +373,6 @@ public struct SDKTypography {
   public var provider: any snapcut.FontProvider
   public init(provider: any snapcut.FontProvider = DefaultSystemFontProvider())
 }
-@_Concurrency.MainActor @preconcurrency public struct EditorView : SwiftUICore.View {
-  @SwiftUICore.ObservedObject<snapcut.EditorViewModel> @_projectedValueProperty($viewModel) @_Concurrency.MainActor @preconcurrency public var viewModel: snapcut.EditorViewModel {
-    get
-    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
-    set
-    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
-    _modify
-  }
-  @_Concurrency.MainActor @preconcurrency public var $viewModel: SwiftUICore.ObservedObject<snapcut.EditorViewModel>.Wrapper {
-    get
-  }
-  @_Concurrency.MainActor @preconcurrency public var onImportVideo: (Foundation.URL) -> Swift.Void
-  @_Concurrency.MainActor @preconcurrency public var onDismiss: () -> Swift.Void
-  @_Concurrency.MainActor @preconcurrency public init(viewModel: snapcut.EditorViewModel, onImportVideo: @escaping (Foundation.URL) -> Swift.Void, onDismiss: @escaping () -> Swift.Void)
-  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
-    get
-  }
-  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut10EditorViewV4bodyQrvp", 0) __
-}
 @_hasMissingDesignatedInitializers public class GIFDebugLogger : Combine.ObservableObject {
   public static let shared: snapcut.GIFDebugLogger
   @Combine.Published<[Swift.String]> @_projectedValueProperty($logs) public var logs: [Swift.String] {
@@ -420,11 +413,16 @@ extension UIKit.UIApplication {
   @_Concurrency.MainActor @preconcurrency public let onSelected: (Swift.String) -> Swift.Void
   @_Concurrency.MainActor @preconcurrency public let onDismiss: () -> Swift.Void
   @_Concurrency.MainActor @preconcurrency public init(onSelected: @escaping (Swift.String) -> Swift.Void, onDismiss: @escaping () -> Swift.Void)
-  @_Concurrency.MainActor @preconcurrency public func makeUIViewController(context: snapcut.GiphyPickerView.Context) -> UIKit.UIViewController
-  @_Concurrency.MainActor @preconcurrency public func updateUIViewController(_ uiViewController: UIKit.UIViewController, context: snapcut.GiphyPickerView.Context)
+  @_Concurrency.MainActor @preconcurrency public func makeUIViewController(context: snapcut.GiphyPickerView.Context) -> GiphyUISDK.GiphyViewController
+  @_Concurrency.MainActor @preconcurrency public func updateUIViewController(_ uiViewController: GiphyUISDK.GiphyViewController, context: snapcut.GiphyPickerView.Context)
+  @_Concurrency.MainActor @preconcurrency public func makeCoordinator() -> snapcut.GiphyPickerView.Coordinator
+  @objc @_hasMissingDesignatedInitializers public class Coordinator : ObjectiveC.NSObject, GiphyUISDK.GiphyDelegate {
+    @objc public func didSelectMedia(giphyViewController: GiphyUISDK.GiphyViewController, media: GiphyUISDK.GPHMedia)
+    @objc public func didDismiss(controller: GiphyUISDK.GiphyViewController?)
+    @objc deinit
+  }
   public typealias Body = Swift.Never
-  public typealias Coordinator = Swift.Void
-  public typealias UIViewControllerType = UIKit.UIViewController
+  public typealias UIViewControllerType = GiphyUISDK.GiphyViewController
 }
 public enum StickerType : Swift.String, Swift.Codable {
   case gif
@@ -468,6 +466,48 @@ public class HybridStickerProvider : snapcut.StickerProvider {
   public func searchStickers(query: Swift.String, completion: @escaping (Swift.Result<[snapcut.Sticker], any Swift.Error>) -> Swift.Void)
   @objc deinit
 }
+@_hasMissingDesignatedInitializers public class PIPRenderer {
+  public static let shared: snapcut.PIPRenderer
+  public func compositePIP(background: CoreImage.CIImage, pipURL: Foundation.URL, pipState: snapcut.PIPState, time: Swift.Double, isLooping: Swift.Bool = true) -> CoreImage.CIImage
+  public func clearCache()
+  @objc deinit
+}
+public struct PIPState : Swift.Equatable, Swift.Codable {
+  public var normalizedFrame: CoreFoundation.CGRect
+  public var opacity: CoreFoundation.CGFloat
+  public var rotation: CoreFoundation.CGFloat
+  public var isMuted: Swift.Bool
+  public init(normalizedFrame: CoreFoundation.CGRect = CGRect(x: 0.5, y: 0.5, width: 0.3, height: 0.3), opacity: CoreFoundation.CGFloat = 1.0, rotation: CoreFoundation.CGFloat = 0.0, isMuted: Swift.Bool = false)
+  public static let defaultState: snapcut.PIPState
+  public static func == (a: snapcut.PIPState, b: snapcut.PIPState) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class PIPVideoCanvas : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency final public let pipContainerView: UIKit.UIView
+  @_Concurrency.MainActor @preconcurrency public var backgroundSize: CoreFoundation.CGSize
+  @_Concurrency.MainActor @preconcurrency public var pipSize: CoreFoundation.CGSize
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func layoutSubviews()
+  @_Concurrency.MainActor @preconcurrency public func load(backgroundAsset: AVFoundation.AVAsset, pipAsset: AVFoundation.AVAsset)
+  @_Concurrency.MainActor @preconcurrency public func play()
+  @_Concurrency.MainActor @preconcurrency public func pause()
+  @_Concurrency.MainActor @preconcurrency public func setPIPMuted(_ isMuted: Swift.Bool)
+  @objc deinit
+}
+public protocol PIPViewControllerDelegate : AnyObject {
+  func pipViewControllerDidFinish(with state: snapcut.PIPState)
+  func pipViewControllerDidCancel()
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class PIPViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor @preconcurrency weak public var delegate: (any snapcut.PIPViewControllerDelegate)?
+  @_Concurrency.MainActor @preconcurrency public init(backgroundAsset: AVFoundation.AVAsset, pipAsset: AVFoundation.AVAsset, initialState: snapcut.PIPState = .defaultState)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func viewDidLoad()
+  @objc deinit
+}
+extension snapcut.PIPViewController : UIKit.UIGestureRecognizerDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public func gestureRecognizer(_ gestureRecognizer: UIKit.UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIKit.UIGestureRecognizer) -> Swift.Bool
+}
 @_Concurrency.MainActor @preconcurrency public struct SnapcutMainView : SwiftUICore.View {
   @_Concurrency.MainActor @preconcurrency public init()
   @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
@@ -476,11 +516,324 @@ public class HybridStickerProvider : snapcut.StickerProvider {
   public typealias Body = @_opaqueReturnTypeOf("$s7snapcut15SnapcutMainViewV4bodyQrvp", 0) __
 }
 
-public class EditorViewModel : Combine.ObservableObject {
-  public init(videoURL: Foundation.URL)
-  public init(videoURLs: [Foundation.URL])
+public enum AspectRatio : Swift.Equatable, Swift.CaseIterable {
+  case original
+  case custom
+  case ratio1x1
+  case ratio4x5
+  case ratio5x4
+  case ratio3x4
+  case ratio4x3
+  case ratio9x16
+  case ratio16x9
+  case ratio2x3
+  case ratio3x2
+  case ratio5x7
+  case ratio7x5
+  case ratio2x1
+  case ratio1x2
+  case instagramPortrait
+  case instagramLandscape
+  case instagramStory
+  case tiktok
+  case youtube
+  case square
+  case landscape
+  case portrait
+  public var value: CoreFoundation.CGFloat? {
+    get
+  }
+  public var displayName: Swift.String {
+    get
+  }
+  public static func == (a: snapcut.AspectRatio, b: snapcut.AspectRatio) -> Swift.Bool
+  public typealias AllCases = [snapcut.AspectRatio]
+  nonisolated public static var allCases: [snapcut.AspectRatio] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol CropEditorDelegate : AnyObject {
+  func cropEditorDidCancel()
+  func cropEditorDidFinish(with state: snapcut.EditorState)
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class CropEditorViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.CropEditorDelegate)?
+  @_Concurrency.MainActor @preconcurrency public init(asset: AVFoundation.AVAsset, initialState: snapcut.EditorState? = nil)
+  @_Concurrency.MainActor @preconcurrency @objc override final public func viewDidLoad()
+  @objc deinit
+}
+extension snapcut.CropEditorViewController : snapcut.CropOverlayViewDelegate {
+  @_Concurrency.MainActor @preconcurrency final public func cropOverlayDidBeginInteraction()
+  @_Concurrency.MainActor @preconcurrency final public func cropOverlayDidUpdate(translation: CoreFoundation.CGPoint, handle: snapcut.CropHandle)
+  @_Concurrency.MainActor @preconcurrency final public func cropOverlayDidEndInteraction()
+}
+extension snapcut.CropEditorViewController : snapcut.CropGestureManagerDelegate {
+  @_Concurrency.MainActor @preconcurrency final public func didUpdate(transform: snapcut.VideoTransform)
+  @_Concurrency.MainActor @preconcurrency final public func didUpdate(cropState: snapcut.CropState)
+  @_Concurrency.MainActor @preconcurrency final public func gestureDidBegin()
+  @_Concurrency.MainActor @preconcurrency final public func gestureDidEnd()
+}
+extension snapcut.CropEditorViewController : snapcut.EditorToolbarViewDelegate {
+  @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidSelectRatio(_ ratio: snapcut.AspectRatio)
+  @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidTapRotate()
+  @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidTapFlipHorizontally()
+  @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidTapFlipVertically()
+  @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidTapReset()
+  @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidTapDone()
+  @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidTapCancel()
+  @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidUpdateStraightenAngle(_ angle: CoreFoundation.CGFloat)
+}
+final public class CropEditorViewModel : Foundation.ObservableObject {
+  @Combine.Published<snapcut.EditorState> @_projectedValueProperty($editorState) final public var editorState: snapcut.EditorState {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $editorState: Combine.Published<snapcut.EditorState>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($isExporting) final public var isExporting: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $isExporting: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Float> @_projectedValueProperty($exportProgress) final public var exportProgress: Swift.Float {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $exportProgress: Combine.Published<Swift.Float>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.String?> @_projectedValueProperty($errorMessage) final public var errorMessage: Swift.String? {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $errorMessage: Combine.Published<Swift.String?>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  final public let undoManager: snapcut.EditorUndoManager
+  final public let asset: AVFoundation.AVAsset
+  public init(asset: AVFoundation.AVAsset, initialState: snapcut.EditorState? = nil)
+  final public func updateCropState(_ state: snapcut.CropState)
+  final public func updateTransform(_ transform: snapcut.VideoTransform)
+  final public func commitChanges()
+  final public func undo()
+  final public func redo()
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class CropEngine {
+  public static let minimumNormalizedSize: CoreFoundation.CGFloat
+  public static func updateCropRect(initialRect: CoreFoundation.CGRect, handle: snapcut.CropHandle, translation: CoreFoundation.CGPoint, targetNormalizedRatio: CoreFoundation.CGFloat?, bounds: CoreFoundation.CGRect = CGRect(x: 0, y: 0, width: 1, height: 1)) -> CoreFoundation.CGRect
+  @objc deinit
+}
+public protocol CropGestureManagerDelegate : AnyObject {
+  func didUpdate(transform: snapcut.VideoTransform)
+  func didUpdate(cropState: snapcut.CropState)
+  func gestureDidBegin()
+  func gestureDidEnd()
+}
+final public class CropGestureManager {
+  weak final public var delegate: (any snapcut.CropGestureManagerDelegate)?
+  public init()
+  final public func setInitialTransform(_ transform: snapcut.VideoTransform)
+  final public func handlePinch(scale: CoreFoundation.CGFloat, state: UIKit.UIGestureRecognizer.State)
+  final public func handleTwoFingerPan(translation: CoreFoundation.CGPoint, state: UIKit.UIGestureRecognizer.State)
+  final public func handleDoubleTap()
+  @objc deinit
+}
+public protocol CropOverlayViewDelegate : AnyObject {
+  func cropOverlayDidBeginInteraction()
+  func cropOverlayDidUpdate(translation: CoreFoundation.CGPoint, handle: snapcut.CropHandle)
+  func cropOverlayDidEndInteraction()
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class CropOverlayView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.CropOverlayViewDelegate)?
+  @_Concurrency.MainActor @preconcurrency final public var cropRect: CoreFoundation.CGRect {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
+  @objc deinit
+}
+public struct CropState : Swift.Equatable {
+  public var rect: CoreFoundation.CGRect
+  public var aspectRatio: snapcut.AspectRatio
+  public init(rect: CoreFoundation.CGRect = CGRect(x: 0, y: 0, width: 1, height: 1), aspectRatio: snapcut.AspectRatio = .original)
+  public static let full: snapcut.CropState
+  public static func == (a: snapcut.CropState, b: snapcut.CropState) -> Swift.Bool
+}
+public enum CropHandle : Swift.Equatable {
+  case topLeft
+  case topRight
+  case bottomLeft
+  case bottomRight
+  case topEdge
+  case bottomEdge
+  case leftEdge
+  case rightEdge
+  case center
+  case none
+  public static func == (a: snapcut.CropHandle, b: snapcut.CropHandle) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+final public class CropToolbarViewModel : Foundation.ObservableObject {
+  @Combine.Published<snapcut.AspectRatio> @_projectedValueProperty($selectedAspectRatio) final public var selectedAspectRatio: snapcut.AspectRatio {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $selectedAspectRatio: Combine.Published<snapcut.AspectRatio>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<CoreFoundation.CGFloat> @_projectedValueProperty($rotationDegrees) final public var rotationDegrees: CoreFoundation.CGFloat {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $rotationDegrees: Combine.Published<CoreFoundation.CGFloat>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<CoreFoundation.CGFloat> @_projectedValueProperty($straightenAngle) final public var straightenAngle: CoreFoundation.CGFloat {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $straightenAngle: Combine.Published<CoreFoundation.CGFloat>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  final public let availableAspectRatios: [snapcut.AspectRatio]
+  public init()
+  final public func reset()
+  final public func select(aspectRatio: snapcut.AspectRatio)
+  final public func rotate90Degrees()
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+public protocol EditorToolbarViewDelegate : AnyObject {
+  func editorToolbarDidSelectRatio(_ ratio: snapcut.AspectRatio)
+  func editorToolbarDidTapRotate()
+  func editorToolbarDidTapFlipHorizontally()
+  func editorToolbarDidTapFlipVertically()
+  func editorToolbarDidTapReset()
+  func editorToolbarDidTapDone()
+  func editorToolbarDidTapCancel()
+  func editorToolbarDidUpdateStraightenAngle(_ angle: CoreFoundation.CGFloat)
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class EditorToolbarView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.EditorToolbarViewDelegate)?
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
+  @_Concurrency.MainActor @preconcurrency final public func selectRatio(_ ratio: snapcut.AspectRatio)
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class GridRenderer : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
+  @_Concurrency.MainActor @preconcurrency final public func showGrid(animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency final public func hideGrid(animated: Swift.Bool)
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class CropHandleView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency final public let type: snapcut.CropHandle
+  @_Concurrency.MainActor @preconcurrency public init(type: snapcut.CropHandle)
+  @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override final public func point(inside point: CoreFoundation.CGPoint, with event: UIKit.UIEvent?) -> Swift.Bool
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class TransformCalculator {
+  public static func viewTransform(for videoTransform: snapcut.VideoTransform, viewSize: CoreFoundation.CGSize) -> CoreFoundation.CGAffineTransform
+  public static func compositionTransform(originalSize: CoreFoundation.CGSize, cropRect: CoreFoundation.CGRect, videoTransform: snapcut.VideoTransform, renderSize: CoreFoundation.CGSize) -> CoreFoundation.CGAffineTransform
+  @objc deinit
+}
+public struct EditorState : Swift.Equatable {
+  public var cropState: snapcut.CropState
+  public var transform: snapcut.VideoTransform
+  public init(cropState: snapcut.CropState = .full, transform: snapcut.VideoTransform = .identity)
+  public static func == (a: snapcut.EditorState, b: snapcut.EditorState) -> Swift.Bool
+}
+final public class EditorUndoManager {
+  final public var canUndo: Swift.Bool {
+    get
+  }
+  final public var canRedo: Swift.Bool {
+    get
+  }
+  public init()
+  final public func record(state: snapcut.EditorState)
+  final public func undo(currentState: snapcut.EditorState) -> snapcut.EditorState?
+  final public func redo(currentState: snapcut.EditorState) -> snapcut.EditorState?
+  final public func clear()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class VideoCanvasView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency final public var player: AVFoundation.AVPlayer? {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency final public var videoSize: CoreFoundation.CGSize
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
+  @_Concurrency.MainActor @preconcurrency final public func applyTransform(_ transform: snapcut.VideoTransform)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class VideoCoordinateConverter {
+  public static func aspectFitRect(for videoSize: CoreFoundation.CGSize, inside viewBounds: CoreFoundation.CGRect) -> CoreFoundation.CGRect
+  public static func viewRect(fromNormalized normalizedRect: CoreFoundation.CGRect, videoSize: CoreFoundation.CGSize, viewBounds: CoreFoundation.CGRect) -> CoreFoundation.CGRect
+  public static func normalizedRect(fromView viewRect: CoreFoundation.CGRect, videoSize: CoreFoundation.CGSize, viewBounds: CoreFoundation.CGRect) -> CoreFoundation.CGRect
+  public static func videoRect(fromNormalized normalizedRect: CoreFoundation.CGRect, videoSize: CoreFoundation.CGSize) -> CoreFoundation.CGRect
+  @objc deinit
+}
+public struct VideoTransform : Swift.Equatable {
+  public var rotation: CoreFoundation.CGFloat
+  public var scale: CoreFoundation.CGFloat
+  public var translation: CoreFoundation.CGPoint
+  public var isFlippedHorizontally: Swift.Bool
+  public var isFlippedVertically: Swift.Bool
+  public init(rotation: CoreFoundation.CGFloat = 0, scale: CoreFoundation.CGFloat = 1.0, translation: CoreFoundation.CGPoint = .zero, isFlippedHorizontally: Swift.Bool = false, isFlippedVertically: Swift.Bool = false)
+  public static let identity: snapcut.VideoTransform
+  public static func == (a: snapcut.VideoTransform, b: snapcut.VideoTransform) -> Swift.Bool
 }
 extension snapcut.MediaType : Swift.Equatable {}
 extension snapcut.MediaType : Swift.Hashable {}
@@ -493,9 +846,10 @@ extension snapcut.ExportPreset : Swift.Hashable {}
 extension snapcut.ExportPreset : Swift.RawRepresentable {}
 extension snapcut.SDKTypography.Style : Swift.Equatable {}
 extension snapcut.SDKTypography.Style : Swift.Hashable {}
-extension snapcut.EditorView : Swift.Sendable {}
 extension snapcut.GiphyPickerView : Swift.Sendable {}
 extension snapcut.StickerType : Swift.Equatable {}
 extension snapcut.StickerType : Swift.Hashable {}
 extension snapcut.StickerType : Swift.RawRepresentable {}
 extension snapcut.SnapcutMainView : Swift.Sendable {}
+extension snapcut.AspectRatio : Swift.Hashable {}
+extension snapcut.CropHandle : Swift.Hashable {}
