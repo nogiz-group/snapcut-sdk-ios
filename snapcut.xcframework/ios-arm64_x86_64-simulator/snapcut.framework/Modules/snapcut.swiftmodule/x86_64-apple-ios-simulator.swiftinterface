@@ -31,6 +31,47 @@ import _PhotosUI_SwiftUI
 import _SceneKit_SwiftUI
 import _StringProcessing
 import _SwiftConcurrencyShims
+public enum AppStrings {
+  public static let exportTitle: Swift.String
+  public static let exportButton: Swift.String
+  public static let exporting: Swift.String
+  public static let exportSuccessful: Swift.String
+  public static let exportSavedDesc: Swift.String
+  public static let exportShareTo: Swift.String
+  public static let exportWarning1: Swift.String
+  public static let exportWarning2: Swift.String
+  public static let exportWarning3: Swift.String
+  public static let savedToDevice: Swift.String
+  public static let aiUltraHD: Swift.String
+  public static let proBadge: Swift.String
+  public static let aiUltraHDDesc: Swift.String
+  public static let resolution: Swift.String
+  public static let recommended: Swift.String
+  public static let estimatedFileSize: Swift.String
+  public static let goodBalanceDesc: Swift.String
+  public static let done: Swift.String
+  public static let watermarkSnap: Swift.String
+  public static let watermarkCut: Swift.String
+  public static let defaultProfileName: Swift.String
+  public static let next: Swift.String
+  public static let retouchBeauty: Swift.String
+  public static let skinSmoothing: Swift.String
+  public static let brightness: Swift.String
+  public static let contrast: Swift.String
+  public static let chooseSoundtrack: Swift.String
+  public static let removeMusic: Swift.String
+  public static let simulatorCameraLiveFeed: Swift.String
+  public static let simulatorLoadingFeed: Swift.String
+  public static let simulatorPreview: Swift.String
+  public static let transition: Swift.String
+  public static let tapToAddAudio: Swift.String
+  public static let addTrack: Swift.String
+  public static let tapToAddText: Swift.String
+  public static let tapToAddSticker: Swift.String
+  public static let gif: Swift.String
+  public static let extractedAudio: Swift.String
+  public static let addMusic: Swift.String
+}
 public struct Movie : CoreTransferable.Transferable {
   public let url: Foundation.URL
   public init(url: Foundation.URL)
@@ -468,16 +509,41 @@ public class HybridStickerProvider : snapcut.StickerProvider {
 }
 @_hasMissingDesignatedInitializers public class PIPRenderer {
   public static let shared: snapcut.PIPRenderer
-  public func compositePIP(background: CoreImage.CIImage, pipURL: Foundation.URL, pipState: snapcut.PIPState, time: Swift.Double, isLooping: Swift.Bool = true) -> CoreImage.CIImage
+  public func compositePIP(background: CoreImage.CIImage, pipURL: Foundation.URL, pipState: snapcut.PIPState, time: Swift.Double, isLooping: Swift.Bool = true, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil) -> CoreImage.CIImage
   public func clearCache()
   @objc deinit
+}
+public enum PIPLayout : Swift.String, Swift.Codable, Swift.CaseIterable {
+  case floating
+  case floatRect
+  case react
+  case sideBySide
+  case topBottom
+  case landscape
+  case portrait
+  case circlePIP
+  case roundedPIP
+  case bottomLeft
+  case topLeft
+  case frame
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [snapcut.PIPLayout]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [snapcut.PIPLayout] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
 }
 public struct PIPState : Swift.Equatable, Swift.Codable {
   public var normalizedFrame: CoreFoundation.CGRect
   public var opacity: CoreFoundation.CGFloat
   public var rotation: CoreFoundation.CGFloat
   public var isMuted: Swift.Bool
-  public init(normalizedFrame: CoreFoundation.CGRect = CGRect(x: 0.5, y: 0.5, width: 0.3, height: 0.3), opacity: CoreFoundation.CGFloat = 1.0, rotation: CoreFoundation.CGFloat = 0.0, isMuted: Swift.Bool = false)
+  public var layout: snapcut.PIPLayout
+  public var swapSources: Swift.Bool
+  public init(normalizedFrame: CoreFoundation.CGRect = CGRect(x: 0.5, y: 0.5, width: 0.3, height: 0.3), opacity: CoreFoundation.CGFloat = 1.0, rotation: CoreFoundation.CGFloat = 0.0, isMuted: Swift.Bool = false, layout: snapcut.PIPLayout = .floatRect, swapSources: Swift.Bool = false)
   public static let defaultState: snapcut.PIPState
   public static func == (a: snapcut.PIPState, b: snapcut.PIPState) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
@@ -850,6 +916,9 @@ extension snapcut.GiphyPickerView : Swift.Sendable {}
 extension snapcut.StickerType : Swift.Equatable {}
 extension snapcut.StickerType : Swift.Hashable {}
 extension snapcut.StickerType : Swift.RawRepresentable {}
+extension snapcut.PIPLayout : Swift.Equatable {}
+extension snapcut.PIPLayout : Swift.Hashable {}
+extension snapcut.PIPLayout : Swift.RawRepresentable {}
 extension snapcut.SnapcutMainView : Swift.Sendable {}
 extension snapcut.AspectRatio : Swift.Hashable {}
 extension snapcut.CropHandle : Swift.Hashable {}
