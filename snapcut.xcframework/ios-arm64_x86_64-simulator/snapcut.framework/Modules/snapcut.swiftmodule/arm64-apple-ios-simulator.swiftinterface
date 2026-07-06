@@ -293,6 +293,27 @@ public struct EditorCropState : Swift.Equatable, Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+public enum LayoutType : Swift.String, Swift.Codable, Swift.CaseIterable {
+  case verticalSplit
+  case horizontalSplit
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [snapcut.LayoutType]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [snapcut.LayoutType] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct LayoutState : Swift.Codable, Swift.Equatable {
+  public var type: snapcut.LayoutType
+  public var swapSources: Swift.Bool
+  public init(type: snapcut.LayoutType = .horizontalSplit, swapSources: Swift.Bool = false)
+  public static func == (a: snapcut.LayoutState, b: snapcut.LayoutState) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
 public protocol FontProvider {
   func font(for style: snapcut.SDKTypography.Style) -> UIKit.UIFont
 }
@@ -414,6 +435,7 @@ public struct SDKTypography {
   public var provider: any snapcut.FontProvider
   public init(provider: any snapcut.FontProvider = DefaultSystemFontProvider())
 }
+
 @_hasMissingDesignatedInitializers public class GIFDebugLogger : Combine.ObservableObject {
   public static let shared: snapcut.GIFDebugLogger
   @Combine.Published<[Swift.String]> @_projectedValueProperty($logs) public var logs: [Swift.String] {
@@ -450,6 +472,13 @@ public class GiphyGIFProvider : snapcut.GIFProvider {
 extension UIKit.UIApplication {
   @_Concurrency.MainActor @preconcurrency public func getTopViewController() -> UIKit.UIViewController?
 }
+@_Concurrency.MainActor @preconcurrency public struct GalleryLayoutSelectionView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(mainVideoURL: Foundation.URL, layoutURL: Foundation.URL, layoutTrimStart: Swift.Double, layoutTrimEnd: Swift.Double, initialLayoutState: snapcut.LayoutState?, onComplete: @escaping (snapcut.LayoutState) -> Swift.Void, onCancel: @escaping () -> Swift.Void)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut26GalleryLayoutSelectionViewV4bodyQrvp", 0) __
+}
 @_Concurrency.MainActor @preconcurrency public struct GiphyPickerView : SwiftUI.UIViewControllerRepresentable {
   @_Concurrency.MainActor @preconcurrency public let onSelected: (Swift.String) -> Swift.Void
   @_Concurrency.MainActor @preconcurrency public let onDismiss: () -> Swift.Void
@@ -464,6 +493,13 @@ extension UIKit.UIApplication {
   }
   public typealias Body = Swift.Never
   public typealias UIViewControllerType = GiphyUISDK.GiphyViewController
+}
+@_Concurrency.MainActor @preconcurrency public struct LayoutRecordingView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(showGalleryPicker: SwiftUICore.Binding<Swift.Bool>)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut19LayoutRecordingViewV4bodyQrvp", 0) __
 }
 public enum StickerType : Swift.String, Swift.Codable {
   case gif
@@ -507,6 +543,12 @@ public class HybridStickerProvider : snapcut.StickerProvider {
   public func searchStickers(query: Swift.String, completion: @escaping (Swift.Result<[snapcut.Sticker], any Swift.Error>) -> Swift.Void)
   @objc deinit
 }
+@_hasMissingDesignatedInitializers public class LayoutRenderer {
+  public static let shared: snapcut.LayoutRenderer
+  public func compositeLayout(background: CoreImage.CIImage, layoutURL: Foundation.URL, layoutState: snapcut.LayoutState, time: Swift.Double, isLooping: Swift.Bool = true, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil) -> CoreImage.CIImage
+  public func clearCache()
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class PIPRenderer {
   public static let shared: snapcut.PIPRenderer
   public func compositePIP(background: CoreImage.CIImage, pipURL: Foundation.URL, pipState: snapcut.PIPState, time: Swift.Double, isLooping: Swift.Bool = true, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil) -> CoreImage.CIImage
@@ -514,18 +556,9 @@ public class HybridStickerProvider : snapcut.StickerProvider {
   @objc deinit
 }
 public enum PIPLayout : Swift.String, Swift.Codable, Swift.CaseIterable {
-  case floating
-  case floatRect
-  case react
-  case sideBySide
-  case topBottom
-  case landscape
-  case portrait
-  case circlePIP
-  case roundedPIP
-  case bottomLeft
-  case topLeft
-  case frame
+  case circle
+  case rectangle
+  case rounded
   public init?(rawValue: Swift.String)
   public typealias AllCases = [snapcut.PIPLayout]
   public typealias RawValue = Swift.String
@@ -543,7 +576,7 @@ public struct PIPState : Swift.Equatable, Swift.Codable {
   public var isMuted: Swift.Bool
   public var layout: snapcut.PIPLayout
   public var swapSources: Swift.Bool
-  public init(normalizedFrame: CoreFoundation.CGRect = CGRect(x: 0.5, y: 0.5, width: 0.3, height: 0.3), opacity: CoreFoundation.CGFloat = 1.0, rotation: CoreFoundation.CGFloat = 0.0, isMuted: Swift.Bool = false, layout: snapcut.PIPLayout = .floatRect, swapSources: Swift.Bool = false)
+  public init(normalizedFrame: CoreFoundation.CGRect = CGRect(x: 0.6, y: 0.1, width: 0.35, height: 0.35), opacity: CoreFoundation.CGFloat = 1.0, rotation: CoreFoundation.CGFloat = 0.0, isMuted: Swift.Bool = false, layout: snapcut.PIPLayout = .rectangle, swapSources: Swift.Bool = false)
   public static let defaultState: snapcut.PIPState
   public static func == (a: snapcut.PIPState, b: snapcut.PIPState) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
@@ -901,6 +934,15 @@ public struct VideoTransform : Swift.Equatable {
   public static let identity: snapcut.VideoTransform
   public static func == (a: snapcut.VideoTransform, b: snapcut.VideoTransform) -> Swift.Bool
 }
+public class LayoutRecordingViewModel : Combine.ObservableObject {
+  public init()
+  public func startSession()
+  public func stopSession()
+  public func toggleRecording(onComplete: @escaping (Foundation.URL?) -> Swift.Void)
+  public func flipCamera()
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
 extension snapcut.MediaType : Swift.Equatable {}
 extension snapcut.MediaType : Swift.Hashable {}
 extension snapcut.MediaType : Swift.RawRepresentable {}
@@ -910,9 +952,14 @@ extension snapcut.FilterType : Swift.RawRepresentable {}
 extension snapcut.ExportPreset : Swift.Equatable {}
 extension snapcut.ExportPreset : Swift.Hashable {}
 extension snapcut.ExportPreset : Swift.RawRepresentable {}
+extension snapcut.LayoutType : Swift.Equatable {}
+extension snapcut.LayoutType : Swift.Hashable {}
+extension snapcut.LayoutType : Swift.RawRepresentable {}
 extension snapcut.SDKTypography.Style : Swift.Equatable {}
 extension snapcut.SDKTypography.Style : Swift.Hashable {}
+extension snapcut.GalleryLayoutSelectionView : Swift.Sendable {}
 extension snapcut.GiphyPickerView : Swift.Sendable {}
+extension snapcut.LayoutRecordingView : Swift.Sendable {}
 extension snapcut.StickerType : Swift.Equatable {}
 extension snapcut.StickerType : Swift.Hashable {}
 extension snapcut.StickerType : Swift.RawRepresentable {}
