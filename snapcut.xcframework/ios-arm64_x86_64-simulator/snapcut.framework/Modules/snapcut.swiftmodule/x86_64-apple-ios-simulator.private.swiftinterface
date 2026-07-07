@@ -435,7 +435,6 @@ public struct SDKTypography {
   public var provider: any snapcut.FontProvider
   public init(provider: any snapcut.FontProvider = DefaultSystemFontProvider())
 }
-
 @_hasMissingDesignatedInitializers public class GIFDebugLogger : Combine.ObservableObject {
   public static let shared: snapcut.GIFDebugLogger
   @Combine.Published<[Swift.String]> @_projectedValueProperty($logs) public var logs: [Swift.String] {
