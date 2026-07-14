@@ -104,12 +104,35 @@ extension Foundation.NSNotification.Name {
   public static let snapcutLicenseInvalid: Foundation.Notification.Name
   public static let snapcutLicenseValid: Foundation.Notification.Name
 }
-@_hasMissingDesignatedInitializers public class SnapcutSDK {
+@_hasMissingDesignatedInitializers public class SnapcutSDK : Foundation.ObservableObject {
   public static let shared: snapcut.SnapcutSDK
   public static let sdkVersion: Swift.String
+  @Combine.Published @_projectedValueProperty($isLicenseValid) public var isLicenseValid: Swift.Bool {
+    get
+  }
+  public var $isLicenseValid: Combine.Published<Swift.Bool>.Publisher {
+    get
+  }
+  @Combine.Published @_projectedValueProperty($isVerifying) public var isVerifying: Swift.Bool {
+    get
+  }
+  public var $isVerifying: Combine.Published<Swift.Bool>.Publisher {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @Combine.Published @_projectedValueProperty($invalidReason) public var invalidReason: Swift.String? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var $invalidReason: Combine.Published<Swift.String?>.Publisher {
+    get
+  }
+  #endif
   public static func initialize(config: snapcut.VideoEditorConfiguration)
   @available(*, deprecated, message: "Use initialize(config:)")
   public static func initialize(licenseKey: Swift.String, giphyAPIKey: Swift.String = "")
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class VideoEditor : snapcut.TimelineModifying, snapcut.AudioMixing, snapcut.FilterApplying {
