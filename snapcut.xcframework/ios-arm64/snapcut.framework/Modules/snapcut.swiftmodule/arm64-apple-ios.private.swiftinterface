@@ -17,6 +17,7 @@ import Foundation/*.ProcessInfo*/
 import Foundation/*.URL*/
 import GiphyUISDK
 import ImageIO
+import Network
 import ObjectiveC
 import Photos
 import PhotosUI
@@ -97,6 +98,7 @@ public struct SDKConfiguration {
 }
 @_hasMissingDesignatedInitializers public class SnapcutSDK {
   public static let shared: snapcut.SnapcutSDK
+  public static let sdkVersion: Swift.String
   public static func initialize(config: snapcut.VideoEditorConfiguration)
   @available(*, deprecated, message: "Use initialize(config:) instead to support dynamic themes.")
   public static func initialize(licenseKey: Swift.String, giphyAPIKey: Swift.String = "")
@@ -294,6 +296,20 @@ public struct EditorCropState : Swift.Equatable, Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+public struct MusicItem : Swift.Identifiable, Swift.Hashable {
+  public let id: Foundation.UUID
+  public let title: Swift.String
+  public let artist: Swift.String
+  public let fileName: Swift.String
+  public let duration: Swift.Double
+  public init(title: Swift.String, artist: Swift.String, fileName: Swift.String, duration: Swift.Double)
+  public static func == (a: snapcut.MusicItem, b: snapcut.MusicItem) -> Swift.Bool
+  public typealias ID = Foundation.UUID
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public enum LayoutType : Swift.String, Swift.Codable, Swift.CaseIterable {
   case verticalSplit
   case horizontalSplit
@@ -436,6 +452,40 @@ public struct SDKTypography {
   public var provider: any snapcut.FontProvider
   public init(provider: any snapcut.FontProvider = DefaultSystemFontProvider())
 }
+public struct TimelineColors {
+  public let background: SwiftUICore.Color
+  public let headerBackground: SwiftUICore.Color
+  public let playheadSnapped: SwiftUICore.Color
+  public let popupBackground: SwiftUICore.Color
+  public let popupBorder: SwiftUICore.Color
+  public let clipHandle: SwiftUICore.Color
+  public let clipInfoText: SwiftUICore.Color
+  public let audioWaveform: SwiftUICore.Color
+  public let videoStart: SwiftUICore.Color
+  public let videoEnd: SwiftUICore.Color
+  public let audioStart: SwiftUICore.Color
+  public let audioEnd: SwiftUICore.Color
+  public let textStart: SwiftUICore.Color
+  public let textEnd: SwiftUICore.Color
+  public let stickerStart: SwiftUICore.Color
+  public let stickerEnd: SwiftUICore.Color
+  public let gifStart: SwiftUICore.Color
+  public let gifEnd: SwiftUICore.Color
+  public let emojiStart: SwiftUICore.Color
+  public let emojiEnd: SwiftUICore.Color
+  public let pipStart: SwiftUICore.Color
+  public let pipEnd: SwiftUICore.Color
+  public let maskStart: SwiftUICore.Color
+  public let maskEnd: SwiftUICore.Color
+  public let overlayHintText: SwiftUICore.Color
+  public let overlayToolBackground: SwiftUICore.Color
+  public let overlayToolActive: SwiftUICore.Color
+  public let playerBackground: SwiftUICore.Color
+  public init()
+}
+public struct TimelineTheme {
+  public static let colors: snapcut.TimelineColors
+}
 
 @_hasMissingDesignatedInitializers public class GIFDebugLogger : Combine.ObservableObject {
   public static let shared: snapcut.GIFDebugLogger
@@ -509,6 +559,7 @@ extension UIKit.UIApplication {
   }
   public typealias Body = @_opaqueReturnTypeOf("$s7snapcut19LayoutRecordingViewV4bodyQrvp", 0) __
 }
+
 public enum StickerType : Swift.String, Swift.Codable {
   case gif
   case emoji
@@ -587,6 +638,7 @@ public enum ZoomWheelState {
     get
     set
   }
+  @_Concurrency.MainActor @preconcurrency public var isRecording: Swift.Bool
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func layoutSubviews()
@@ -659,7 +711,7 @@ extension snapcut.PIPViewController : UIKit.UIGestureRecognizerDelegate {
   @_Concurrency.MainActor @preconcurrency @objc dynamic public func gestureRecognizer(_ gestureRecognizer: UIKit.UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIKit.UIGestureRecognizer) -> Swift.Bool
 }
 @_Concurrency.MainActor @preconcurrency public struct SnapcutMainView : SwiftUICore.View {
-  @_Concurrency.MainActor @preconcurrency public init()
+  @_Concurrency.MainActor @preconcurrency public init(selectedMusic: snapcut.MusicItem? = nil)
   @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
     get
   }
