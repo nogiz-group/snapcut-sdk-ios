@@ -485,8 +485,11 @@ public struct MusicItem : Swift.Identifiable, Swift.Hashable {
   public let fileName: Swift.String
   public let duration: Swift.Double
   public let audioUrl: Swift.String?
+  public var trimStart: Swift.Double
+  public var trimEnd: Swift.Double?
+  public var localFileUrl: Foundation.URL?
   #if compiler(>=5.3) && $NonescapableTypes
-  public init(title: Swift.String, artist: Swift.String, fileName: Swift.String, duration: Swift.Double, audioUrl: Swift.String? = nil)
+  public init(title: Swift.String, artist: Swift.String, fileName: Swift.String, duration: Swift.Double, audioUrl: Swift.String? = nil, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil, localFileUrl: Foundation.URL? = nil)
   #endif
   public static func == (a: snapcut.MusicItem, b: snapcut.MusicItem) -> Swift.Bool
   public typealias ID = Foundation.UUID
@@ -989,11 +992,28 @@ public protocol CropEditorDelegate : AnyObject {
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class CropEditorViewController : UIKit.UIViewController {
   @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.CropEditorDelegate)?
+  @_Concurrency.MainActor @preconcurrency final public var isMuted: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency final public var musicURL: Foundation.URL?
+  @_Concurrency.MainActor @preconcurrency final public var musicVolume: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var musicIsMuted: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency final public var filterName: Swift.String
+  @_Concurrency.MainActor @preconcurrency final public var filterIntensity: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var brightness: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var contrast: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var saturation: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var exposure: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var highlights: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var shadows: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var temperature: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var tint: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var sharpen: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var fade: Swift.Float
+  @_Concurrency.MainActor @preconcurrency final public var vignette: Swift.Float
   #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public init(asset: AVFoundation.AVAsset, initialState: snapcut.EditorState? = nil)
   #endif
-  @_Concurrency.MainActor @preconcurrency @objc override final public func viewDidLoad()
   @objc deinit
+  @_Concurrency.MainActor @preconcurrency @objc override final public func viewDidLoad()
 }
 extension snapcut.CropEditorViewController : snapcut.CropOverlayViewDelegate {
   @_Concurrency.MainActor @preconcurrency final public func cropOverlayDidBeginInteraction()
