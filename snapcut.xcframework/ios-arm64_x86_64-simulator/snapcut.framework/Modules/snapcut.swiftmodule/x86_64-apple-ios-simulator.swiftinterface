@@ -995,6 +995,7 @@ public protocol SnapcutCropEditorDelegate : AnyObject {
   @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.SnapcutCropEditorDelegate)?
   @_Concurrency.MainActor @preconcurrency final public var isMuted: Swift.Bool
   @_Concurrency.MainActor @preconcurrency final public var musicURL: Foundation.URL?
+  @_Concurrency.MainActor @preconcurrency final public var musicTrimStart: Swift.Double
   @_Concurrency.MainActor @preconcurrency final public var musicVolume: Swift.Float
   @_Concurrency.MainActor @preconcurrency final public var musicIsMuted: Swift.Bool
   @_Concurrency.MainActor @preconcurrency final public var filterName: Swift.String
