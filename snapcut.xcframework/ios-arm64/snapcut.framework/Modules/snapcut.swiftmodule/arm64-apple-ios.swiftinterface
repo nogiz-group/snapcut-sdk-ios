@@ -33,7 +33,7 @@ import _PhotosUI_SwiftUI
 import _SceneKit_SwiftUI
 import _StringProcessing
 import _SwiftConcurrencyShims
-public enum AppStrings {
+public enum SnapcutAppStrings {
   public static let exportTitle: Swift.String
   public static let exportButton: Swift.String
   public static let exporting: Swift.String
@@ -74,15 +74,15 @@ public enum AppStrings {
   public static let extractedAudio: Swift.String
   public static let addMusic: Swift.String
 }
-public struct Movie : CoreTransferable.Transferable {
+public struct SnapcutMovie : CoreTransferable.Transferable {
   public let url: Foundation.URL
   public init(url: Foundation.URL)
   public static var transferRepresentation: some CoreTransferable.TransferRepresentation {
     get
   }
-  public typealias Representation = @_opaqueReturnTypeOf("$s7snapcut5MovieV22transferRepresentationQrvpZ", 0) __
+  public typealias Representation = @_opaqueReturnTypeOf("$s7snapcut12SnapcutMovieV22transferRepresentationQrvpZ", 0) __
 }
-@_hasMissingDesignatedInitializers public class ImageToVideoConverter {
+@_hasMissingDesignatedInitializers public class SnapcutImageToVideoConverter {
   #if compiler(>=5.3) && $NonescapableTypes
   public static func convert(imageURL: Foundation.URL, completion: @escaping (Foundation.URL?) -> Swift.Void)
   #endif
@@ -91,11 +91,11 @@ public struct Movie : CoreTransferable.Transferable {
   #endif
   @objc deinit
 }
-public struct APIAlbum : Swift.Codable, Swift.Identifiable, Swift.Hashable {
+public struct SnapcutAPIAlbum : Swift.Codable, Swift.Identifiable, Swift.Hashable {
   public let id: Swift.String
   public let title: Swift.String
   public let thumbnail: Swift.String?
-  public static func == (a: snapcut.APIAlbum, b: snapcut.APIAlbum) -> Swift.Bool
+  public static func == (a: snapcut.SnapcutAPIAlbum, b: snapcut.SnapcutAPIAlbum) -> Swift.Bool
   public typealias ID = Swift.String
   public func encode(to encoder: any Swift.Encoder) throws
   public func hash(into hasher: inout Swift.Hasher)
@@ -104,23 +104,23 @@ public struct APIAlbum : Swift.Codable, Swift.Identifiable, Swift.Hashable {
   }
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct APIAlbumListData : Swift.Codable {
-  public let list: [snapcut.APIAlbum]
+public struct SnapcutAPIAlbumListData : Swift.Codable {
+  public let list: [snapcut.SnapcutAPIAlbum]
   public let nextCursor: Swift.String?
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct APIAlbumResponse : Swift.Codable {
+public struct SnapcutAPIAlbumResponse : Swift.Codable {
   public let success: Swift.Bool
-  public let data: snapcut.APIAlbumListData
+  public let data: snapcut.SnapcutAPIAlbumListData
   public let message: Swift.String?
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct APIArtist : Swift.Codable, Swift.Hashable {
+public struct SnapcutAPIArtist : Swift.Codable, Swift.Hashable {
   public let id: Swift.String
   public let name: Swift.String
-  public static func == (a: snapcut.APIArtist, b: snapcut.APIArtist) -> Swift.Bool
+  public static func == (a: snapcut.SnapcutAPIArtist, b: snapcut.SnapcutAPIArtist) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -128,10 +128,10 @@ public struct APIArtist : Swift.Codable, Swift.Hashable {
   }
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct APITrackAlbum : Swift.Codable, Swift.Hashable {
+public struct SnapcutAPITrackAlbum : Swift.Codable, Swift.Hashable {
   public let id: Swift.String
   public let title: Swift.String
-  public static func == (a: snapcut.APITrackAlbum, b: snapcut.APITrackAlbum) -> Swift.Bool
+  public static func == (a: snapcut.SnapcutAPITrackAlbum, b: snapcut.SnapcutAPITrackAlbum) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -139,18 +139,18 @@ public struct APITrackAlbum : Swift.Codable, Swift.Hashable {
   }
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct APITrack : Swift.Codable, Swift.Identifiable, Swift.Hashable {
+public struct SnapcutAPITrack : Swift.Codable, Swift.Identifiable, Swift.Hashable {
   public let id: Swift.String
   public let title: Swift.String
-  public let album: snapcut.APITrackAlbum?
-  public let artists: [snapcut.APIArtist]
+  public let album: snapcut.SnapcutAPITrackAlbum?
+  public let artists: [snapcut.SnapcutAPIArtist]
   public let duration: Swift.Double
   public let url: Swift.String?
   public let thumbnail: Swift.String?
   public let isOfficial: Swift.Bool?
   public let postsCount: Swift.Int?
   public let score: Swift.Int?
-  public static func == (a: snapcut.APITrack, b: snapcut.APITrack) -> Swift.Bool
+  public static func == (a: snapcut.SnapcutAPITrack, b: snapcut.SnapcutAPITrack) -> Swift.Bool
   public typealias ID = Swift.String
   public func encode(to encoder: any Swift.Encoder) throws
   public func hash(into hasher: inout Swift.Hasher)
@@ -159,20 +159,20 @@ public struct APITrack : Swift.Codable, Swift.Identifiable, Swift.Hashable {
   }
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct APITrackListData : Swift.Codable {
-  public let list: [snapcut.APITrack]
+public struct SnapcutAPITrackListData : Swift.Codable {
+  public let list: [snapcut.SnapcutAPITrack]
   public let nextCursor: Swift.String?
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct APITrackResponse : Swift.Codable {
+public struct SnapcutAPITrackResponse : Swift.Codable {
   public let success: Swift.Bool
-  public let data: snapcut.APITrackListData
+  public let data: snapcut.SnapcutAPITrackListData
   public let message: Swift.String?
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public enum AudioLibraryError : Swift.Error, Foundation.LocalizedError {
+public enum SnapcutAudioLibraryError : Swift.Error, Foundation.LocalizedError {
   case invalidURL
   case missingToken
   case networkError(any Swift.Error)
@@ -184,23 +184,23 @@ public enum AudioLibraryError : Swift.Error, Foundation.LocalizedError {
   }
   #endif
 }
-@_hasMissingDesignatedInitializers public class AudioLibraryViewModel : Foundation.ObservableObject {
-  @Combine.Published @_projectedValueProperty($tracks) public var tracks: [snapcut.MusicItem] {
+@_hasMissingDesignatedInitializers public class SnapcutAudioLibraryViewModel : Foundation.ObservableObject {
+  @Combine.Published @_projectedValueProperty($tracks) public var tracks: [snapcut.SnapcutMusicItem] {
     get
   }
-  public var $tracks: Combine.Published<[snapcut.MusicItem]>.Publisher {
+  public var $tracks: Combine.Published<[snapcut.SnapcutMusicItem]>.Publisher {
     get
   }
-  @Combine.Published @_projectedValueProperty($trendingTracks) public var trendingTracks: [snapcut.MusicItem] {
+  @Combine.Published @_projectedValueProperty($trendingTracks) public var trendingTracks: [snapcut.SnapcutMusicItem] {
     get
   }
-  public var $trendingTracks: Combine.Published<[snapcut.MusicItem]>.Publisher {
+  public var $trendingTracks: Combine.Published<[snapcut.SnapcutMusicItem]>.Publisher {
     get
   }
-  @Combine.Published @_projectedValueProperty($rawTracks) public var rawTracks: [snapcut.APITrack] {
+  @Combine.Published @_projectedValueProperty($rawTracks) public var rawTracks: [snapcut.SnapcutAPITrack] {
     get
   }
-  public var $rawTracks: Combine.Published<[snapcut.APITrack]>.Publisher {
+  public var $rawTracks: Combine.Published<[snapcut.SnapcutAPITrack]>.Publisher {
     get
   }
   @Combine.Published @_projectedValueProperty($isLoading) public var isLoading: Swift.Bool {
@@ -223,14 +223,9 @@ public enum AudioLibraryError : Swift.Error, Foundation.LocalizedError {
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class PermissionsManager {
+@_hasMissingDesignatedInitializers public class SnapcutPermissionsManager {
   public static func checkCameraAndMicPermissions(completion: @escaping (Swift.Bool) -> Swift.Void)
   @objc deinit
-}
-public struct SDKConfiguration {
-  public static let maxRecordDuration: Swift.Double
-  public static let videoWidth: Swift.Double
-  public static let videoHeight: Swift.Double
 }
 extension Foundation.NSNotification.Name {
   public static let snapcutLicenseInvalid: Foundation.Notification.Name
@@ -262,7 +257,7 @@ extension Foundation.NSNotification.Name {
   }
   #endif
   public static var licenseKeyProvider: (() async -> Swift.String)?
-  public static func initialize(config: snapcut.VideoEditorConfiguration)
+  public static func initialize(config: snapcut.SnapcutVideoEditorConfiguration)
   public static func startLicenseVerificationCycle()
   public static func verifyLicense() async
   @available(*, deprecated, message: "Use initialize(config:) with provider setup")
@@ -270,31 +265,36 @@ extension Foundation.NSNotification.Name {
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class VideoEditor : snapcut.TimelineModifying, snapcut.AudioMixing, snapcut.FilterApplying {
-  public var clips: [snapcut.MediaClip]
-  public func addClip(url: Foundation.URL, type: snapcut.MediaType, duration: Swift.Double)
+public struct SnapcutSDKConfiguration {
+  public static let maxRecordDuration: Swift.Double
+  public static let videoWidth: Swift.Double
+  public static let videoHeight: Swift.Double
+}
+@_hasMissingDesignatedInitializers public class SnapcutVideoEditor : snapcut.SnapcutTimelineModifying, snapcut.SnapcutAudioMixing, snapcut.SnapcutFilterApplying {
+  public var clips: [snapcut.SnapcutMediaClip]
+  public func addClip(url: Foundation.URL, type: snapcut.SnapcutMediaType, duration: Swift.Double)
   public func removeClip(id: Foundation.UUID)
   public func reorderClips(fromOffsets: Foundation.IndexSet, toOffset: Swift.Int)
   public func updateTrim(id: Foundation.UUID, start: Swift.Double, end: Swift.Double)
   public func updateClipSpeed(id: Foundation.UUID, speed: Swift.Double)
-  public var audioTracks: [snapcut.AudioTrack]
+  public var audioTracks: [snapcut.SnapcutAudioTrack]
   public var isOriginalAudioMuted: Swift.Bool
   public func addAudioTrack(url: Foundation.URL, startTime: Swift.Double, duration: Swift.Double)
   public func removeAudioTrack(id: Foundation.UUID)
   public func updateVolume(trackID: Foundation.UUID, volume: Swift.Float)
-  public var activeFilter: snapcut.FilterType
-  public func applyFilter(_ filter: snapcut.FilterType)
+  public var activeFilter: snapcut.SnapcutFilterType
+  public func applyFilter(_ filter: snapcut.SnapcutFilterType)
   public func updateClipARMask(id: Foundation.UUID, maskName: Swift.String)
   public func updateClipSkinSmoothing(id: Foundation.UUID, level: Swift.Double)
   public func updateClipBlurBackground(id: Foundation.UUID, enabled: Swift.Bool)
   public func updateClipTransition(id: Foundation.UUID, transitionType: Swift.String)
   @objc deinit
 }
-public class VideoEditorConfiguration : Foundation.ObservableObject {
-  public static let shared: snapcut.VideoEditorConfiguration
+public class SnapcutVideoEditorConfiguration : Foundation.ObservableObject {
+  public static let shared: snapcut.SnapcutVideoEditorConfiguration
   public var licenseKey: Swift.String
-  public var lightTheme: snapcut.SDKTheme
-  public var darkTheme: snapcut.SDKTheme
+  public var lightTheme: snapcut.SnapcutSDKTheme
+  public var darkTheme: snapcut.SnapcutSDKTheme
   public var forceColorScheme: SwiftUICore.ColorScheme?
   @Combine.Published @_projectedValueProperty($giphyAPIKey) public var giphyAPIKey: Swift.String {
     get
@@ -307,7 +307,7 @@ public class VideoEditorConfiguration : Foundation.ObservableObject {
     set
   }
   #if compiler(>=5.3) && $NonescapableTypes
-  @Combine.Published @_projectedValueProperty($gifProvider) public var gifProvider: (any snapcut.GIFProvider)? {
+  @Combine.Published @_projectedValueProperty($gifProvider) public var gifProvider: (any snapcut.SnapcutGIFProvider)? {
     get
     @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
     set
@@ -316,19 +316,19 @@ public class VideoEditorConfiguration : Foundation.ObservableObject {
   }
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  public var $gifProvider: Combine.Published<(any snapcut.GIFProvider)?>.Publisher {
+  public var $gifProvider: Combine.Published<(any snapcut.SnapcutGIFProvider)?>.Publisher {
     get
     @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
     set
   }
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  public init(licenseKey: Swift.String, giphyAPIKey: Swift.String, lightTheme: snapcut.SDKTheme = .defaultLight, darkTheme: snapcut.SDKTheme = .defaultDark, forceColorScheme: SwiftUICore.ColorScheme? = nil)
+  public init(licenseKey: Swift.String, giphyAPIKey: Swift.String, lightTheme: snapcut.SnapcutSDKTheme = .defaultLight, darkTheme: snapcut.SnapcutSDKTheme = .defaultDark, forceColorScheme: SwiftUICore.ColorScheme? = nil)
   #endif
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
-public enum MediaType : Swift.String, Swift.Codable {
+public enum SnapcutMediaType : Swift.String, Swift.Codable {
   case video
   case photo
   #if compiler(>=5.3) && $NonescapableTypes
@@ -339,10 +339,10 @@ public enum MediaType : Swift.String, Swift.Codable {
     get
   }
 }
-public struct MediaClip : Swift.Identifiable, Swift.Codable, Swift.Equatable {
+public struct SnapcutMediaClip : Swift.Identifiable, Swift.Codable, Swift.Equatable {
   public let id: Foundation.UUID
   public let url: Foundation.URL
-  public let mediaType: snapcut.MediaType
+  public let mediaType: snapcut.SnapcutMediaType
   public var duration: Swift.Double
   public var trimStart: Swift.Double
   public var trimEnd: Swift.Double
@@ -355,17 +355,17 @@ public struct MediaClip : Swift.Identifiable, Swift.Codable, Swift.Equatable {
   public var blurBackground: Swift.Bool
   public var transitionType: Swift.String
   #if compiler(>=5.3) && $NonescapableTypes
-  public init(id: Foundation.UUID = UUID(), url: Foundation.URL, mediaType: snapcut.MediaType, duration: Swift.Double, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil, speed: Swift.Double = 1.0, volume: Swift.Float = 1.0, customMusicURL: Foundation.URL? = nil, customMusicVolume: Swift.Float = 0.5, arMaskName: Swift.String = "", skinSmoothing: Swift.Double = 0.0, blurBackground: Swift.Bool = false, transitionType: Swift.String = "none")
+  public init(id: Foundation.UUID = UUID(), url: Foundation.URL, mediaType: snapcut.SnapcutMediaType, duration: Swift.Double, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil, speed: Swift.Double = 1.0, volume: Swift.Float = 1.0, customMusicURL: Foundation.URL? = nil, customMusicVolume: Swift.Float = 0.5, arMaskName: Swift.String = "", skinSmoothing: Swift.Double = 0.0, blurBackground: Swift.Bool = false, transitionType: Swift.String = "none")
   #endif
   public var durationAfterTrimAndSpeed: Swift.Double {
     get
   }
-  public static func == (a: snapcut.MediaClip, b: snapcut.MediaClip) -> Swift.Bool
+  public static func == (a: snapcut.SnapcutMediaClip, b: snapcut.SnapcutMediaClip) -> Swift.Bool
   public typealias ID = Foundation.UUID
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct AudioTrack : Swift.Identifiable, Swift.Codable, Swift.Equatable {
+public struct SnapcutAudioTrack : Swift.Identifiable, Swift.Codable, Swift.Equatable {
   public let id: Foundation.UUID
   public let url: Foundation.URL
   public var startTimeOnTimeline: Swift.Double
@@ -374,12 +374,12 @@ public struct AudioTrack : Swift.Identifiable, Swift.Codable, Swift.Equatable {
   public var fadeInDuration: Swift.Double
   public var fadeOutDuration: Swift.Double
   public init(id: Foundation.UUID = UUID(), url: Foundation.URL, startTimeOnTimeline: Swift.Double, duration: Swift.Double, volume: Swift.Float = 1.0, fadeInDuration: Swift.Double = 0.0, fadeOutDuration: Swift.Double = 0.0)
-  public static func == (a: snapcut.AudioTrack, b: snapcut.AudioTrack) -> Swift.Bool
+  public static func == (a: snapcut.SnapcutAudioTrack, b: snapcut.SnapcutAudioTrack) -> Swift.Bool
   public typealias ID = Foundation.UUID
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct TextOverlay : Swift.Identifiable, Swift.Codable, Swift.Equatable {
+public struct SnapcutTextOverlay : Swift.Identifiable, Swift.Codable, Swift.Equatable {
   public let id: Foundation.UUID
   public var text: Swift.String
   public var fontName: Swift.String
@@ -389,12 +389,12 @@ public struct TextOverlay : Swift.Identifiable, Swift.Codable, Swift.Equatable {
   public var scale: CoreFoundation.CGFloat
   public var rotation: CoreFoundation.CGFloat
   public init(id: Foundation.UUID = UUID(), text: Swift.String, fontName: Swift.String = "Helvetica", fontSize: CoreFoundation.CGFloat = 24.0, textColorHex: Swift.String = "#FFFFFF", position: CoreFoundation.CGPoint = CGPoint(x: 0.5, y: 0.5), scale: CoreFoundation.CGFloat = 1.0, rotation: CoreFoundation.CGFloat = 0.0)
-  public static func == (a: snapcut.TextOverlay, b: snapcut.TextOverlay) -> Swift.Bool
+  public static func == (a: snapcut.SnapcutTextOverlay, b: snapcut.SnapcutTextOverlay) -> Swift.Bool
   public typealias ID = Foundation.UUID
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public enum FilterType : Swift.String, Swift.Codable, Swift.CaseIterable {
+public enum SnapcutFilterType : Swift.String, Swift.Codable, Swift.CaseIterable {
   case none
   case vintage
   case sepia
@@ -409,16 +409,16 @@ public enum FilterType : Swift.String, Swift.Codable, Swift.CaseIterable {
   #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
   #endif
-  public typealias AllCases = [snapcut.FilterType]
+  public typealias AllCases = [snapcut.SnapcutFilterType]
   public typealias RawValue = Swift.String
-  nonisolated public static var allCases: [snapcut.FilterType] {
+  nonisolated public static var allCases: [snapcut.SnapcutFilterType] {
     get
   }
   public var rawValue: Swift.String {
     get
   }
 }
-public enum ExportPreset : Swift.String, Swift.Codable, Swift.CaseIterable {
+public enum SnapcutExportPreset : Swift.String, Swift.Codable, Swift.CaseIterable {
   case p720
   case p1080
   case p4K
@@ -428,57 +428,57 @@ public enum ExportPreset : Swift.String, Swift.Codable, Swift.CaseIterable {
   #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
   #endif
-  public typealias AllCases = [snapcut.ExportPreset]
+  public typealias AllCases = [snapcut.SnapcutExportPreset]
   public typealias RawValue = Swift.String
-  nonisolated public static var allCases: [snapcut.ExportPreset] {
+  nonisolated public static var allCases: [snapcut.SnapcutExportPreset] {
     get
   }
   public var rawValue: Swift.String {
     get
   }
 }
-public protocol TimelineModifying {
-  var clips: [snapcut.MediaClip] { get }
-  mutating func addClip(url: Foundation.URL, type: snapcut.MediaType, duration: Swift.Double)
+public protocol SnapcutTimelineModifying {
+  var clips: [snapcut.SnapcutMediaClip] { get }
+  mutating func addClip(url: Foundation.URL, type: snapcut.SnapcutMediaType, duration: Swift.Double)
   mutating func removeClip(id: Foundation.UUID)
   mutating func reorderClips(fromOffsets: Foundation.IndexSet, toOffset: Swift.Int)
   mutating func updateTrim(id: Foundation.UUID, start: Swift.Double, end: Swift.Double)
   mutating func updateClipSpeed(id: Foundation.UUID, speed: Swift.Double)
 }
-public protocol AudioMixing {
-  var audioTracks: [snapcut.AudioTrack] { get }
+public protocol SnapcutAudioMixing {
+  var audioTracks: [snapcut.SnapcutAudioTrack] { get }
   var isOriginalAudioMuted: Swift.Bool { get set }
   mutating func addAudioTrack(url: Foundation.URL, startTime: Swift.Double, duration: Swift.Double)
   mutating func removeAudioTrack(id: Foundation.UUID)
   mutating func updateVolume(trackID: Foundation.UUID, volume: Swift.Float)
 }
-public protocol FilterApplying {
-  var activeFilter: snapcut.FilterType { get set }
-  func applyFilter(_ filter: snapcut.FilterType)
+public protocol SnapcutFilterApplying {
+  var activeFilter: snapcut.SnapcutFilterType { get set }
+  func applyFilter(_ filter: snapcut.SnapcutFilterType)
 }
-public protocol VideoExporting {
+public protocol SnapcutVideoExporting {
   var isExporting: Swift.Bool { get }
   var exportProgress: Swift.Float { get }
   #if compiler(>=5.3) && $NonescapableTypes
-  func exportVideo(clips: [snapcut.MediaClip], audioTracks: [snapcut.AudioTrack], muteOriginal: Swift.Bool, filter: snapcut.FilterType, preset: snapcut.ExportPreset, outputURL: Foundation.URL, progressHandler: @escaping (Swift.Float) -> Swift.Void, completion: @escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)
+  func exportVideo(clips: [snapcut.SnapcutMediaClip], audioTracks: [snapcut.SnapcutAudioTrack], muteOriginal: Swift.Bool, filter: snapcut.SnapcutFilterType, preset: snapcut.SnapcutExportPreset, outputURL: Foundation.URL, progressHandler: @escaping (Swift.Float) -> Swift.Void, completion: @escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)
   #endif
   func cancelExport()
 }
-@_hasMissingDesignatedInitializers public class VideoEditorTests {
+@_hasMissingDesignatedInitializers public class SnapcutVideoEditorTests {
   public static func runAllTests()
   @objc deinit
 }
-public struct EditorCropState : Swift.Equatable, Swift.Codable {
+public struct SnapcutEditorCropState : Swift.Equatable, Swift.Codable {
   public var cropRect: CoreFoundation.CGRect
   public var rotation: Swift.Int
   public var isFlippedH: Swift.Bool
   public var isFlippedV: Swift.Bool
-  public static let identity: snapcut.EditorCropState
-  public static func == (a: snapcut.EditorCropState, b: snapcut.EditorCropState) -> Swift.Bool
+  public static let identity: snapcut.SnapcutEditorCropState
+  public static func == (a: snapcut.SnapcutEditorCropState, b: snapcut.SnapcutEditorCropState) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct MusicItem : Swift.Identifiable, Swift.Hashable {
+public struct SnapcutMusicItem : Swift.Identifiable, Swift.Hashable {
   public let id: Foundation.UUID
   public let title: Swift.String
   public let artist: Swift.String
@@ -491,62 +491,62 @@ public struct MusicItem : Swift.Identifiable, Swift.Hashable {
   #if compiler(>=5.3) && $NonescapableTypes
   public init(title: Swift.String, artist: Swift.String, fileName: Swift.String, duration: Swift.Double, audioUrl: Swift.String? = nil, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil, localFileUrl: Foundation.URL? = nil)
   #endif
-  public static func == (a: snapcut.MusicItem, b: snapcut.MusicItem) -> Swift.Bool
+  public static func == (a: snapcut.SnapcutMusicItem, b: snapcut.SnapcutMusicItem) -> Swift.Bool
   public typealias ID = Foundation.UUID
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
 }
-public enum LayoutType : Swift.String, Swift.Codable, Swift.CaseIterable {
+public enum SnapcutLayoutType : Swift.String, Swift.Codable, Swift.CaseIterable {
   case verticalSplit
   case horizontalSplit
   #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
   #endif
-  public typealias AllCases = [snapcut.LayoutType]
+  public typealias AllCases = [snapcut.SnapcutLayoutType]
   public typealias RawValue = Swift.String
-  nonisolated public static var allCases: [snapcut.LayoutType] {
+  nonisolated public static var allCases: [snapcut.SnapcutLayoutType] {
     get
   }
   public var rawValue: Swift.String {
     get
   }
 }
-public struct LayoutState : Swift.Codable, Swift.Equatable {
-  public var type: snapcut.LayoutType
+public struct SnapcutLayoutState : Swift.Codable, Swift.Equatable {
+  public var type: snapcut.SnapcutLayoutType
   public var swapSources: Swift.Bool
-  public init(type: snapcut.LayoutType = .horizontalSplit, swapSources: Swift.Bool = false)
-  public static func == (a: snapcut.LayoutState, b: snapcut.LayoutState) -> Swift.Bool
+  public init(type: snapcut.SnapcutLayoutType = .horizontalSplit, swapSources: Swift.Bool = false)
+  public static func == (a: snapcut.SnapcutLayoutState, b: snapcut.SnapcutLayoutState) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public protocol FontProvider {
-  func font(for style: snapcut.SDKTypography.Style) -> UIKit.UIFont
+public protocol SnapcutFontProvider {
+  func font(for style: snapcut.SnapcutSDKTypography.SnapcutStyle) -> UIKit.UIFont
 }
-public struct DefaultSystemFontProvider : snapcut.FontProvider {
+public struct SnapcutDefaultSystemFontProvider : snapcut.SnapcutFontProvider {
   public init()
-  public func font(for style: snapcut.SDKTypography.Style) -> UIKit.UIFont
+  public func font(for style: snapcut.SnapcutSDKTypography.SnapcutStyle) -> UIKit.UIFont
 }
-extension snapcut.FontProvider {
-  public func swiftUIFont(for style: snapcut.SDKTypography.Style) -> SwiftUICore.Font
+extension snapcut.SnapcutFontProvider {
+  public func swiftUIFont(for style: snapcut.SnapcutSDKTypography.SnapcutStyle) -> SwiftUICore.Font
 }
-@_hasMissingDesignatedInitializers public class ThemeManager : Combine.ObservableObject {
-  public static let shared: snapcut.ThemeManager
-  @Combine.Published @_projectedValueProperty($currentTheme) public var currentTheme: snapcut.SDKTheme {
+@_hasMissingDesignatedInitializers public class SnapcutThemeManager : Combine.ObservableObject {
+  public static let shared: snapcut.SnapcutThemeManager
+  @Combine.Published @_projectedValueProperty($currentTheme) public var currentTheme: snapcut.SnapcutSDKTheme {
     get
   }
-  public var $currentTheme: Combine.Published<snapcut.SDKTheme>.Publisher {
+  public var $currentTheme: Combine.Published<snapcut.SnapcutSDKTheme>.Publisher {
     get
   }
-  public func updateTheme(_ theme: snapcut.SDKTheme)
+  public func updateTheme(_ theme: snapcut.SnapcutSDKTheme)
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
 extension SwiftUICore.Color {
   public init(hex: Swift.String)
 }
-public struct SDKColors {
+public struct SnapcutSDKColors {
   public var primary: SwiftUICore.Color
   public var secondary: SwiftUICore.Color
   public var accent: SwiftUICore.Color
@@ -569,7 +569,7 @@ public struct SDKColors {
   public init(primary: SwiftUICore.Color, secondary: SwiftUICore.Color, accent: SwiftUICore.Color, background: SwiftUICore.Color, surface: SwiftUICore.Color, overlay: SwiftUICore.Color, textPrimary: SwiftUICore.Color, textSecondary: SwiftUICore.Color, border: SwiftUICore.Color, disabled: SwiftUICore.Color, error: SwiftUICore.Color, warning: SwiftUICore.Color, success: SwiftUICore.Color, toolbarBackground: SwiftUICore.Color, navigationBackground: SwiftUICore.Color, timelineBackground: SwiftUICore.Color, selection: SwiftUICore.Color, exportProgress: SwiftUICore.Color, placeholder: SwiftUICore.Color)
   public static func uiColor(for hex: Swift.String) -> UIKit.UIColor
 }
-public struct SDKIcons {
+public struct SnapcutSDKIcons {
   public var back: SwiftUICore.Image
   public var close: SwiftUICore.Image
   public var delete: SwiftUICore.Image
@@ -589,7 +589,7 @@ public struct SDKIcons {
   public var sticker: SwiftUICore.Image
   public init(back: SwiftUICore.Image = Image(systemName: "chevron.left"), close: SwiftUICore.Image = Image(systemName: "xmark"), delete: SwiftUICore.Image = Image(systemName: "trash.fill"), play: SwiftUICore.Image = Image(systemName: "play.fill"), pause: SwiftUICore.Image = Image(systemName: "pause.fill"), undo: SwiftUICore.Image = Image(systemName: "arrow.uturn.backward"), redo: SwiftUICore.Image = Image(systemName: "arrow.uturn.forward"), crop: SwiftUICore.Image = Image(systemName: "crop"), rotate: SwiftUICore.Image = Image(systemName: "rotate.right"), filters: SwiftUICore.Image = Image(systemName: "camera.filters"), camera: SwiftUICore.Image = Image(systemName: "camera.fill"), export: SwiftUICore.Image = Image(systemName: "square.and.arrow.up"), settings: SwiftUICore.Image = Image(systemName: "gearshape.fill"), trim: SwiftUICore.Image = Image(systemName: "timeline.selection"), music: SwiftUICore.Image = Image(systemName: "music.note"), text: SwiftUICore.Image = Image(systemName: "textformat.alt"), sticker: SwiftUICore.Image = Image(systemName: "star.fill"))
 }
-public struct SDKLayout {
+public struct SnapcutSDKLayout {
   public var spacingSmall: CoreFoundation.CGFloat
   public var spacingMedium: CoreFoundation.CGFloat
   public var spacingLarge: CoreFoundation.CGFloat
@@ -606,23 +606,23 @@ public struct SDKLayout {
   public var borderWidth: CoreFoundation.CGFloat
   public init(spacingSmall: CoreFoundation.CGFloat = 4, spacingMedium: CoreFoundation.CGFloat = 8, spacingLarge: CoreFoundation.CGFloat = 16, spacingExtraLarge: CoreFoundation.CGFloat = 24, paddingSmall: CoreFoundation.CGFloat = 8, paddingMedium: CoreFoundation.CGFloat = 16, paddingLarge: CoreFoundation.CGFloat = 24, toolbarHeight: CoreFoundation.CGFloat = 54, buttonHeight: CoreFoundation.CGFloat = 44, cornerRadiusSmall: CoreFoundation.CGFloat = 4, cornerRadiusMedium: CoreFoundation.CGFloat = 8, cornerRadiusLarge: CoreFoundation.CGFloat = 12, shadowRadius: CoreFoundation.CGFloat = 4, borderWidth: CoreFoundation.CGFloat = 1)
 }
-public struct SDKTheme {
-  public var colors: snapcut.SDKColors
-  public var typography: snapcut.SDKTypography
-  public var icons: snapcut.SDKIcons
-  public var layout: snapcut.SDKLayout
-  public init(colors: snapcut.SDKColors, typography: snapcut.SDKTypography = SDKTypography(), icons: snapcut.SDKIcons = SDKIcons(), layout: snapcut.SDKLayout = SDKLayout())
+public struct SnapcutSDKTheme {
+  public var colors: snapcut.SnapcutSDKColors
+  public var typography: snapcut.SnapcutSDKTypography
+  public var icons: snapcut.SnapcutSDKIcons
+  public var layout: snapcut.SnapcutSDKLayout
+  public init(colors: snapcut.SnapcutSDKColors, typography: snapcut.SnapcutSDKTypography = SnapcutSDKTypography(), icons: snapcut.SnapcutSDKIcons = SnapcutSDKIcons(), layout: snapcut.SnapcutSDKLayout = SnapcutSDKLayout())
 }
-extension snapcut.SDKTheme {
-  public static var defaultDark: snapcut.SDKTheme {
+extension snapcut.SnapcutSDKTheme {
+  public static var defaultDark: snapcut.SnapcutSDKTheme {
     get
   }
-  public static var defaultLight: snapcut.SDKTheme {
+  public static var defaultLight: snapcut.SnapcutSDKTheme {
     get
   }
 }
-public struct SDKTypography {
-  public enum Style {
+public struct SnapcutSDKTypography {
+  public enum SnapcutStyle {
     case largeTitle
     case title
     case subtitle
@@ -633,16 +633,16 @@ public struct SDKTypography {
     case timeline
     case toolbar
     case navigationTitle
-    public static func == (a: snapcut.SDKTypography.Style, b: snapcut.SDKTypography.Style) -> Swift.Bool
+    public static func == (a: snapcut.SnapcutSDKTypography.SnapcutStyle, b: snapcut.SnapcutSDKTypography.SnapcutStyle) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
   }
-  public var provider: any snapcut.FontProvider
-  public init(provider: any snapcut.FontProvider = DefaultSystemFontProvider())
+  public var provider: any snapcut.SnapcutFontProvider
+  public init(provider: any snapcut.SnapcutFontProvider = SnapcutDefaultSystemFontProvider())
 }
-public struct TimelineColors {
+public struct SnapcutTimelineColors {
   public let background: SwiftUICore.Color
   public let headerBackground: SwiftUICore.Color
   public let playheadSnapped: SwiftUICore.Color
@@ -673,12 +673,12 @@ public struct TimelineColors {
   public let playerBackground: SwiftUICore.Color
   public init()
 }
-public struct TimelineTheme {
-  public static let colors: snapcut.TimelineColors
+public struct SnapcutTimelineTheme {
+  public static let colors: snapcut.SnapcutTimelineColors
 }
 
-@_hasMissingDesignatedInitializers public class GIFDebugLogger : Combine.ObservableObject {
-  public static let shared: snapcut.GIFDebugLogger
+@_hasMissingDesignatedInitializers public class SnapcutGIFDebugLogger : Combine.ObservableObject {
+  public static let shared: snapcut.SnapcutGIFDebugLogger
   @Combine.Published @_projectedValueProperty($logs) public var logs: [Swift.String] {
     get
     @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
@@ -695,8 +695,8 @@ public struct TimelineTheme {
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class GIFCacheManager {
-  public static let shared: snapcut.GIFCacheManager
+@_hasMissingDesignatedInitializers public class SnapcutGIFCacheManager {
+  public static let shared: snapcut.SnapcutGIFCacheManager
   #if compiler(>=5.3) && $NonescapableTypes
   public func getData(for key: Swift.String) -> Foundation.Data?
   #endif
@@ -704,10 +704,10 @@ public struct TimelineTheme {
   public func prefetch(urlString: Swift.String)
   @objc deinit
 }
-public protocol GIFProvider {
+public protocol SnapcutGIFProvider {
   func presentPicker(onSelected: @escaping (Swift.String) -> Swift.Void, onDismiss: @escaping () -> Swift.Void)
 }
-public class GiphyGIFProvider : snapcut.GIFProvider {
+public class SnapcutGiphyGIFProvider : snapcut.SnapcutGIFProvider {
   public init(apiKey: Swift.String)
   public func presentPicker(onSelected: @escaping (Swift.String) -> Swift.Void, onDismiss: @escaping () -> Swift.Void)
   @objc deinit
@@ -717,23 +717,23 @@ extension UIKit.UIApplication {
   @_Concurrency.MainActor @preconcurrency public func getTopViewController() -> UIKit.UIViewController?
   #endif
 }
-@_Concurrency.MainActor @preconcurrency public struct GalleryLayoutSelectionView : SwiftUICore.View {
+@_Concurrency.MainActor @preconcurrency public struct SnapcutGalleryLayoutSelectionView : SwiftUICore.View {
   #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public init(mainVideoURL: Foundation.URL, layoutURL: Foundation.URL, layoutTrimStart: Swift.Double, layoutTrimEnd: Swift.Double, initialLayoutState: snapcut.LayoutState?, onComplete: @escaping (snapcut.LayoutState) -> Swift.Void, onCancel: @escaping () -> Swift.Void)
+  @_Concurrency.MainActor @preconcurrency public init(mainVideoURL: Foundation.URL, layoutURL: Foundation.URL, layoutTrimStart: Swift.Double, layoutTrimEnd: Swift.Double, initialLayoutState: snapcut.SnapcutLayoutState?, onComplete: @escaping (snapcut.SnapcutLayoutState) -> Swift.Void, onCancel: @escaping () -> Swift.Void)
   #endif
   @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
     get
   }
-  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut26GalleryLayoutSelectionViewV4bodyQrvp", 0) __
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut33SnapcutGalleryLayoutSelectionViewV4bodyQrvp", 0) __
 }
-@_Concurrency.MainActor @preconcurrency public struct GiphyPickerView : SwiftUI.UIViewControllerRepresentable {
+@_Concurrency.MainActor @preconcurrency public struct SnapcutGiphyPickerView : SwiftUI.UIViewControllerRepresentable {
   @_Concurrency.MainActor @preconcurrency public let onSelected: (Swift.String) -> Swift.Void
   @_Concurrency.MainActor @preconcurrency public let onDismiss: () -> Swift.Void
   @_Concurrency.MainActor @preconcurrency public init(onSelected: @escaping (Swift.String) -> Swift.Void, onDismiss: @escaping () -> Swift.Void)
-  @_Concurrency.MainActor @preconcurrency public func makeUIViewController(context: snapcut.GiphyPickerView.Context) -> snapcut.GiphyPickerView.PresenterViewController
-  @_Concurrency.MainActor @preconcurrency public func updateUIViewController(_ uiViewController: snapcut.GiphyPickerView.PresenterViewController, context: snapcut.GiphyPickerView.Context)
-  @_Concurrency.MainActor @preconcurrency public func makeCoordinator() -> snapcut.GiphyPickerView.Coordinator
-  @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class PresenterViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor @preconcurrency public func makeUIViewController(context: snapcut.SnapcutGiphyPickerView.Context) -> snapcut.SnapcutGiphyPickerView.SnapcutPresenterViewController
+  @_Concurrency.MainActor @preconcurrency public func updateUIViewController(_ uiViewController: snapcut.SnapcutGiphyPickerView.SnapcutPresenterViewController, context: snapcut.SnapcutGiphyPickerView.Context)
+  @_Concurrency.MainActor @preconcurrency public func makeCoordinator() -> snapcut.SnapcutGiphyPickerView.SnapcutCoordinator
+  @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class SnapcutPresenterViewController : UIKit.UIViewController {
     @_Concurrency.MainActor @preconcurrency @objc override dynamic public func viewDidLoad()
     @_Concurrency.MainActor @preconcurrency @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
     #if compiler(>=5.3) && $NonescapableTypes
@@ -744,7 +744,7 @@ extension UIKit.UIApplication {
     #endif
     @objc deinit
   }
-  @objc @_hasMissingDesignatedInitializers public class Coordinator : ObjectiveC.NSObject, GiphyUISDK.GiphyDelegate {
+  @objc @_hasMissingDesignatedInitializers public class SnapcutCoordinator : ObjectiveC.NSObject, GiphyUISDK.GiphyDelegate {
     @objc public func didSelectMedia(giphyViewController: GiphyUISDK.GiphyViewController, media: GiphyUISDK.GPHMedia)
     #if compiler(>=5.3) && $NonescapableTypes
     @objc public func didDismiss(controller: GiphyUISDK.GiphyViewController?)
@@ -752,17 +752,18 @@ extension UIKit.UIApplication {
     @objc deinit
   }
   public typealias Body = Swift.Never
-  public typealias UIViewControllerType = snapcut.GiphyPickerView.PresenterViewController
+  public typealias Coordinator = snapcut.SnapcutGiphyPickerView.SnapcutCoordinator
+  public typealias UIViewControllerType = snapcut.SnapcutGiphyPickerView.SnapcutPresenterViewController
 }
-@_Concurrency.MainActor @preconcurrency public struct LayoutRecordingView : SwiftUICore.View {
+@_Concurrency.MainActor @preconcurrency public struct SnapcutLayoutRecordingView : SwiftUICore.View {
   @_Concurrency.MainActor @preconcurrency public init(showGalleryPicker: SwiftUICore.Binding<Swift.Bool>)
   @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
     get
   }
-  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut19LayoutRecordingViewV4bodyQrvp", 0) __
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut26SnapcutLayoutRecordingViewV4bodyQrvp", 0) __
 }
 
-public enum StickerType : Swift.String, Swift.Codable {
+public enum SnapcutStickerType : Swift.String, Swift.Codable {
   case gif
   case emoji
   case vectorShape
@@ -775,69 +776,69 @@ public enum StickerType : Swift.String, Swift.Codable {
     get
   }
 }
-public struct Sticker : Swift.Identifiable, Swift.Codable, Swift.Equatable {
+public struct SnapcutSticker : Swift.Identifiable, Swift.Codable, Swift.Equatable {
   public let id: Swift.String
   public let name: Swift.String
   public let category: Swift.String
-  public let type: snapcut.StickerType
+  public let type: snapcut.SnapcutStickerType
   public let value: Swift.String
-  public init(id: Swift.String, name: Swift.String, category: Swift.String, type: snapcut.StickerType, value: Swift.String)
-  public static func == (a: snapcut.Sticker, b: snapcut.Sticker) -> Swift.Bool
+  public init(id: Swift.String, name: Swift.String, category: Swift.String, type: snapcut.SnapcutStickerType, value: Swift.String)
+  public static func == (a: snapcut.SnapcutSticker, b: snapcut.SnapcutSticker) -> Swift.Bool
   public typealias ID = Swift.String
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public protocol StickerProvider {
+public protocol SnapcutStickerProvider {
   #if compiler(>=5.3) && $NonescapableTypes
-  func fetchTrending(completion: @escaping (Swift.Result<[snapcut.Sticker], any Swift.Error>) -> Swift.Void)
+  func fetchTrending(completion: @escaping (Swift.Result<[snapcut.SnapcutSticker], any Swift.Error>) -> Swift.Void)
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  func searchStickers(query: Swift.String, completion: @escaping (Swift.Result<[snapcut.Sticker], any Swift.Error>) -> Swift.Void)
+  func searchStickers(query: Swift.String, completion: @escaping (Swift.Result<[snapcut.SnapcutSticker], any Swift.Error>) -> Swift.Void)
   #endif
 }
-@_hasMissingDesignatedInitializers public class LocalStickerProvider : snapcut.StickerProvider {
-  public static let shared: snapcut.LocalStickerProvider
-  final public let allStickers: [snapcut.Sticker]
+@_hasMissingDesignatedInitializers public class SnapcutLocalStickerProvider : snapcut.SnapcutStickerProvider {
+  public static let shared: snapcut.SnapcutLocalStickerProvider
+  final public let allStickers: [snapcut.SnapcutSticker]
   #if compiler(>=5.3) && $NonescapableTypes
-  public func fetchTrending(completion: @escaping (Swift.Result<[snapcut.Sticker], any Swift.Error>) -> Swift.Void)
+  public func fetchTrending(completion: @escaping (Swift.Result<[snapcut.SnapcutSticker], any Swift.Error>) -> Swift.Void)
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  public func searchStickers(query: Swift.String, completion: @escaping (Swift.Result<[snapcut.Sticker], any Swift.Error>) -> Swift.Void)
+  public func searchStickers(query: Swift.String, completion: @escaping (Swift.Result<[snapcut.SnapcutSticker], any Swift.Error>) -> Swift.Void)
   #endif
-  public func searchLocalOnly(query: Swift.String) -> [snapcut.Sticker]
+  public func searchLocalOnly(query: Swift.String) -> [snapcut.SnapcutSticker]
   @objc deinit
 }
-public class HybridStickerProvider : snapcut.StickerProvider {
-  public static let shared: snapcut.HybridStickerProvider
+public class SnapcutHybridStickerProvider : snapcut.SnapcutStickerProvider {
+  public static let shared: snapcut.SnapcutHybridStickerProvider
   public init()
   #if compiler(>=5.3) && $NonescapableTypes
-  public func fetchTrending(completion: @escaping (Swift.Result<[snapcut.Sticker], any Swift.Error>) -> Swift.Void)
+  public func fetchTrending(completion: @escaping (Swift.Result<[snapcut.SnapcutSticker], any Swift.Error>) -> Swift.Void)
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  public func searchStickers(query: Swift.String, completion: @escaping (Swift.Result<[snapcut.Sticker], any Swift.Error>) -> Swift.Void)
+  public func searchStickers(query: Swift.String, completion: @escaping (Swift.Result<[snapcut.SnapcutSticker], any Swift.Error>) -> Swift.Void)
   #endif
   @objc deinit
 }
-public protocol ZoomWheelViewDelegate : AnyObject {
-  func zoomWheel(_ wheel: snapcut.ZoomWheelView, didChangeZoom zoom: CoreFoundation.CGFloat)
-  func zoomWheel(_ wheel: snapcut.ZoomWheelView, didChangeState state: snapcut.ZoomWheelState)
+public protocol SnapcutZoomWheelViewDelegate : AnyObject {
+  func zoomWheel(_ wheel: snapcut.SnapcutZoomWheelView, didChangeZoom zoom: CoreFoundation.CGFloat)
+  func zoomWheel(_ wheel: snapcut.SnapcutZoomWheelView, didChangeState state: snapcut.SnapcutZoomWheelState)
 }
-public struct ZoomWheelPreset {
+public struct SnapcutZoomWheelPreset {
   public let rawZoom: CoreFoundation.CGFloat
   public let label: Swift.String
   public init(rawZoom: CoreFoundation.CGFloat, label: Swift.String)
 }
-public enum ZoomWheelState {
+public enum SnapcutZoomWheelState {
   case presets
   case dial
-  public static func == (a: snapcut.ZoomWheelState, b: snapcut.ZoomWheelState) -> Swift.Bool
+  public static func == (a: snapcut.SnapcutZoomWheelState, b: snapcut.SnapcutZoomWheelState) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ZoomWheelView : UIKit.UIView {
-  @_Concurrency.MainActor @preconcurrency weak public var delegate: (any snapcut.ZoomWheelViewDelegate)?
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class SnapcutZoomWheelView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency weak public var delegate: (any snapcut.SnapcutZoomWheelViewDelegate)?
   @_Concurrency.MainActor @preconcurrency public var currentZoom: CoreFoundation.CGFloat {
     get
     set
@@ -850,7 +851,7 @@ public enum ZoomWheelState {
     get
     set
   }
-  @_Concurrency.MainActor @preconcurrency public var presets: [snapcut.ZoomWheelPreset] {
+  @_Concurrency.MainActor @preconcurrency public var presets: [snapcut.SnapcutZoomWheelPreset] {
     get
     set
   }
@@ -860,56 +861,56 @@ public enum ZoomWheelState {
   @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
   #endif
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func layoutSubviews()
-  @_Concurrency.MainActor @preconcurrency public func setZoomWheelState(_ state: snapcut.ZoomWheelState, animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency public func setZoomWheelState(_ state: snapcut.SnapcutZoomWheelState, animated: Swift.Bool)
   @_Concurrency.MainActor @preconcurrency public func triggerPinchDialReveal()
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class LayoutRenderer {
-  public static let shared: snapcut.LayoutRenderer
+@_hasMissingDesignatedInitializers public class SnapcutLayoutRenderer {
+  public static let shared: snapcut.SnapcutLayoutRenderer
   #if compiler(>=5.3) && $NonescapableTypes
-  public func compositeLayout(background: CoreImage.CIImage, layoutURL: Foundation.URL, layoutState: snapcut.LayoutState, time: Swift.Double, isLooping: Swift.Bool = true, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil) -> CoreImage.CIImage
+  public func compositeLayout(background: CoreImage.CIImage, layoutURL: Foundation.URL, layoutState: snapcut.SnapcutLayoutState, time: Swift.Double, isLooping: Swift.Bool = true, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil) -> CoreImage.CIImage
   #endif
   public func clearCache()
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class PIPRenderer {
-  public static let shared: snapcut.PIPRenderer
+@_hasMissingDesignatedInitializers public class SnapcutPIPRenderer {
+  public static let shared: snapcut.SnapcutPIPRenderer
   #if compiler(>=5.3) && $NonescapableTypes
-  public func compositePIP(background: CoreImage.CIImage, pipURL: Foundation.URL, pipState: snapcut.PIPState, time: Swift.Double, isLooping: Swift.Bool = true, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil) -> CoreImage.CIImage
+  public func compositePIP(background: CoreImage.CIImage, pipURL: Foundation.URL, pipState: snapcut.SnapcutPIPState, time: Swift.Double, isLooping: Swift.Bool = true, trimStart: Swift.Double = 0.0, trimEnd: Swift.Double? = nil) -> CoreImage.CIImage
   #endif
   public func clearCache()
   @objc deinit
 }
-public enum PIPLayout : Swift.String, Swift.Codable, Swift.CaseIterable {
+public enum SnapcutPIPLayout : Swift.String, Swift.Codable, Swift.CaseIterable {
   case circle
   case rectangle
   case rounded
   #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
   #endif
-  public typealias AllCases = [snapcut.PIPLayout]
+  public typealias AllCases = [snapcut.SnapcutPIPLayout]
   public typealias RawValue = Swift.String
-  nonisolated public static var allCases: [snapcut.PIPLayout] {
+  nonisolated public static var allCases: [snapcut.SnapcutPIPLayout] {
     get
   }
   public var rawValue: Swift.String {
     get
   }
 }
-public struct PIPState : Swift.Equatable, Swift.Codable {
+public struct SnapcutPIPState : Swift.Equatable, Swift.Codable {
   public var normalizedFrame: CoreFoundation.CGRect
   public var opacity: CoreFoundation.CGFloat
   public var rotation: CoreFoundation.CGFloat
   public var isMuted: Swift.Bool
-  public var layout: snapcut.PIPLayout
+  public var layout: snapcut.SnapcutPIPLayout
   public var swapSources: Swift.Bool
-  public init(normalizedFrame: CoreFoundation.CGRect = CGRect(x: 0.6, y: 0.1, width: 0.35, height: 0.35), opacity: CoreFoundation.CGFloat = 1.0, rotation: CoreFoundation.CGFloat = 0.0, isMuted: Swift.Bool = false, layout: snapcut.PIPLayout = .rectangle, swapSources: Swift.Bool = false)
-  public static let defaultState: snapcut.PIPState
-  public static func == (a: snapcut.PIPState, b: snapcut.PIPState) -> Swift.Bool
+  public init(normalizedFrame: CoreFoundation.CGRect = CGRect(x: 0.6, y: 0.1, width: 0.35, height: 0.35), opacity: CoreFoundation.CGFloat = 1.0, rotation: CoreFoundation.CGFloat = 0.0, isMuted: Swift.Bool = false, layout: snapcut.SnapcutPIPLayout = .rectangle, swapSources: Swift.Bool = false)
+  public static let defaultState: snapcut.SnapcutPIPState
+  public static func == (a: snapcut.SnapcutPIPState, b: snapcut.SnapcutPIPState) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class PIPVideoCanvas : UIKit.UIView {
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class SnapcutPIPVideoCanvas : UIKit.UIView {
   @_Concurrency.MainActor @preconcurrency final public let pipContainerView: UIKit.UIView
   @_Concurrency.MainActor @preconcurrency public var backgroundSize: CoreFoundation.CGSize
   @_Concurrency.MainActor @preconcurrency public var pipSize: CoreFoundation.CGSize
@@ -921,22 +922,22 @@ public struct PIPState : Swift.Equatable, Swift.Codable {
   @_Concurrency.MainActor @preconcurrency public func setPIPMuted(_ isMuted: Swift.Bool)
   @objc deinit
 }
-public protocol PIPViewControllerDelegate : AnyObject {
-  func pipViewControllerDidFinish(with state: snapcut.PIPState)
+public protocol SnapcutPIPViewControllerDelegate : AnyObject {
+  func pipViewControllerDidFinish(with state: snapcut.SnapcutPIPState)
   func pipViewControllerDidCancel()
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class PIPViewController : UIKit.UIViewController {
-  @_Concurrency.MainActor @preconcurrency weak public var delegate: (any snapcut.PIPViewControllerDelegate)?
-  @_Concurrency.MainActor @preconcurrency public init(backgroundAsset: AVFoundation.AVAsset, pipAsset: AVFoundation.AVAsset, initialState: snapcut.PIPState = .defaultState)
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class SnapcutPIPViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor @preconcurrency weak public var delegate: (any snapcut.SnapcutPIPViewControllerDelegate)?
+  @_Concurrency.MainActor @preconcurrency public init(backgroundAsset: AVFoundation.AVAsset, pipAsset: AVFoundation.AVAsset, initialState: snapcut.SnapcutPIPState = .defaultState)
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func viewDidLoad()
   @objc deinit
 }
-extension snapcut.PIPViewController : UIKit.UIGestureRecognizerDelegate {
+extension snapcut.SnapcutPIPViewController : UIKit.UIGestureRecognizerDelegate {
   @_Concurrency.MainActor @preconcurrency @objc dynamic public func gestureRecognizer(_ gestureRecognizer: UIKit.UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIKit.UIGestureRecognizer) -> Swift.Bool
 }
 @_Concurrency.MainActor @preconcurrency public struct SnapcutMainView : SwiftUICore.View {
   #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public init(selectedMusic: snapcut.MusicItem? = nil)
+  @_Concurrency.MainActor @preconcurrency public init(selectedMusic: snapcut.SnapcutMusicItem? = nil)
   #endif
   @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
     get
@@ -944,7 +945,7 @@ extension snapcut.PIPViewController : UIKit.UIGestureRecognizerDelegate {
   public typealias Body = @_opaqueReturnTypeOf("$s7snapcut15SnapcutMainViewV4bodyQrvp", 0) __
 }
 
-public enum AspectRatio : Swift.Equatable, Swift.CaseIterable {
+public enum SnapcutAspectRatio : Swift.Equatable, Swift.CaseIterable {
   case original
   case custom
   case ratio1x1
@@ -976,9 +977,9 @@ public enum AspectRatio : Swift.Equatable, Swift.CaseIterable {
   public var displayName: Swift.String {
     get
   }
-  public static func == (a: snapcut.AspectRatio, b: snapcut.AspectRatio) -> Swift.Bool
-  public typealias AllCases = [snapcut.AspectRatio]
-  nonisolated public static var allCases: [snapcut.AspectRatio] {
+  public static func == (a: snapcut.SnapcutAspectRatio, b: snapcut.SnapcutAspectRatio) -> Swift.Bool
+  public typealias AllCases = [snapcut.SnapcutAspectRatio]
+  nonisolated public static var allCases: [snapcut.SnapcutAspectRatio] {
     get
   }
   public func hash(into hasher: inout Swift.Hasher)
@@ -986,12 +987,12 @@ public enum AspectRatio : Swift.Equatable, Swift.CaseIterable {
     get
   }
 }
-public protocol CropEditorDelegate : AnyObject {
+public protocol SnapcutCropEditorDelegate : AnyObject {
   func cropEditorDidCancel()
-  func cropEditorDidFinish(with state: snapcut.EditorState)
+  func cropEditorDidFinish(with state: snapcut.SnapcutEditorState)
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class CropEditorViewController : UIKit.UIViewController {
-  @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.CropEditorDelegate)?
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class SnapcutCropEditorViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.SnapcutCropEditorDelegate)?
   @_Concurrency.MainActor @preconcurrency final public var isMuted: Swift.Bool
   @_Concurrency.MainActor @preconcurrency final public var musicURL: Foundation.URL?
   @_Concurrency.MainActor @preconcurrency final public var musicVolume: Swift.Float
@@ -1010,24 +1011,24 @@ public protocol CropEditorDelegate : AnyObject {
   @_Concurrency.MainActor @preconcurrency final public var fade: Swift.Float
   @_Concurrency.MainActor @preconcurrency final public var vignette: Swift.Float
   #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public init(asset: AVFoundation.AVAsset, initialState: snapcut.EditorState? = nil)
+  @_Concurrency.MainActor @preconcurrency public init(asset: AVFoundation.AVAsset, initialState: snapcut.SnapcutEditorState? = nil)
   #endif
   @objc deinit
   @_Concurrency.MainActor @preconcurrency @objc override final public func viewDidLoad()
 }
-extension snapcut.CropEditorViewController : snapcut.CropOverlayViewDelegate {
+extension snapcut.SnapcutCropEditorViewController : snapcut.SnapcutCropOverlayViewDelegate {
   @_Concurrency.MainActor @preconcurrency final public func cropOverlayDidBeginInteraction()
-  @_Concurrency.MainActor @preconcurrency final public func cropOverlayDidUpdate(translation: CoreFoundation.CGPoint, handle: snapcut.CropHandle)
+  @_Concurrency.MainActor @preconcurrency final public func cropOverlayDidUpdate(translation: CoreFoundation.CGPoint, handle: snapcut.SnapcutCropHandle)
   @_Concurrency.MainActor @preconcurrency final public func cropOverlayDidEndInteraction()
 }
-extension snapcut.CropEditorViewController : snapcut.CropGestureManagerDelegate {
-  @_Concurrency.MainActor @preconcurrency final public func didUpdate(transform: snapcut.VideoTransform)
-  @_Concurrency.MainActor @preconcurrency final public func didUpdate(cropState: snapcut.CropState)
+extension snapcut.SnapcutCropEditorViewController : snapcut.SnapcutCropGestureManagerDelegate {
+  @_Concurrency.MainActor @preconcurrency final public func didUpdate(transform: snapcut.SnapcutVideoTransform)
+  @_Concurrency.MainActor @preconcurrency final public func didUpdate(cropState: snapcut.SnapcutCropState)
   @_Concurrency.MainActor @preconcurrency final public func gestureDidBegin()
   @_Concurrency.MainActor @preconcurrency final public func gestureDidEnd()
 }
-extension snapcut.CropEditorViewController : snapcut.EditorToolbarViewDelegate {
-  @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidSelectRatio(_ ratio: snapcut.AspectRatio)
+extension snapcut.SnapcutCropEditorViewController : snapcut.SnapcutEditorToolbarViewDelegate {
+  @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidSelectRatio(_ ratio: snapcut.SnapcutAspectRatio)
   @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidTapRotate()
   @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidTapFlipHorizontally()
   @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidTapFlipVertically()
@@ -1036,15 +1037,15 @@ extension snapcut.CropEditorViewController : snapcut.EditorToolbarViewDelegate {
   @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidTapCancel()
   @_Concurrency.MainActor @preconcurrency final public func editorToolbarDidUpdateStraightenAngle(_ angle: CoreFoundation.CGFloat)
 }
-final public class CropEditorViewModel : Foundation.ObservableObject {
-  @Combine.Published @_projectedValueProperty($editorState) final public var editorState: snapcut.EditorState {
+final public class SnapcutCropEditorViewModel : Foundation.ObservableObject {
+  @Combine.Published @_projectedValueProperty($editorState) final public var editorState: snapcut.SnapcutEditorState {
     get
     @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
     set
     @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
     _modify
   }
-  final public var $editorState: Combine.Published<snapcut.EditorState>.Publisher {
+  final public var $editorState: Combine.Published<snapcut.SnapcutEditorState>.Publisher {
     get
     @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
     set
@@ -1089,48 +1090,48 @@ final public class CropEditorViewModel : Foundation.ObservableObject {
     set
   }
   #endif
-  final public let undoManager: snapcut.EditorUndoManager
+  final public let undoManager: snapcut.SnapcutEditorUndoManager
   final public let asset: AVFoundation.AVAsset
   #if compiler(>=5.3) && $NonescapableTypes
-  public init(asset: AVFoundation.AVAsset, initialState: snapcut.EditorState? = nil)
+  public init(asset: AVFoundation.AVAsset, initialState: snapcut.SnapcutEditorState? = nil)
   #endif
-  final public func updateCropState(_ state: snapcut.CropState)
-  final public func updateTransform(_ transform: snapcut.VideoTransform)
+  final public func updateCropState(_ state: snapcut.SnapcutCropState)
+  final public func updateTransform(_ transform: snapcut.SnapcutVideoTransform)
   final public func commitChanges()
   final public func undo()
   final public func redo()
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
-@_hasMissingDesignatedInitializers final public class CropEngine {
+@_hasMissingDesignatedInitializers final public class SnapcutCropEngine {
   public static let minimumNormalizedSize: CoreFoundation.CGFloat
   #if compiler(>=5.3) && $NonescapableTypes
-  public static func updateCropRect(initialRect: CoreFoundation.CGRect, handle: snapcut.CropHandle, translation: CoreFoundation.CGPoint, targetNormalizedRatio: CoreFoundation.CGFloat?, bounds: CoreFoundation.CGRect = CGRect(x: 0, y: 0, width: 1, height: 1)) -> CoreFoundation.CGRect
+  public static func updateCropRect(initialRect: CoreFoundation.CGRect, handle: snapcut.SnapcutCropHandle, translation: CoreFoundation.CGPoint, targetNormalizedRatio: CoreFoundation.CGFloat?, bounds: CoreFoundation.CGRect = CGRect(x: 0, y: 0, width: 1, height: 1)) -> CoreFoundation.CGRect
   #endif
   @objc deinit
 }
-public protocol CropGestureManagerDelegate : AnyObject {
-  func didUpdate(transform: snapcut.VideoTransform)
-  func didUpdate(cropState: snapcut.CropState)
+public protocol SnapcutCropGestureManagerDelegate : AnyObject {
+  func didUpdate(transform: snapcut.SnapcutVideoTransform)
+  func didUpdate(cropState: snapcut.SnapcutCropState)
   func gestureDidBegin()
   func gestureDidEnd()
 }
-final public class CropGestureManager {
-  weak final public var delegate: (any snapcut.CropGestureManagerDelegate)?
+final public class SnapcutCropGestureManager {
+  weak final public var delegate: (any snapcut.SnapcutCropGestureManagerDelegate)?
   public init()
-  final public func setInitialTransform(_ transform: snapcut.VideoTransform)
+  final public func setInitialTransform(_ transform: snapcut.SnapcutVideoTransform)
   final public func handlePinch(scale: CoreFoundation.CGFloat, state: UIKit.UIGestureRecognizer.State)
   final public func handleTwoFingerPan(translation: CoreFoundation.CGPoint, state: UIKit.UIGestureRecognizer.State)
   final public func handleDoubleTap()
   @objc deinit
 }
-public protocol CropOverlayViewDelegate : AnyObject {
+public protocol SnapcutCropOverlayViewDelegate : AnyObject {
   func cropOverlayDidBeginInteraction()
-  func cropOverlayDidUpdate(translation: CoreFoundation.CGPoint, handle: snapcut.CropHandle)
+  func cropOverlayDidUpdate(translation: CoreFoundation.CGPoint, handle: snapcut.SnapcutCropHandle)
   func cropOverlayDidEndInteraction()
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class CropOverlayView : UIKit.UIView {
-  @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.CropOverlayViewDelegate)?
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class SnapcutCropOverlayView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.SnapcutCropOverlayViewDelegate)?
   @_Concurrency.MainActor @preconcurrency final public var cropRect: CoreFoundation.CGRect {
     get
     set
@@ -1139,14 +1140,14 @@ public protocol CropOverlayViewDelegate : AnyObject {
   @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
   @objc deinit
 }
-public struct CropState : Swift.Equatable {
+public struct SnapcutCropState : Swift.Equatable {
   public var rect: CoreFoundation.CGRect
-  public var aspectRatio: snapcut.AspectRatio
-  public init(rect: CoreFoundation.CGRect = CGRect(x: 0, y: 0, width: 1, height: 1), aspectRatio: snapcut.AspectRatio = .original)
-  public static let full: snapcut.CropState
-  public static func == (a: snapcut.CropState, b: snapcut.CropState) -> Swift.Bool
+  public var aspectRatio: snapcut.SnapcutAspectRatio
+  public init(rect: CoreFoundation.CGRect = CGRect(x: 0, y: 0, width: 1, height: 1), aspectRatio: snapcut.SnapcutAspectRatio = .original)
+  public static let full: snapcut.SnapcutCropState
+  public static func == (a: snapcut.SnapcutCropState, b: snapcut.SnapcutCropState) -> Swift.Bool
 }
-public enum CropHandle : Swift.Equatable {
+public enum SnapcutCropHandle : Swift.Equatable {
   case topLeft
   case topRight
   case bottomLeft
@@ -1157,21 +1158,21 @@ public enum CropHandle : Swift.Equatable {
   case rightEdge
   case center
   case none
-  public static func == (a: snapcut.CropHandle, b: snapcut.CropHandle) -> Swift.Bool
+  public static func == (a: snapcut.SnapcutCropHandle, b: snapcut.SnapcutCropHandle) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
 }
-final public class CropToolbarViewModel : Foundation.ObservableObject {
-  @Combine.Published @_projectedValueProperty($selectedAspectRatio) final public var selectedAspectRatio: snapcut.AspectRatio {
+final public class SnapcutCropToolbarViewModel : Foundation.ObservableObject {
+  @Combine.Published @_projectedValueProperty($selectedAspectRatio) final public var selectedAspectRatio: snapcut.SnapcutAspectRatio {
     get
     @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
     set
     @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
     _modify
   }
-  final public var $selectedAspectRatio: Combine.Published<snapcut.AspectRatio>.Publisher {
+  final public var $selectedAspectRatio: Combine.Published<snapcut.SnapcutAspectRatio>.Publisher {
     get
     @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
     set
@@ -1200,16 +1201,16 @@ final public class CropToolbarViewModel : Foundation.ObservableObject {
     @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
     set
   }
-  final public let availableAspectRatios: [snapcut.AspectRatio]
+  final public let availableAspectRatios: [snapcut.SnapcutAspectRatio]
   public init()
   final public func reset()
-  final public func select(aspectRatio: snapcut.AspectRatio)
+  final public func select(aspectRatio: snapcut.SnapcutAspectRatio)
   final public func rotate90Degrees()
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
-public protocol EditorToolbarViewDelegate : AnyObject {
-  func editorToolbarDidSelectRatio(_ ratio: snapcut.AspectRatio)
+public protocol SnapcutEditorToolbarViewDelegate : AnyObject {
+  func editorToolbarDidSelectRatio(_ ratio: snapcut.SnapcutAspectRatio)
   func editorToolbarDidTapRotate()
   func editorToolbarDidTapFlipHorizontally()
   func editorToolbarDidTapFlipVertically()
@@ -1218,41 +1219,41 @@ public protocol EditorToolbarViewDelegate : AnyObject {
   func editorToolbarDidTapCancel()
   func editorToolbarDidUpdateStraightenAngle(_ angle: CoreFoundation.CGFloat)
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class EditorToolbarView : UIKit.UIView {
-  @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.EditorToolbarViewDelegate)?
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class SnapcutEditorToolbarView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any snapcut.SnapcutEditorToolbarViewDelegate)?
   @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
   @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
-  @_Concurrency.MainActor @preconcurrency final public func selectRatio(_ ratio: snapcut.AspectRatio)
+  @_Concurrency.MainActor @preconcurrency final public func selectRatio(_ ratio: snapcut.SnapcutAspectRatio)
   @objc deinit
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class GridRenderer : UIKit.UIView {
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class SnapcutGridRenderer : UIKit.UIView {
   @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
   @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
   @_Concurrency.MainActor @preconcurrency final public func showGrid(animated: Swift.Bool)
   @_Concurrency.MainActor @preconcurrency final public func hideGrid(animated: Swift.Bool)
   @objc deinit
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class CropHandleView : UIKit.UIView {
-  @_Concurrency.MainActor @preconcurrency final public let type: snapcut.CropHandle
-  @_Concurrency.MainActor @preconcurrency public init(type: snapcut.CropHandle)
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class SnapcutCropHandleView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency final public let type: snapcut.SnapcutCropHandle
+  @_Concurrency.MainActor @preconcurrency public init(type: snapcut.SnapcutCropHandle)
   @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
   #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency @objc override final public func point(inside point: CoreFoundation.CGPoint, with event: UIKit.UIEvent?) -> Swift.Bool
   #endif
   @objc deinit
 }
-@_hasMissingDesignatedInitializers final public class TransformCalculator {
-  public static func viewTransform(for videoTransform: snapcut.VideoTransform, viewSize: CoreFoundation.CGSize) -> CoreFoundation.CGAffineTransform
-  public static func compositionTransform(originalSize: CoreFoundation.CGSize, cropRect: CoreFoundation.CGRect, videoTransform: snapcut.VideoTransform, renderSize: CoreFoundation.CGSize) -> CoreFoundation.CGAffineTransform
+@_hasMissingDesignatedInitializers final public class SnapcutTransformCalculator {
+  public static func viewTransform(for videoTransform: snapcut.SnapcutVideoTransform, viewSize: CoreFoundation.CGSize) -> CoreFoundation.CGAffineTransform
+  public static func compositionTransform(originalSize: CoreFoundation.CGSize, cropRect: CoreFoundation.CGRect, videoTransform: snapcut.SnapcutVideoTransform, renderSize: CoreFoundation.CGSize) -> CoreFoundation.CGAffineTransform
   @objc deinit
 }
-public struct EditorState : Swift.Equatable {
-  public var cropState: snapcut.CropState
-  public var transform: snapcut.VideoTransform
-  public init(cropState: snapcut.CropState = .full, transform: snapcut.VideoTransform = .identity)
-  public static func == (a: snapcut.EditorState, b: snapcut.EditorState) -> Swift.Bool
+public struct SnapcutEditorState : Swift.Equatable {
+  public var cropState: snapcut.SnapcutCropState
+  public var transform: snapcut.SnapcutVideoTransform
+  public init(cropState: snapcut.SnapcutCropState = .full, transform: snapcut.SnapcutVideoTransform = .identity)
+  public static func == (a: snapcut.SnapcutEditorState, b: snapcut.SnapcutEditorState) -> Swift.Bool
 }
-final public class EditorUndoManager {
+final public class SnapcutEditorUndoManager {
   final public var canUndo: Swift.Bool {
     get
   }
@@ -1260,17 +1261,17 @@ final public class EditorUndoManager {
     get
   }
   public init()
-  final public func record(state: snapcut.EditorState)
+  final public func record(state: snapcut.SnapcutEditorState)
   #if compiler(>=5.3) && $NonescapableTypes
-  final public func undo(currentState: snapcut.EditorState) -> snapcut.EditorState?
+  final public func undo(currentState: snapcut.SnapcutEditorState) -> snapcut.SnapcutEditorState?
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  final public func redo(currentState: snapcut.EditorState) -> snapcut.EditorState?
+  final public func redo(currentState: snapcut.SnapcutEditorState) -> snapcut.SnapcutEditorState?
   #endif
   final public func clear()
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class VideoCanvasView : UIKit.UIView {
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class SnapcutVideoCanvasView : UIKit.UIView {
   #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency final public var player: AVFoundation.AVPlayer? {
     get
@@ -1280,27 +1281,27 @@ final public class EditorUndoManager {
   @_Concurrency.MainActor @preconcurrency final public var videoSize: CoreFoundation.CGSize
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
-  @_Concurrency.MainActor @preconcurrency final public func applyTransform(_ transform: snapcut.VideoTransform)
+  @_Concurrency.MainActor @preconcurrency final public func applyTransform(_ transform: snapcut.SnapcutVideoTransform)
   @objc deinit
 }
-@_hasMissingDesignatedInitializers final public class VideoCoordinateConverter {
+@_hasMissingDesignatedInitializers final public class SnapcutVideoCoordinateConverter {
   public static func aspectFitRect(for videoSize: CoreFoundation.CGSize, inside viewBounds: CoreFoundation.CGRect) -> CoreFoundation.CGRect
   public static func viewRect(fromNormalized normalizedRect: CoreFoundation.CGRect, videoSize: CoreFoundation.CGSize, viewBounds: CoreFoundation.CGRect) -> CoreFoundation.CGRect
   public static func normalizedRect(fromView viewRect: CoreFoundation.CGRect, videoSize: CoreFoundation.CGSize, viewBounds: CoreFoundation.CGRect) -> CoreFoundation.CGRect
   public static func videoRect(fromNormalized normalizedRect: CoreFoundation.CGRect, videoSize: CoreFoundation.CGSize) -> CoreFoundation.CGRect
   @objc deinit
 }
-public struct VideoTransform : Swift.Equatable {
+public struct SnapcutVideoTransform : Swift.Equatable {
   public var rotation: CoreFoundation.CGFloat
   public var scale: CoreFoundation.CGFloat
   public var translation: CoreFoundation.CGPoint
   public var isFlippedHorizontally: Swift.Bool
   public var isFlippedVertically: Swift.Bool
   public init(rotation: CoreFoundation.CGFloat = 0, scale: CoreFoundation.CGFloat = 1.0, translation: CoreFoundation.CGPoint = .zero, isFlippedHorizontally: Swift.Bool = false, isFlippedVertically: Swift.Bool = false)
-  public static let identity: snapcut.VideoTransform
-  public static func == (a: snapcut.VideoTransform, b: snapcut.VideoTransform) -> Swift.Bool
+  public static let identity: snapcut.SnapcutVideoTransform
+  public static func == (a: snapcut.SnapcutVideoTransform, b: snapcut.SnapcutVideoTransform) -> Swift.Bool
 }
-public class LayoutRecordingViewModel : Combine.ObservableObject {
+public class SnapcutLayoutRecordingViewModel : Combine.ObservableObject {
   public init()
   public func startSession()
   public func stopSession()
@@ -1311,31 +1312,31 @@ public class LayoutRecordingViewModel : Combine.ObservableObject {
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
-extension snapcut.MediaType : Swift.Equatable {}
-extension snapcut.MediaType : Swift.Hashable {}
-extension snapcut.MediaType : Swift.RawRepresentable {}
-extension snapcut.FilterType : Swift.Equatable {}
-extension snapcut.FilterType : Swift.Hashable {}
-extension snapcut.FilterType : Swift.RawRepresentable {}
-extension snapcut.ExportPreset : Swift.Equatable {}
-extension snapcut.ExportPreset : Swift.Hashable {}
-extension snapcut.ExportPreset : Swift.RawRepresentable {}
-extension snapcut.LayoutType : Swift.Equatable {}
-extension snapcut.LayoutType : Swift.Hashable {}
-extension snapcut.LayoutType : Swift.RawRepresentable {}
-extension snapcut.SDKTypography.Style : Swift.Equatable {}
-extension snapcut.SDKTypography.Style : Swift.Hashable {}
-extension snapcut.GalleryLayoutSelectionView : Swift.Sendable {}
-extension snapcut.GiphyPickerView : Swift.Sendable {}
-extension snapcut.LayoutRecordingView : Swift.Sendable {}
-extension snapcut.StickerType : Swift.Equatable {}
-extension snapcut.StickerType : Swift.Hashable {}
-extension snapcut.StickerType : Swift.RawRepresentable {}
-extension snapcut.ZoomWheelState : Swift.Equatable {}
-extension snapcut.ZoomWheelState : Swift.Hashable {}
-extension snapcut.PIPLayout : Swift.Equatable {}
-extension snapcut.PIPLayout : Swift.Hashable {}
-extension snapcut.PIPLayout : Swift.RawRepresentable {}
+extension snapcut.SnapcutMediaType : Swift.Equatable {}
+extension snapcut.SnapcutMediaType : Swift.Hashable {}
+extension snapcut.SnapcutMediaType : Swift.RawRepresentable {}
+extension snapcut.SnapcutFilterType : Swift.Equatable {}
+extension snapcut.SnapcutFilterType : Swift.Hashable {}
+extension snapcut.SnapcutFilterType : Swift.RawRepresentable {}
+extension snapcut.SnapcutExportPreset : Swift.Equatable {}
+extension snapcut.SnapcutExportPreset : Swift.Hashable {}
+extension snapcut.SnapcutExportPreset : Swift.RawRepresentable {}
+extension snapcut.SnapcutLayoutType : Swift.Equatable {}
+extension snapcut.SnapcutLayoutType : Swift.Hashable {}
+extension snapcut.SnapcutLayoutType : Swift.RawRepresentable {}
+extension snapcut.SnapcutSDKTypography.SnapcutStyle : Swift.Equatable {}
+extension snapcut.SnapcutSDKTypography.SnapcutStyle : Swift.Hashable {}
+extension snapcut.SnapcutGalleryLayoutSelectionView : Swift.Sendable {}
+extension snapcut.SnapcutGiphyPickerView : Swift.Sendable {}
+extension snapcut.SnapcutLayoutRecordingView : Swift.Sendable {}
+extension snapcut.SnapcutStickerType : Swift.Equatable {}
+extension snapcut.SnapcutStickerType : Swift.Hashable {}
+extension snapcut.SnapcutStickerType : Swift.RawRepresentable {}
+extension snapcut.SnapcutZoomWheelState : Swift.Equatable {}
+extension snapcut.SnapcutZoomWheelState : Swift.Hashable {}
+extension snapcut.SnapcutPIPLayout : Swift.Equatable {}
+extension snapcut.SnapcutPIPLayout : Swift.Hashable {}
+extension snapcut.SnapcutPIPLayout : Swift.RawRepresentable {}
 extension snapcut.SnapcutMainView : Swift.Sendable {}
-extension snapcut.AspectRatio : Swift.Hashable {}
-extension snapcut.CropHandle : Swift.Hashable {}
+extension snapcut.SnapcutAspectRatio : Swift.Hashable {}
+extension snapcut.SnapcutCropHandle : Swift.Hashable {}
