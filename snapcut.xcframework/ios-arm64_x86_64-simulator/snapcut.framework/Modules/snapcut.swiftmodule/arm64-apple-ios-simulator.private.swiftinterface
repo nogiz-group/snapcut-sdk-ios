@@ -227,6 +227,41 @@ public enum SnapcutAudioLibraryError : Swift.Error, Foundation.LocalizedError {
   public static func checkCameraAndMicPermissions(completion: @escaping (Swift.Bool) -> Swift.Void)
   @objc deinit
 }
+public enum SnapcutEditorResult {
+  case success(snapcut.SnapcutProjectMetadata)
+  case cancelled
+  case error(Swift.String)
+}
+public struct SnapcutProjectMetadata : Swift.Codable, Swift.Equatable, Swift.Identifiable {
+  public let id: Swift.String
+  public var projectId: Swift.String {
+    get
+  }
+  public var title: Swift.String
+  public var durationMs: Swift.Int64
+  public var lastModified: Foundation.TimeInterval
+  public var thumbnailPath: Swift.String?
+  public var exportedVideoPath: Swift.String?
+  public var isSaved: Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(id: Swift.String = UUID().uuidString, title: Swift.String, durationMs: Swift.Int64 = 0, lastModified: Foundation.TimeInterval = Date().timeIntervalSince1970, thumbnailPath: Swift.String? = nil, exportedVideoPath: Swift.String? = nil, isSaved: Swift.Bool = false)
+  #endif
+  public static func == (a: snapcut.SnapcutProjectMetadata, b: snapcut.SnapcutProjectMetadata) -> Swift.Bool
+  public typealias ID = Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class SnapcutProjectManager {
+  public static let shared: snapcut.SnapcutProjectManager
+  public func create() -> snapcut.SnapcutProjectMetadata
+  public func getAll() -> [snapcut.SnapcutProjectMetadata]
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getById(projectId: Swift.String) -> snapcut.SnapcutProjectMetadata?
+  #endif
+  public func rename(projectId: Swift.String, newTitle: Swift.String)
+  public func delete(projectId: Swift.String)
+  @objc deinit
+}
 extension Foundation.NSNotification.Name {
   public static let snapcutLicenseInvalid: Foundation.Notification.Name
   public static let snapcutLicenseValid: Foundation.Notification.Name
@@ -478,7 +513,7 @@ public struct SnapcutEditorCropState : Swift.Equatable, Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct SnapcutMusicItem : Swift.Identifiable, Swift.Hashable {
+public struct SnapcutMusicItem : Swift.Identifiable, Swift.Hashable, Swift.Codable {
   public let id: Foundation.UUID
   public let title: Swift.String
   public let artist: Swift.String
@@ -493,10 +528,12 @@ public struct SnapcutMusicItem : Swift.Identifiable, Swift.Hashable {
   #endif
   public static func == (a: snapcut.SnapcutMusicItem, b: snapcut.SnapcutMusicItem) -> Swift.Bool
   public typealias ID = Foundation.UUID
+  public func encode(to encoder: any Swift.Encoder) throws
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
+  public init(from decoder: any Swift.Decoder) throws
 }
 public enum SnapcutLayoutType : Swift.String, Swift.Codable, Swift.CaseIterable {
   case verticalSplit
