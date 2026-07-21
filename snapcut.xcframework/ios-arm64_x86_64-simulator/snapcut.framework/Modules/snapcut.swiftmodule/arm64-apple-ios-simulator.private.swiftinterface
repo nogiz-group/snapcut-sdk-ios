@@ -331,6 +331,19 @@ public class SnapcutVideoEditorConfiguration : Foundation.ObservableObject {
   public var lightTheme: snapcut.SnapcutSDKTheme
   public var darkTheme: snapcut.SnapcutSDKTheme
   public var forceColorScheme: SwiftUICore.ColorScheme?
+  @Combine.Published @_projectedValueProperty($showCameraBackButton) public var showCameraBackButton: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $showCameraBackButton: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  public var onCameraBackButtonTapped: (() -> Swift.Void)?
   @Combine.Published @_projectedValueProperty($giphyAPIKey) public var giphyAPIKey: Swift.String {
     get
     @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
@@ -358,7 +371,7 @@ public class SnapcutVideoEditorConfiguration : Foundation.ObservableObject {
   }
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  public init(licenseKey: Swift.String, giphyAPIKey: Swift.String, lightTheme: snapcut.SnapcutSDKTheme = .defaultLight, darkTheme: snapcut.SnapcutSDKTheme = .defaultDark, forceColorScheme: SwiftUICore.ColorScheme? = nil)
+  public init(licenseKey: Swift.String, giphyAPIKey: Swift.String, lightTheme: snapcut.SnapcutSDKTheme = .defaultLight, darkTheme: snapcut.SnapcutSDKTheme = .defaultDark, forceColorScheme: SwiftUICore.ColorScheme? = nil, showCameraBackButton: Swift.Bool = false, onCameraBackButtonTapped: (() -> Swift.Void)? = nil)
   #endif
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
