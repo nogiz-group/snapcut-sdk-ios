@@ -223,6 +223,18 @@ public enum SnapcutAudioLibraryError : Swift.Error, Foundation.LocalizedError {
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
+@_hasMissingDesignatedInitializers public class SnapcutEditor {
+  final public let projects: snapcut.SnapcutProjectManager
+  public func launcher(from viewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void) -> snapcut.SnapcutEditorLauncher
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutEditorLauncher {
+  public func create(title: Swift.String)
+  public func importVideo(url: Foundation.URL, title: Swift.String = "New Project")
+  public func importVideos(urls: [Foundation.URL], title: Swift.String = "New Project")
+  public func open(projectId: Swift.String)
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class SnapcutPermissionsManager {
   public static func checkCameraAndMicPermissions(completion: @escaping (Swift.Bool) -> Swift.Void)
   @objc deinit
@@ -291,7 +303,9 @@ extension Foundation.NSNotification.Name {
     get
   }
   #endif
+  final public let editor: snapcut.SnapcutEditor
   public static var licenseKeyProvider: (() async -> Swift.String)?
+  public static var giphyAPIKeyProvider: (() async -> Swift.String)?
   public static func initialize(config: snapcut.SnapcutVideoEditorConfiguration)
   public static func startLicenseVerificationCycle()
   public static func verifyLicense() async
