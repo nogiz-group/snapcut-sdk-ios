@@ -259,12 +259,13 @@ public struct SnapcutProjectMetadata : Swift.Codable, Swift.Equatable, Swift.Ide
   }
   public var title: Swift.String
   public var durationMs: Swift.Int64
+  public var timelineDurationMs: Swift.Int64?
   public var lastModified: Foundation.TimeInterval
   public var thumbnailPath: Swift.String?
   public var exportedVideoPath: Swift.String?
   public var isSaved: Swift.Bool
   public var isAutoCut: Swift.Bool?
-  public init(id: Swift.String = UUID().uuidString, title: Swift.String, durationMs: Swift.Int64 = 0, lastModified: Foundation.TimeInterval = Date().timeIntervalSince1970, thumbnailPath: Swift.String? = nil, exportedVideoPath: Swift.String? = nil, isSaved: Swift.Bool = false, isAutoCut: Swift.Bool? = false)
+  public init(id: Swift.String = UUID().uuidString, title: Swift.String, durationMs: Swift.Int64 = 0, timelineDurationMs: Swift.Int64? = nil, lastModified: Foundation.TimeInterval = Date().timeIntervalSince1970, thumbnailPath: Swift.String? = nil, exportedVideoPath: Swift.String? = nil, isSaved: Swift.Bool = false, isAutoCut: Swift.Bool? = false)
   public static func == (a: snapcut.SnapcutProjectMetadata, b: snapcut.SnapcutProjectMetadata) -> Swift.Bool
   public typealias ID = Swift.String
   public func encode(to encoder: any Swift.Encoder) throws
