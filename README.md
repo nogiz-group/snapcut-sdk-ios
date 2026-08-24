@@ -149,3 +149,32 @@ struct ContentView: View {
     }
 }
 ```
+### 3. Auto Captions Launcher & Projects
+
+You can use the dedicated Auto Captions launcher to create and manage caption projects.
+
+```swift
+import snapcut
+
+// Start a new Auto Captions workflow
+SnapcutSDK.shared.caption.launcher(from: self) { result in
+    switch result {
+    case .success(let metadata):
+        print("Caption project created with ID: \(metadata.id)")
+    case .cancelled:
+        print("User cancelled")
+    case .error(let error):
+        print("Error: \(error)")
+    }
+}.start(videoUri: url)
+
+// List all saved Caption projects
+let captionProjects = SnapcutSDK.shared.caption.projects.getAll()
+
+// Re-open an existing Caption project
+if let firstProject = captionProjects.first {
+    SnapcutSDK.shared.caption.launcher(from: self) { result in
+        // Handle result
+    }.open(projectId: firstProject.id)
+}
+```
