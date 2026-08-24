@@ -4,13 +4,21 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Info.plist</key>
+		<key>default.metallib</key>
 		<data>
-		x8AT+oGf1DuExYBvOkTfGy4R9VU=
+		BoDUDnsfScvVq4rUDUiXhJPRkqE=
 		</data>
 	</dict>
 	<key>files2</key>
-	<dict/>
+	<dict>
+		<key>default.metallib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			qMe0+fPYu8sPGklz13DKnu8b55G/xJTIOHY60vPd8Uk=
+			</data>
+		</dict>
+	</dict>
 	<key>rules</key>
 	<dict>
 		<key>^.*</key>
