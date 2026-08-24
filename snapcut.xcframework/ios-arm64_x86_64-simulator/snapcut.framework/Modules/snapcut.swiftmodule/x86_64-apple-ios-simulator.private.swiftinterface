@@ -28,7 +28,6 @@ import SwiftUI
 import Translation
 import UIKit
 import UniformTypeIdentifiers
-import ZIPFoundation
 import _AVKit_SwiftUI
 import _Concurrency
 import _PhotosUI_SwiftUI
@@ -36,7 +35,6 @@ import _SceneKit_SwiftUI
 import _StringProcessing
 import _SwiftConcurrencyShims
 import _Translation_SwiftUI
-import whisper
 public enum SnapcutAppStrings {
   public static let exportTitle: Swift.String
   public static let exportButton: Swift.String
