@@ -25,14 +25,18 @@ import QuartzCore
 import SceneKit
 import Swift
 import SwiftUI
+import Translation
 import UIKit
 import UniformTypeIdentifiers
+import ZIPFoundation
 import _AVKit_SwiftUI
 import _Concurrency
 import _PhotosUI_SwiftUI
 import _SceneKit_SwiftUI
 import _StringProcessing
 import _SwiftConcurrencyShims
+import _Translation_SwiftUI
+import whisper
 public enum SnapcutAppStrings {
   public static let exportTitle: Swift.String
   public static let exportButton: Swift.String
@@ -213,6 +217,30 @@ public enum SnapcutAudioLibraryError : Swift.Error, Foundation.LocalizedError {
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
+public class SnapcutCaptionNamespace {
+  public init()
+  public func launcher(from viewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void) -> snapcut.SnapcutCaptionLauncher
+  @objc deinit
+}
+public class SnapcutCaptionLauncher {
+  public init(presentingViewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void)
+  public func start(videoUri: Foundation.URL, title: Swift.String = "Captions")
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SnapcutWhisperService : ObjectiveC.NSObject, Foundation.URLSessionDownloadDelegate {
+  public static let shared: snapcut.SnapcutWhisperService
+  public var useQuantizedModel: Swift.Bool
+  public func getModelPath() -> Foundation.URL
+  public func getCoreMLModelPath() -> Foundation.URL
+  public func isModelCached() -> Swift.Bool
+  public func downloadModel(progress: @escaping (Swift.Double, Swift.String) -> Swift.Void, completion: @escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)
+  @objc public func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didWriteData bytesWritten: Swift.Int64, totalBytesWritten: Swift.Int64, totalBytesExpectedToWrite: Swift.Int64)
+  @objc public func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didFinishDownloadingTo location: Foundation.URL)
+  @objc public func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didCompleteWithError error: (any Swift.Error)?)
+  public func extractAudio(from videoURL: Foundation.URL, completion: @escaping (Swift.Result<[Swift.Float], any Swift.Error>) -> Swift.Void)
+  public func cancelInference()
+  @objc deinit
+}
 public class SnapcutAutoCut {
   final public let projects: snapcut.SnapcutAutoCutProjectManager
   public init()
@@ -308,6 +336,9 @@ extension Foundation.NSNotification.Name {
   }
   final public let editor: snapcut.SnapcutEditor
   final public let autoCut: snapcut.SnapcutAutoCut
+  final public let caption: snapcut.SnapcutCaptionNamespace
+  public func clearCaptionsCache(for videoURL: Foundation.URL)
+  public func clearAllCaptionsCache()
   public static var licenseKeyProvider: (() async -> Swift.String)?
   public static var giphyAPIKeyProvider: (() async -> Swift.String)?
   public static func initialize(config: snapcut.SnapcutVideoEditorConfiguration)
