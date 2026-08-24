@@ -12,10 +12,10 @@ let package = Package(
             targets: ["snapcutWrapper"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Giphy/giphy-ios-sdk.git", exact: "2.3.2"),
-        .package(url: "https://github.com/SDWebImage/libwebp-Xcode.git", exact: "1.5.0"),
+        .package(url: "https://github.com/Giphy/giphy-ios-sdk", exact: "2.3.2"),
+        .package(url: "https://github.com/SDWebImage/libwebp-Xcode", exact: "1.5.0"),
         .package(url: "https://github.com/weichsel/ZIPFoundation.git", from: "0.9.0"),
-        .package(url: "https://github.com/ggerganov/whisper.spm.git", from: "1.0.0")
+        .package(url: "https://github.com/ggerganov/whisper.spm", exact: "1.6.2")
     ],
     targets: [
         .target(
