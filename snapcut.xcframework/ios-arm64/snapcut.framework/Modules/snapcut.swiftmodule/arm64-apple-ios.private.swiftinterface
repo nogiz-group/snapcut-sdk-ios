@@ -279,12 +279,21 @@ public class SnapcutAutoCut {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class SnapcutEnhanceNamespace {
+  final public let projects: snapcut.SnapcutEnhanceProjectManager
   public func launcher(from viewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void) -> snapcut.SnapcutEnhanceLauncher
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutEnhanceProjectManager {
+  public func getAll() -> [snapcut.SnapcutProjectMetadata]
+  public func getById(projectId: Swift.String) -> snapcut.SnapcutProjectMetadata?
+  public func rename(projectId: Swift.String, newTitle: Swift.String)
+  public func delete(projectId: Swift.String)
   @objc deinit
 }
 public class SnapcutEnhanceLauncher {
   public init(presentingViewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void)
   public func start(mediaUri: Foundation.URL, title: Swift.String? = nil)
+  public func open(projectId: Swift.String)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class SnapcutPermissionsManager {
@@ -310,7 +319,8 @@ public struct SnapcutProjectMetadata : Swift.Codable, Swift.Equatable, Swift.Ide
   public var isSaved: Swift.Bool
   public var isAutoCut: Swift.Bool?
   public var isCaption: Swift.Bool?
-  public init(id: Swift.String = UUID().uuidString, title: Swift.String, durationMs: Swift.Int64 = 0, timelineDurationMs: Swift.Int64? = nil, lastModified: Foundation.TimeInterval = Date().timeIntervalSince1970, thumbnailPath: Swift.String? = nil, exportedVideoPath: Swift.String? = nil, isSaved: Swift.Bool = false, isAutoCut: Swift.Bool? = false, isCaption: Swift.Bool? = false)
+  public var isEnhance: Swift.Bool?
+  public init(id: Swift.String = UUID().uuidString, title: Swift.String, durationMs: Swift.Int64 = 0, timelineDurationMs: Swift.Int64? = nil, lastModified: Foundation.TimeInterval = Date().timeIntervalSince1970, thumbnailPath: Swift.String? = nil, exportedVideoPath: Swift.String? = nil, isSaved: Swift.Bool = false, isAutoCut: Swift.Bool? = false, isCaption: Swift.Bool? = false, isEnhance: Swift.Bool? = false)
   public static func == (a: snapcut.SnapcutProjectMetadata, b: snapcut.SnapcutProjectMetadata) -> Swift.Bool
   public typealias ID = Swift.String
   public func encode(to encoder: any Swift.Encoder) throws
