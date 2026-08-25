@@ -178,3 +178,68 @@ if let firstProject = captionProjects.first {
     }.open(projectId: firstProject.id)
 }
 ```
+
+### 4. Speed Adjustment Launcher
+
+You can use the dedicated Speed launcher to open the Speed Adjustment flow directly:
+
+```swift
+import snapcut
+
+class ViewController: UIViewController {
+
+    private lazy var speedLauncher = SnapcutSDK.shared.speed.launcher(from: self) { result in
+        switch result {
+        case .success(let metadata):
+            // Video with applied speed is now in the editor
+            print("Project ready: \(metadata.title)")
+        case .cancelled:
+            print("User cancelled")
+        case .error(let error):
+            print("Error: \(error)")
+        }
+    }
+
+    private func startSpeedAdjustment(videoUri: URL) {
+        // Launch direct speed adjustment flow
+        speedLauncher.start(
+            videoUri: videoUri,
+            title: "Slow-Mo Project"
+        )
+    }
+}
+```
+
+### 5. AI Enhancement Launcher
+
+The AI Enhancement feature allows users to upscale and improve the visual quality of videos and images using advanced AI models.
+
+Register the `SnapcutEnhanceLauncher` using `SnapcutSDK.shared.enhance.launcher(from:)`:
+
+```swift
+import SnapcutVideoEditor
+import UIKit
+
+class ViewController: UIViewController {
+
+    private lazy var enhanceLauncher = SnapcutSDK.shared.enhance.launcher(from: self) { result in
+        switch result {
+        case .success(let metadata):
+            // Enhanced media is now part of the project
+            print("Project ready: \(metadata.title)")
+        case .cancelled:
+            print("User cancelled")
+        case .error(let error):
+            print("Error: \(error)")
+        }
+    }
+
+    private func startEnhance(mediaUri: URL) {
+        // Launch direct enhancement flow
+        enhanceLauncher.start(
+            mediaUri: mediaUri,
+            title: "My Professional Video"
+        )
+    }
+}
+```
