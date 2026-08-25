@@ -837,6 +837,15 @@ public enum SnapcutAIEnhanceState {
   }
   public typealias Body = @_opaqueReturnTypeOf("$s7snapcut22SnapcutAIEnhanceScreenV4bodyQrvp", 0) __
 }
+@_Concurrency.MainActor @preconcurrency public struct SnapcutBeforeAfterVideoView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public var originalURL: Foundation.URL
+  @_Concurrency.MainActor @preconcurrency public var enhancedURL: Foundation.URL
+  @_Concurrency.MainActor @preconcurrency public init(originalURL: Foundation.URL, enhancedURL: Foundation.URL)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut27SnapcutBeforeAfterVideoViewV4bodyQrvp", 0) __
+}
 
 @_hasMissingDesignatedInitializers public class SnapcutGIFDebugLogger : Combine.ObservableObject {
   public static let shared: snapcut.SnapcutGIFDebugLogger
@@ -1433,6 +1442,7 @@ extension snapcut.SnapcutSDKTypography.SnapcutStyle : Swift.Hashable {}
 extension snapcut.SnapcutAIEnhanceState : Swift.Equatable {}
 extension snapcut.SnapcutAIEnhanceState : Swift.Hashable {}
 extension snapcut.SnapcutAIEnhanceScreen : Swift.Sendable {}
+extension snapcut.SnapcutBeforeAfterVideoView : Swift.Sendable {}
 extension snapcut.SnapcutGalleryLayoutSelectionView : Swift.Sendable {}
 extension snapcut.SnapcutGiphyPickerView : Swift.Sendable {}
 extension snapcut.SnapcutLayoutRecordingView : Swift.Sendable {}
