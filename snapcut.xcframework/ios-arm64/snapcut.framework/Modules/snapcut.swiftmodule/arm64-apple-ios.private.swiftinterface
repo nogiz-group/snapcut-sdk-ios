@@ -278,6 +278,15 @@ public class SnapcutAutoCut {
   public func open(projectId: Swift.String)
   @objc deinit
 }
+@_hasMissingDesignatedInitializers public class SnapcutEnhanceNamespace {
+  public func launcher(from viewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void) -> snapcut.SnapcutEnhanceLauncher
+  @objc deinit
+}
+public class SnapcutEnhanceLauncher {
+  public init(presentingViewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void)
+  public func start(mediaUri: Foundation.URL, title: Swift.String? = nil)
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class SnapcutPermissionsManager {
   public static func checkCameraAndMicPermissions(completion: @escaping (Swift.Bool) -> Swift.Void)
   @objc deinit
@@ -345,6 +354,7 @@ extension Foundation.NSNotification.Name {
   final public let editor: snapcut.SnapcutEditor
   final public let autoCut: snapcut.SnapcutAutoCut
   final public let caption: snapcut.SnapcutCaptionNamespace
+  final public let enhance: snapcut.SnapcutEnhanceNamespace
   public func clearCaptionsCache(for videoURL: Foundation.URL)
   public func clearAllCaptionsCache()
   public static var licenseKeyProvider: (() async -> Swift.String)?
@@ -762,6 +772,35 @@ public struct SnapcutTimelineColors {
 }
 public struct SnapcutTimelineTheme {
   public static let colors: snapcut.SnapcutTimelineColors
+}
+public struct SnapcutAIEnhanceOption : Swift.Identifiable, Swift.Equatable {
+  public let id: Swift.String
+  public let title: Swift.String
+  public let subtitle: Swift.String
+  public let iconName: Swift.String
+  public init(id: Swift.String, title: Swift.String, subtitle: Swift.String, iconName: Swift.String)
+  public static func == (a: snapcut.SnapcutAIEnhanceOption, b: snapcut.SnapcutAIEnhanceOption) -> Swift.Bool
+  public typealias ID = Swift.String
+}
+public enum SnapcutAIEnhanceState {
+  case selection
+  case processing
+  case review
+  public static func == (a: snapcut.SnapcutAIEnhanceState, b: snapcut.SnapcutAIEnhanceState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_Concurrency.MainActor @preconcurrency public struct SnapcutAIEnhanceScreen : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public var videoURL: Foundation.URL?
+  @_Concurrency.MainActor @preconcurrency public var onBack: (() -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onEnhance: ((Swift.String) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public init(videoURL: Foundation.URL? = nil, onBack: (() -> Swift.Void)? = nil, onEnhance: ((Swift.String) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut22SnapcutAIEnhanceScreenV4bodyQrvp", 0) __
 }
 
 @_hasMissingDesignatedInitializers public class SnapcutGIFDebugLogger : Combine.ObservableObject {
@@ -1356,6 +1395,9 @@ extension snapcut.SnapcutLayoutType : Swift.Hashable {}
 extension snapcut.SnapcutLayoutType : Swift.RawRepresentable {}
 extension snapcut.SnapcutSDKTypography.SnapcutStyle : Swift.Equatable {}
 extension snapcut.SnapcutSDKTypography.SnapcutStyle : Swift.Hashable {}
+extension snapcut.SnapcutAIEnhanceState : Swift.Equatable {}
+extension snapcut.SnapcutAIEnhanceState : Swift.Hashable {}
+extension snapcut.SnapcutAIEnhanceScreen : Swift.Sendable {}
 extension snapcut.SnapcutGalleryLayoutSelectionView : Swift.Sendable {}
 extension snapcut.SnapcutGiphyPickerView : Swift.Sendable {}
 extension snapcut.SnapcutLayoutRecordingView : Swift.Sendable {}
