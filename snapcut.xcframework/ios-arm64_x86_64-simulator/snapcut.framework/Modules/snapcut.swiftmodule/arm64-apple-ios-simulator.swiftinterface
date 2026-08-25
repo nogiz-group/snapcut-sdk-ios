@@ -794,6 +794,7 @@ public struct SnapcutAIEnhanceOption : Swift.Identifiable, Swift.Equatable {
 }
 public enum SnapcutAIEnhanceState {
   case selection
+  case downloading
   case processing
   case review
   public static func == (a: snapcut.SnapcutAIEnhanceState, b: snapcut.SnapcutAIEnhanceState) -> Swift.Bool
