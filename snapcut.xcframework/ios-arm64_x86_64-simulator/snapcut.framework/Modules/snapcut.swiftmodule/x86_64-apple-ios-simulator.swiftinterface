@@ -9,6 +9,7 @@ import AudioToolbox
 import Combine
 import CoreGraphics
 import CoreImage
+import CoreML
 import CoreTransferable
 import DeveloperToolsSupport
 import Foundation
@@ -28,6 +29,7 @@ import SwiftUI
 import Translation
 import UIKit
 import UniformTypeIdentifiers
+import Vision
 import _AVKit_SwiftUI
 import _Concurrency
 import _PhotosUI_SwiftUI
@@ -246,6 +248,28 @@ public class SnapcutCaptionLauncher {
   @objc public func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didCompleteWithError error: (any Swift.Error)?)
   public func extractAudio(from videoURL: Foundation.URL, completion: @escaping (Swift.Result<[Swift.Float], any Swift.Error>) -> Swift.Void)
   public func cancelInference()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutAIEnhanceProcessor {
+  public static let shared: snapcut.SnapcutAIEnhanceProcessor
+  public func process(sourceURL: Foundation.URL, modelURL: Foundation.URL, progress: @escaping (Swift.Double) -> Swift.Void, completion: @escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)
+  public func cancel()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class SnapcutAIModelManager : ObjectiveC.NSObject, Foundation.URLSessionDownloadDelegate {
+  public static let shared: snapcut.SnapcutAIModelManager
+  public var compiledModelURL: Foundation.URL {
+    get
+  }
+  public var isModelAvailable: Swift.Bool {
+    get
+  }
+  public func downloadAndCompileModel(progress: @escaping (Swift.Double) -> Swift.Void, completion: @escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)
+  public func cancelDownload()
+  @objc public func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didWriteData bytesWritten: Swift.Int64, totalBytesWritten: Swift.Int64, totalBytesExpectedToWrite: Swift.Int64)
+  @objc public func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didFinishDownloadingTo location: Foundation.URL)
+  @objc public func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didCompleteWithError error: (any Swift.Error)?)
+  @objc override dynamic public init()
   @objc deinit
 }
 public class SnapcutAutoCut {
