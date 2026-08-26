@@ -315,6 +315,10 @@ public class SnapcutAutoCut {
   @objc deinit
 }
 public class SnapcutEnhanceLauncher {
+  public var onModelDownloadProgress: ((Swift.Double) -> Swift.Void)?
+  public var onEnhanceProgress: ((Swift.Double) -> Swift.Void)?
+  public var onEnhanceCompleted: ((Foundation.URL) -> Swift.Void)?
+  public var onEnhanceFailed: ((any Swift.Error) -> Swift.Void)?
   public init(presentingViewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void)
   public func start(mediaUri: Foundation.URL, title: Swift.String? = nil)
   public func open(projectId: Swift.String)
@@ -831,6 +835,10 @@ public enum SnapcutAIEnhanceState {
   @_Concurrency.MainActor @preconcurrency public var videoURL: Foundation.URL?
   @_Concurrency.MainActor @preconcurrency public var onBack: (() -> Swift.Void)?
   @_Concurrency.MainActor @preconcurrency public var onEnhance: ((Swift.String) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onModelDownloadProgress: ((Swift.Double) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onEnhanceProgress: ((Swift.Double) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onEnhanceCompleted: ((Foundation.URL) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onEnhanceFailed: ((any Swift.Error) -> Swift.Void)?
   @_Concurrency.MainActor @preconcurrency public init(videoURL: Foundation.URL? = nil, onBack: (() -> Swift.Void)? = nil, onEnhance: ((Swift.String) -> Swift.Void)? = nil)
   @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
     get
