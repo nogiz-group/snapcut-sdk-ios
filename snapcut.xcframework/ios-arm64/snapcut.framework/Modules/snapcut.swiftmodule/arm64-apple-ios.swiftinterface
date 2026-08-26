@@ -356,6 +356,7 @@ public struct SnapcutProjectMetadata : Swift.Codable, Swift.Equatable, Swift.Ide
 }
 @_hasMissingDesignatedInitializers public class SnapcutProjectManager {
   public static let shared: snapcut.SnapcutProjectManager
+  public func persistMedia(url: Foundation.URL) -> Foundation.URL
   public func create() -> snapcut.SnapcutProjectMetadata
   public func getAll() -> [snapcut.SnapcutProjectMetadata]
   public func getById(projectId: Swift.String) -> snapcut.SnapcutProjectMetadata?
