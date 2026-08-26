@@ -23,7 +23,13 @@ let package = Package(
                 .product(name: "GiphyUISDK", package: "giphy-ios-sdk"),
                 .product(name: "libwebp", package: "libwebp-Xcode")
             ],
-            path: "Sources/snapcutWrapper"
+            path: "Sources/snapcutWrapper",
+            resources: [
+                .copy("whisper_spm_ggml.bundle"),
+                .copy("whisper_spm_whisper.bundle"),
+                .copy("ZIPFoundation_ZIPFoundation.bundle"),
+                .copy("snapcut_snapcut.bundle")
+            ]
         ),
         .binaryTarget(
             name: "snapcut",
