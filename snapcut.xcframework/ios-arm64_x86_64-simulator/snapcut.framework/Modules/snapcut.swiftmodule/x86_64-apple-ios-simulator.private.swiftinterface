@@ -348,7 +348,8 @@ public struct SnapcutProjectMetadata : Swift.Codable, Swift.Equatable, Swift.Ide
   public var isAutoCut: Swift.Bool?
   public var isCaption: Swift.Bool?
   public var isEnhance: Swift.Bool?
-  public init(id: Swift.String = UUID().uuidString, title: Swift.String, durationMs: Swift.Int64 = 0, timelineDurationMs: Swift.Int64? = nil, lastModified: Foundation.TimeInterval = Date().timeIntervalSince1970, thumbnailPath: Swift.String? = nil, exportedVideoPath: Swift.String? = nil, isSaved: Swift.Bool = false, isAutoCut: Swift.Bool? = false, isCaption: Swift.Bool? = false, isEnhance: Swift.Bool? = false)
+  public var isSpeed: Swift.Bool?
+  public init(id: Swift.String = UUID().uuidString, title: Swift.String, durationMs: Swift.Int64 = 0, timelineDurationMs: Swift.Int64? = nil, lastModified: Foundation.TimeInterval = Date().timeIntervalSince1970, thumbnailPath: Swift.String? = nil, exportedVideoPath: Swift.String? = nil, isSaved: Swift.Bool = false, isAutoCut: Swift.Bool? = false, isCaption: Swift.Bool? = false, isEnhance: Swift.Bool? = false, isSpeed: Swift.Bool? = false)
   public static func == (a: snapcut.SnapcutProjectMetadata, b: snapcut.SnapcutProjectMetadata) -> Swift.Bool
   public typealias ID = Swift.String
   public func encode(to encoder: any Swift.Encoder) throws
@@ -394,6 +395,7 @@ extension Foundation.NSNotification.Name {
   final public let autoCut: snapcut.SnapcutAutoCut
   final public let caption: snapcut.SnapcutCaptionNamespace
   final public let enhance: snapcut.SnapcutEnhanceNamespace
+  final public let speed: snapcut.SnapcutSpeedNamespace
   public func clearCaptionsCache(for videoURL: Foundation.URL)
   public func clearAllCaptionsCache()
   public static var licenseKeyProvider: (() async -> Swift.String)?
@@ -410,6 +412,24 @@ public struct SnapcutSDKConfiguration {
   public static let maxRecordDuration: Swift.Double
   public static let videoWidth: Swift.Double
   public static let videoHeight: Swift.Double
+}
+@_hasMissingDesignatedInitializers public class SnapcutSpeedNamespace {
+  final public let projects: snapcut.SnapcutSpeedProjectManager
+  public func launcher(from viewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void) -> snapcut.SnapcutSpeedLauncher
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutSpeedProjectManager {
+  public func getAll() -> [snapcut.SnapcutProjectMetadata]
+  public func getById(projectId: Swift.String) -> snapcut.SnapcutProjectMetadata?
+  public func rename(projectId: Swift.String, newTitle: Swift.String)
+  public func delete(projectId: Swift.String)
+  @objc deinit
+}
+public class SnapcutSpeedLauncher {
+  public init(presentingViewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void)
+  public func start(mediaUri: Foundation.URL, title: Swift.String? = nil)
+  public func open(projectId: Swift.String)
+  @objc deinit
 }
 @_hasMissingDesignatedInitializers public class SnapcutVideoEditor : snapcut.SnapcutTimelineModifying, snapcut.SnapcutAudioMixing, snapcut.SnapcutFilterApplying {
   public var clips: [snapcut.SnapcutMediaClip]
