@@ -87,7 +87,9 @@ public struct SnapcutMovie : CoreTransferable.Transferable {
   public typealias Representation = @_opaqueReturnTypeOf("$s7snapcut12SnapcutMovieV22transferRepresentationQrvpZ", 0) __
 }
 @_hasMissingDesignatedInitializers public class SnapcutImageToVideoConverter {
-  public static func convert(imageURL: Foundation.URL, completion: @escaping (Foundation.URL?) -> Swift.Void)
+  public static func isImageURL(_ url: Foundation.URL) -> Swift.Bool
+  public static func convert(imageURL: Foundation.URL, duration: Swift.Double = 3.0, completion: @escaping (Foundation.URL?) -> Swift.Void)
+  public static func convertSync(imageURL: Foundation.URL, duration: Swift.Double = 3.0) -> Foundation.URL?
   public static func convert(image: UIKit.UIImage, duration: Swift.Double = 3.0, completion: @escaping (Foundation.URL?) -> Swift.Void)
   @objc deinit
 }
@@ -296,7 +298,11 @@ public class SnapcutAutoCut {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class SnapcutEditorLauncher {
-  public func create(title: Swift.String)
+  public func create(title: Swift.String = "New Project")
+  public func `import`(_ url: Foundation.URL, title: Swift.String = "New Project")
+  public func `import`(_ urls: [Foundation.URL], title: Swift.String = "New Project")
+  public func importMedia(url: Foundation.URL, title: Swift.String = "New Project")
+  public func importMedia(urls: [Foundation.URL], title: Swift.String = "New Project")
   public func importVideo(url: Foundation.URL, title: Swift.String = "New Project")
   public func importVideos(urls: [Foundation.URL], title: Swift.String = "New Project")
   public func open(projectId: Swift.String)
@@ -1101,7 +1107,7 @@ extension snapcut.SnapcutPIPViewController : UIKit.UIGestureRecognizerDelegate {
   @_Concurrency.MainActor @preconcurrency @objc dynamic public func gestureRecognizer(_ gestureRecognizer: UIKit.UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIKit.UIGestureRecognizer) -> Swift.Bool
 }
 @_Concurrency.MainActor @preconcurrency public struct SnapcutMainView : SwiftUICore.View {
-  @_Concurrency.MainActor @preconcurrency public init(selectedVideoURLs: [Foundation.URL]? = nil, selectedMusic: snapcut.SnapcutMusicItem? = nil)
+  @_Concurrency.MainActor @preconcurrency public init(selectedVideoURLs: [Foundation.URL]? = nil, selectedMusic: snapcut.SnapcutMusicItem? = nil, completion: ((snapcut.SnapcutEditorResult) -> Swift.Void)? = nil)
   @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
     get
   }
