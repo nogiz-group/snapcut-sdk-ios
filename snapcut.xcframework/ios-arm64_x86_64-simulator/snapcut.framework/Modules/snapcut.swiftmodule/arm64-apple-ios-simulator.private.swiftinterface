@@ -89,6 +89,7 @@ public struct SnapcutMovie : CoreTransferable.Transferable {
 @_hasMissingDesignatedInitializers public class SnapcutImageToVideoConverter {
   public static func isImageURL(_ url: Foundation.URL) -> Swift.Bool
   public static func convert(imageURL: Foundation.URL, duration: Swift.Double = 3.0, completion: @escaping (Foundation.URL?) -> Swift.Void)
+  public static func convertAsync(imageURL: Foundation.URL, duration: Swift.Double = 3.0) async -> Foundation.URL?
   public static func convertSync(imageURL: Foundation.URL, duration: Swift.Double = 3.0) -> Foundation.URL?
   public static func convert(image: UIKit.UIImage, duration: Swift.Double = 3.0, completion: @escaping (Foundation.URL?) -> Swift.Void)
   @objc deinit
