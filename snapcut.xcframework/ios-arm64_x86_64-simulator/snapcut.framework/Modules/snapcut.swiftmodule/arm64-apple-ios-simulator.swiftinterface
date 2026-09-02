@@ -5,6 +5,7 @@
 import ARKit
 import AVFoundation
 import AVKit
+import Accelerate
 import AudioToolbox
 import Combine
 import CoreGraphics
@@ -331,6 +332,34 @@ public class SnapcutEnhanceLauncher {
   public func open(projectId: Swift.String)
   @objc deinit
 }
+@_hasMissingDesignatedInitializers public class SnapcutNoiseRemovalNamespace {
+  final public let projects: snapcut.SnapcutNoiseRemovalProjectManager
+  public func launcher(from viewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void) -> snapcut.SnapcutNoiseRemovalLauncher
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutNoiseRemovalProjectManager {
+  public static let shared: snapcut.SnapcutNoiseRemovalProjectManager
+  public func getAll() -> [snapcut.SnapcutProjectMetadata]
+  public func getById(projectId: Swift.String) -> snapcut.SnapcutProjectMetadata?
+  public func delete(projectId: Swift.String)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutNoiseRemovalLauncher {
+  public var onProgress: ((Swift.Double) -> Swift.Void)?
+  public var onCompleted: ((Foundation.URL) -> Swift.Void)?
+  public var onFailed: ((any Swift.Error) -> Swift.Void)?
+  public func open(_ mediaUri: Foundation.URL, title: Swift.String = "Remove Bg Noise")
+  public func open(mediaUri: Foundation.URL, title: Swift.String = "Remove Bg Noise")
+  public func open(projectId: Swift.String)
+  @objc deinit
+}
+public class SnapcutNoiseRemovalProcessor {
+  public static let shared: snapcut.SnapcutNoiseRemovalProcessor
+  public init()
+  public func cancel()
+  public func process(sourceURL: Foundation.URL, strength: Swift.Double = 1.0, progress: @escaping (Swift.Double) -> Swift.Void, completion: @escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class SnapcutPermissionsManager {
   public static func checkCameraAndMicPermissions(completion: @escaping (Swift.Bool) -> Swift.Void)
   @objc deinit
@@ -403,6 +432,8 @@ extension Foundation.NSNotification.Name {
   final public let caption: snapcut.SnapcutCaptionNamespace
   final public let enhance: snapcut.SnapcutEnhanceNamespace
   final public let speed: snapcut.SnapcutSpeedNamespace
+  final public let noiseRemoval: snapcut.SnapcutNoiseRemovalNamespace
+  final public let voiceRemoval: snapcut.SnapcutNoiseRemovalNamespace
   public func clearCaptionsCache(for videoURL: Foundation.URL)
   public func clearAllCaptionsCache()
   public static var licenseKeyProvider: (() async -> Swift.String)?
@@ -957,6 +988,19 @@ extension UIKit.UIApplication {
   public typealias Body = @_opaqueReturnTypeOf("$s7snapcut26SnapcutLayoutRecordingViewV4bodyQrvp", 0) __
 }
 
+@_Concurrency.MainActor @preconcurrency public struct SnapcutNoiseRemovalScreen : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public var videoURL: Foundation.URL?
+  @_Concurrency.MainActor @preconcurrency public var onBack: (() -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onApply: ((Foundation.URL, Swift.Double) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onNoiseRemovalProgress: ((Swift.Double) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onNoiseRemovalCompleted: ((Foundation.URL) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onNoiseRemovalFailed: ((any Swift.Error) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public init(videoURL: Foundation.URL? = nil, onBack: (() -> Swift.Void)? = nil, onApply: ((Foundation.URL, Swift.Double) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut25SnapcutNoiseRemovalScreenV4bodyQrvp", 0) __
+}
 public enum SnapcutStickerType : Swift.String, Swift.Codable {
   case gif
   case emoji
@@ -1482,6 +1526,7 @@ extension snapcut.SnapcutBeforeAfterVideoView : Swift.Sendable {}
 extension snapcut.SnapcutGalleryLayoutSelectionView : Swift.Sendable {}
 extension snapcut.SnapcutGiphyPickerView : Swift.Sendable {}
 extension snapcut.SnapcutLayoutRecordingView : Swift.Sendable {}
+extension snapcut.SnapcutNoiseRemovalScreen : Swift.Sendable {}
 extension snapcut.SnapcutStickerType : Swift.Equatable {}
 extension snapcut.SnapcutStickerType : Swift.Hashable {}
 extension snapcut.SnapcutStickerType : Swift.RawRepresentable {}
