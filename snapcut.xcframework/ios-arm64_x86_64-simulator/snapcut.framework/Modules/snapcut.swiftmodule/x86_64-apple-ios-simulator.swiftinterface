@@ -11,6 +11,7 @@ import Combine
 import CoreGraphics
 import CoreImage
 import CoreML
+import CoreMedia
 import CoreTransferable
 import DeveloperToolsSupport
 import Foundation
@@ -19,6 +20,7 @@ import Foundation/*.ProcessInfo*/
 import Foundation/*.URL*/
 import GiphyUISDK
 import ImageIO
+import Metal
 import Network
 import ObjectiveC
 import Photos
@@ -221,6 +223,354 @@ public enum SnapcutAudioLibraryError : Swift.Error, Foundation.LocalizedError {
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
+@_Concurrency.MainActor @preconcurrency public struct BeautyEditorView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(categories: [snapcut.BeautyCategory] = BeautyDataset.sampleCategories, originalImage: UIKit.UIImage? = nil)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut16BeautyEditorViewV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct PaywallSheetView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public let preset: snapcut.BeautyPreset?
+  @_Concurrency.MainActor @preconcurrency public let onUnlock: () -> Swift.Void
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut16PaywallSheetViewV4bodyQrvp", 0) __
+}
+public struct FilterParams : Swift.Equatable, Swift.Codable {
+  public var colorHex: Swift.String
+  public var opacity: Swift.Double
+  public var blendMode: Swift.String
+  public var intensity: Swift.Double
+  public var finish: Swift.String
+  public var customSettingsKey: Swift.String?
+  public init(colorHex: Swift.String = "#E53935", opacity: Swift.Double = 0.85, blendMode: Swift.String = "CISoftLightBlendMode", intensity: Swift.Double = 80.0, finish: Swift.String = "Matte", customSettingsKey: Swift.String? = nil)
+  public static func == (a: snapcut.FilterParams, b: snapcut.FilterParams) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct BeautyPreset : Swift.Identifiable, Swift.Equatable {
+  public let id: Swift.String
+  public let name: Swift.String
+  public let thumbnailImageName: Swift.String
+  public let isPro: Swift.Bool
+  public let ciFilterParams: snapcut.FilterParams
+  public init(id: Swift.String, name: Swift.String, thumbnailImageName: Swift.String = "", isPro: Swift.Bool = false, ciFilterParams: snapcut.FilterParams)
+  public static var none: snapcut.BeautyPreset {
+    get
+  }
+  public static func == (a: snapcut.BeautyPreset, b: snapcut.BeautyPreset) -> Swift.Bool
+  public typealias ID = Swift.String
+}
+public struct BeautyCategory : Swift.Identifiable, Swift.Equatable {
+  public let id: Swift.String
+  public let name: Swift.String
+  public let iconName: Swift.String
+  public let subTabs: [Swift.String]
+  public let presets: [Swift.String : [snapcut.BeautyPreset]]
+  public init(id: Swift.String, name: Swift.String, iconName: Swift.String, subTabs: [Swift.String], presets: [Swift.String : [snapcut.BeautyPreset]])
+  public static func == (a: snapcut.BeautyCategory, b: snapcut.BeautyCategory) -> Swift.Bool
+  public typealias ID = Swift.String
+}
+public struct BeautyDataset {
+  public static var sampleCategories: [snapcut.BeautyCategory] {
+    get
+  }
+  public static var lipstickCategory: snapcut.BeautyCategory {
+    get
+  }
+  public static var eyelashesCategory: snapcut.BeautyCategory {
+    get
+  }
+  public static var foundationCategory: snapcut.BeautyCategory {
+    get
+  }
+  public static var highlightCategory: snapcut.BeautyCategory {
+    get
+  }
+  public static var contourCategory: snapcut.BeautyCategory {
+    get
+  }
+}
+@_Concurrency.MainActor @preconcurrency public struct BeautySuiteDemoView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init()
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut19BeautySuiteDemoViewV4bodyQrvp", 0) __
+}
+public let beautyAccentColor: SwiftUICore.Color
+@_Concurrency.MainActor @preconcurrency public struct PresetThumbnailCard : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public let preset: snapcut.BeautyPreset
+  @_Concurrency.MainActor @preconcurrency public let isSelected: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public let isProUnlocked: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public let onTap: () -> Swift.Void
+  @_Concurrency.MainActor @preconcurrency public init(preset: snapcut.BeautyPreset, isSelected: Swift.Bool, isProUnlocked: Swift.Bool = false, onTap: @escaping () -> Swift.Void)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut19PresetThumbnailCardV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct PresetScrollRow : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public let presets: [snapcut.BeautyPreset]
+  @SwiftUICore.Binding @_projectedValueProperty($selectedID) @_Concurrency.MainActor @preconcurrency public var selectedID: Swift.String {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating _modify
+  }
+  @_Concurrency.MainActor @preconcurrency public var $selectedID: SwiftUICore.Binding<Swift.String> {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public let isProUnlocked: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public let onSelect: (snapcut.BeautyPreset) -> Swift.Void
+  @_Concurrency.MainActor @preconcurrency public init(presets: [snapcut.BeautyPreset], selectedID: SwiftUICore.Binding<Swift.String>, isProUnlocked: Swift.Bool = false, onSelect: @escaping (snapcut.BeautyPreset) -> Swift.Void)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut15PresetScrollRowV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct SubTabSelector : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public let tabs: [Swift.String]
+  @SwiftUICore.Binding @_projectedValueProperty($selected) @_Concurrency.MainActor @preconcurrency public var selected: Swift.String {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating _modify
+  }
+  @_Concurrency.MainActor @preconcurrency public var $selected: SwiftUICore.Binding<Swift.String> {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public init(tabs: [Swift.String], selected: SwiftUICore.Binding<Swift.String>)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut14SubTabSelectorV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct CategoryTabBar : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public let categories: [snapcut.BeautyCategory]
+  @SwiftUICore.Binding @_projectedValueProperty($selectedCategory) @_Concurrency.MainActor @preconcurrency public var selectedCategory: snapcut.BeautyCategory {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating _modify
+  }
+  @_Concurrency.MainActor @preconcurrency public var $selectedCategory: SwiftUICore.Binding<snapcut.BeautyCategory> {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public init(categories: [snapcut.BeautyCategory], selectedCategory: SwiftUICore.Binding<snapcut.BeautyCategory>)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut14CategoryTabBarV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct TopLevelTabBar : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public let tabs: [Swift.String]
+  @SwiftUICore.Binding @_projectedValueProperty($selectedTab) @_Concurrency.MainActor @preconcurrency public var selectedTab: Swift.String {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating _modify
+  }
+  @_Concurrency.MainActor @preconcurrency public var $selectedTab: SwiftUICore.Binding<Swift.String> {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public init(selectedTab: SwiftUICore.Binding<Swift.String>)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut14TopLevelTabBarV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct BeautyCategoryStackBar : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public let items: [(name: Swift.String, icon: Swift.String)]
+  @SwiftUICore.Binding @_projectedValueProperty($selected) @_Concurrency.MainActor @preconcurrency public var selected: Swift.String {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating _modify
+  }
+  @_Concurrency.MainActor @preconcurrency public var $selected: SwiftUICore.Binding<Swift.String> {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public let onTapItem: (Swift.String) -> Swift.Void
+  @_Concurrency.MainActor @preconcurrency public init(selected: SwiftUICore.Binding<Swift.String>, onTapItem: @escaping (Swift.String) -> Swift.Void)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut22BeautyCategoryStackBarV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct FitScreenPill : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public let isFit: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public let onTap: () -> Swift.Void
+  @_Concurrency.MainActor @preconcurrency public init(isFit: Swift.Bool, onTap: @escaping () -> Swift.Void)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut13FitScreenPillV4bodyQrvp", 0) __
+}
+public class BeautyViewModel : Foundation.ObservableObject {
+  @Combine.Published<Swift.String> @_projectedValueProperty($selectedTopTab) public var selectedTopTab: Swift.String {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $selectedTopTab: Combine.Published<Swift.String>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<snapcut.BeautyCategory> @_projectedValueProperty($selectedCategory) public var selectedCategory: snapcut.BeautyCategory {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $selectedCategory: Combine.Published<snapcut.BeautyCategory>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.String> @_projectedValueProperty($selectedSubTab) public var selectedSubTab: Swift.String {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $selectedSubTab: Combine.Published<Swift.String>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<[Swift.String : snapcut.BeautyPreset]> @_projectedValueProperty($selectedPresetPerCategory) public var selectedPresetPerCategory: [Swift.String : snapcut.BeautyPreset] {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $selectedPresetPerCategory: Combine.Published<[Swift.String : snapcut.BeautyPreset]>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<[Swift.String : Swift.String]> @_projectedValueProperty($selectedPresetIDMap) public var selectedPresetIDMap: [Swift.String : Swift.String] {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $selectedPresetIDMap: Combine.Published<[Swift.String : Swift.String]>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($proUnlocked) public var proUnlocked: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $proUnlocked: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($showPaywall) public var showPaywall: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $showPaywall: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<snapcut.BeautyPreset?> @_projectedValueProperty($paywallPreset) public var paywallPreset: snapcut.BeautyPreset? {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $paywallPreset: Combine.Published<snapcut.BeautyPreset?>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<UIKit.UIImage?> @_projectedValueProperty($originalImage) public var originalImage: UIKit.UIImage? {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $originalImage: Combine.Published<UIKit.UIImage?>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<UIKit.UIImage?> @_projectedValueProperty($previewImage) public var previewImage: UIKit.UIImage? {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $previewImage: Combine.Published<UIKit.UIImage?>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($isFitScreen) public var isFitScreen: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $isFitScreen: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($isProcessing) public var isProcessing: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  public var $isProcessing: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  final public let categories: [snapcut.BeautyCategory]
+  public init(categories: [snapcut.BeautyCategory] = BeautyDataset.sampleCategories, initialCategory: snapcut.BeautyCategory? = nil, originalImage: UIKit.UIImage? = nil)
+  public func selectCategory(_ category: snapcut.BeautyCategory)
+  public func selectSubTab(_ subTab: Swift.String)
+  public func selectPreset(_ preset: snapcut.BeautyPreset)
+  public func currentSelectedPresetID() -> Swift.String
+  public func showPaywall(for preset: snapcut.BeautyPreset)
+  public func unlockPro()
+  public func triggerLiveRenderDebounced()
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
 public class SnapcutCaptionNamespace {
   final public let projects: snapcut.SnapcutCaptionProjectManager
   public init()
@@ -294,6 +644,33 @@ public class SnapcutAutoCut {
   public func delete(projectId: Swift.String)
   @objc deinit
 }
+@_hasMissingDesignatedInitializers final public class SnapcutCollageCompositor {
+  public static let shared: snapcut.SnapcutCollageCompositor
+  final public func cancel()
+  final public func composite(items: [snapcut.SnapcutCollageItem], template: snapcut.SnapcutCollageTemplate, aspectRatio: snapcut.SnapcutCollageAspectRatio, canvasColor: SwiftUICore.Color, spacing: snapcut.SnapcutCollageSpacing, onProgress: @escaping (Swift.Double) -> Swift.Void, completion: @escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutCollageNamespace {
+  final public let projects: snapcut.SnapcutCollageProjectManager
+  public func launcher(from viewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void) -> snapcut.SnapcutCollageLauncher
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutCollageProjectManager {
+  public static let shared: snapcut.SnapcutCollageProjectManager
+  public func getAll() -> [snapcut.SnapcutProjectMetadata]
+  public func getById(projectId: Swift.String) -> snapcut.SnapcutProjectMetadata?
+  public func delete(projectId: Swift.String)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutCollageLauncher {
+  public var onProgress: ((Swift.Double) -> Swift.Void)?
+  public var onCompleted: ((Foundation.URL) -> Swift.Void)?
+  public var onFailed: ((any Swift.Error) -> Swift.Void)?
+  public func start(mediaUris: [Foundation.URL] = [], title: Swift.String = "Layout Project 1")
+  public func open(mediaUris: [Foundation.URL] = [], title: Swift.String = "Layout Project 1")
+  public func open(projectId: Swift.String)
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class SnapcutEditor {
   final public let projects: snapcut.SnapcutProjectManager
   public func launcher(from viewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void) -> snapcut.SnapcutEditorLauncher
@@ -348,6 +725,7 @@ public class SnapcutEnhanceLauncher {
   public var onProgress: ((Swift.Double) -> Swift.Void)?
   public var onCompleted: ((Foundation.URL) -> Swift.Void)?
   public var onFailed: ((any Swift.Error) -> Swift.Void)?
+  public func start(videoUri: Foundation.URL, title: Swift.String = "Noise Project 1")
   public func open(_ mediaUri: Foundation.URL, title: Swift.String = "Remove Bg Noise")
   public func open(mediaUri: Foundation.URL, title: Swift.String = "Remove Bg Noise")
   public func open(projectId: Swift.String)
@@ -402,6 +780,30 @@ public struct SnapcutProjectMetadata : Swift.Codable, Swift.Equatable, Swift.Ide
   public func saveProjectMetadata(_ metadata: snapcut.SnapcutProjectMetadata)
   @objc deinit
 }
+@_hasMissingDesignatedInitializers public class SnapcutRetouchNamespace {
+  final public let projects: snapcut.SnapcutRetouchProjectManager
+  public func launcher(from viewController: UIKit.UIViewController, callback: @escaping (snapcut.SnapcutEditorResult) -> Swift.Void) -> snapcut.SnapcutRetouchLauncher
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutRetouchProjectManager {
+  public static let shared: snapcut.SnapcutRetouchProjectManager
+  public func getAll() -> [snapcut.SnapcutProjectMetadata]
+  public func getById(projectId: Swift.String) -> snapcut.SnapcutProjectMetadata?
+  public func delete(projectId: Swift.String)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SnapcutRetouchLauncher {
+  public var onProgress: ((Swift.Double) -> Swift.Void)?
+  public var onCompleted: ((Foundation.URL) -> Swift.Void)?
+  public var onFailed: ((any Swift.Error) -> Swift.Void)?
+  public func start(videoUri: Foundation.URL, title: Swift.String = "Retouch Project")
+  public func start(mediaURIs: [Foundation.URL], title: Swift.String = "Retouch Project")
+  public func open(_ mediaUri: Foundation.URL, title: Swift.String = "Retouch Project")
+  public func open(mediaUri: Foundation.URL, title: Swift.String = "Retouch Project")
+  public func open(mediaUris: [Foundation.URL], title: Swift.String = "Retouch Project")
+  public func open(projectId: Swift.String)
+  @objc deinit
+}
 extension Foundation.NSNotification.Name {
   public static let snapcutLicenseInvalid: Foundation.Notification.Name
   public static let snapcutLicenseValid: Foundation.Notification.Name
@@ -432,6 +834,7 @@ extension Foundation.NSNotification.Name {
   final public let caption: snapcut.SnapcutCaptionNamespace
   final public let enhance: snapcut.SnapcutEnhanceNamespace
   final public let speed: snapcut.SnapcutSpeedNamespace
+  final public let retouch: snapcut.SnapcutRetouchNamespace
   final public let noiseRemoval: snapcut.SnapcutNoiseRemovalNamespace
   final public let voiceRemoval: snapcut.SnapcutNoiseRemovalNamespace
   public func clearCaptionsCache(for videoURL: Foundation.URL)
@@ -664,6 +1067,85 @@ public protocol SnapcutVideoExporting {
   public static func runAllTests()
   @objc deinit
 }
+public enum SnapcutCollageAspectRatio : Swift.String, Swift.CaseIterable, Swift.Identifiable {
+  case oneToOne
+  case nineSixteen
+  case fourFive
+  public var id: Swift.String {
+    get
+  }
+  public var ratio: CoreFoundation.CGFloat {
+    get
+  }
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [snapcut.SnapcutCollageAspectRatio]
+  public typealias ID = Swift.String
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [snapcut.SnapcutCollageAspectRatio] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum SnapcutCollageSpacing : Swift.String, Swift.CaseIterable, Swift.Identifiable {
+  case none
+  case thin
+  case wide
+  public var id: Swift.String {
+    get
+  }
+  public var padding: CoreFoundation.CGFloat {
+    get
+  }
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [snapcut.SnapcutCollageSpacing]
+  public typealias ID = Swift.String
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [snapcut.SnapcutCollageSpacing] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum SnapcutCollageTemplate : Swift.String, Swift.CaseIterable, Swift.Identifiable {
+  case grid2x2
+  case bigAndThree
+  case threeAndBig
+  case columns
+  case rows
+  case oneBigTwoSmall
+  case grid3x3
+  public var id: Swift.String {
+    get
+  }
+  public var title: Swift.String {
+    get
+  }
+  public func cellNormalizedRects(count: Swift.Int) -> [CoreFoundation.CGRect]
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [snapcut.SnapcutCollageTemplate]
+  public typealias ID = Swift.String
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [snapcut.SnapcutCollageTemplate] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct SnapcutCollageItem : Swift.Identifiable, Swift.Equatable {
+  public let id: Foundation.UUID
+  public var url: Foundation.URL
+  public var isVideo: Swift.Bool
+  public var isMuted: Swift.Bool
+  public var thumbnail: UIKit.UIImage?
+  public var duration: Swift.Double
+  public init(url: Foundation.URL, isVideo: Swift.Bool = true, isMuted: Swift.Bool = false, thumbnail: UIKit.UIImage? = nil, duration: Swift.Double = 0.0)
+  public static func == (lhs: snapcut.SnapcutCollageItem, rhs: snapcut.SnapcutCollageItem) -> Swift.Bool
+  public typealias ID = Foundation.UUID
+}
 public struct SnapcutEditorCropState : Swift.Equatable, Swift.Codable {
   public var cropRect: CoreFoundation.CGRect
   public var rotation: Swift.Int
@@ -714,6 +1196,282 @@ public struct SnapcutLayoutState : Swift.Codable, Swift.Equatable {
   public static func == (a: snapcut.SnapcutLayoutState, b: snapcut.SnapcutLayoutState) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
+}
+public class BlushProcessor {
+  public static let shared: snapcut.BlushProcessor
+  public init()
+  public func apply(to image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings, landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  @objc deinit
+}
+public struct CoordinateMapper {
+  public static func toImagePixelPoint(normalizedPoint: CoreFoundation.CGPoint, imageExtent: CoreFoundation.CGRect) -> CoreFoundation.CGPoint
+  public static func toImagePixelPoint(normalizedPoint: CoreFoundation.CGPoint, boundingBox: CoreFoundation.CGRect, imageExtent: CoreFoundation.CGRect) -> CoreFoundation.CGPoint
+  public static func toImagePixelPoints(normalizedPoints: [CoreFoundation.CGPoint], imageExtent: CoreFoundation.CGRect) -> [CoreFoundation.CGPoint]
+  public static func toImagePixelPoints(normalizedPoints: [CoreFoundation.CGPoint], boundingBox: CoreFoundation.CGRect, imageExtent: CoreFoundation.CGRect) -> [CoreFoundation.CGPoint]
+  public static func centroid(of points: [CoreFoundation.CGPoint]) -> CoreFoundation.CGPoint
+}
+public class EyeRetouchProcessor {
+  public static let shared: snapcut.EyeRetouchProcessor
+  public init()
+  public func apply(to image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings, landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  @objc deinit
+}
+public class EyebrowProcessor {
+  public static let shared: snapcut.EyebrowProcessor
+  public init()
+  public func apply(to image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings, landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  @objc deinit
+}
+public class FaceLandmarkDetector {
+  public static let shared: snapcut.FaceLandmarkDetector
+  public init()
+  public func clearCache()
+  public func detectLandmarks(in image: CoreImage.CIImage) -> snapcut.SnapcutFaceLandmarksData?
+  @objc deinit
+}
+public class FaceMaskGenerator {
+  public static let shared: snapcut.FaceMaskGenerator
+  public init()
+  public func createFaceSkinMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect, excludeFeatures: Swift.Bool = true) -> CoreImage.CIImage
+  public func createLipMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createTeethMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createCheekMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createUnderEyeMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createEyesMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createIrisMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createEyelinerMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createEyelashesMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createEyeshadowMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createEyebrowsMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect, thicknessFactor: CoreFoundation.CGFloat = 1.0) -> CoreImage.CIImage
+  public func createNoseMasks(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> (bridgeMask: CoreImage.CIImage, sidesMask: CoreImage.CIImage)
+  public func createJawlineMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createHairMask(landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  public func createPolygonMask(pointsList: [[CoreFoundation.CGPoint]], boundingBox: CoreFoundation.CGRect, imageExtent: CoreFoundation.CGRect, lineWidth: CoreFoundation.CGFloat, blurRadius: CoreFoundation.CGFloat) -> CoreImage.CIImage
+  public func createEllipticalMask(center: CoreFoundation.CGPoint, radiusX: CoreFoundation.CGFloat, radiusY: CoreFoundation.CGFloat, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  @objc deinit
+}
+public class FoundationProcessor {
+  public static let shared: snapcut.FoundationProcessor
+  public init()
+  public func apply(to image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings, landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  @objc deinit
+}
+public class HairRetouchProcessor {
+  public static let shared: snapcut.HairRetouchProcessor
+  public init()
+  public func apply(to image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings, landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  @objc deinit
+}
+public class LipstickProcessor {
+  public static let shared: snapcut.LipstickProcessor
+  public init()
+  public func apply(to image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings, landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  @objc deinit
+}
+final public class MediaPipeBodyTracker {
+  public static let shared: snapcut.MediaPipeBodyTracker
+  public struct PoseLandmarks {
+    public var nose: CoreFoundation.CGPoint
+    public var leftShoulder: CoreFoundation.CGPoint
+    public var rightShoulder: CoreFoundation.CGPoint
+    public var leftHip: CoreFoundation.CGPoint
+    public var rightHip: CoreFoundation.CGPoint
+    public var leftKnee: CoreFoundation.CGPoint
+    public var rightKnee: CoreFoundation.CGPoint
+    public var leftAnkle: CoreFoundation.CGPoint
+    public var rightAnkle: CoreFoundation.CGPoint
+  }
+  public init()
+  final public func applyWaistSlimming(image: CoreImage.CIImage, pose: snapcut.MediaPipeBodyTracker.PoseLandmarks, intensity: Swift.Float) -> CoreImage.CIImage
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class MediaPipeCameraTracker : ObjectiveC.NSObject, AVFoundation.AVCaptureVideoDataOutputSampleBufferDelegate {
+  public static let shared: snapcut.MediaPipeCameraTracker
+  final public var onFaceLandmarksDetected: (([CoreFoundation.CGPoint]) -> Swift.Void)?
+  final public var onFrameCaptured: ((CoreMedia.CMSampleBuffer) -> Swift.Void)?
+  @objc override dynamic public init()
+  final public func setupCamera(position: AVFoundation.AVCaptureDevice.Position = .front)
+  final public func startSession()
+  final public func stopSession()
+  @objc final public func captureOutput(_ output: AVFoundation.AVCaptureOutput, didOutput sampleBuffer: CoreMedia.CMSampleBuffer, from connection: AVFoundation.AVCaptureConnection)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency final public class CameraPreviewView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency @objc override final public class var layerClass: Swift.AnyClass {
+    @objc get
+  }
+  @_Concurrency.MainActor @preconcurrency final public var videoPreviewLayer: AVFoundation.AVCaptureVideoPreviewLayer {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency final public func setupSession(_ session: AVFoundation.AVCaptureSession)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+final public class MediaPipePipeline {
+  public static let shared: snapcut.MediaPipePipeline
+  public static let outerLipsIndices: [Swift.Int]
+  public static let innerLipsIndices: [Swift.Int]
+  public static let leftEyebrowIndices: [Swift.Int]
+  public static let rightEyebrowIndices: [Swift.Int]
+  public static let leftEyeIndices: [Swift.Int]
+  public static let rightEyeIndices: [Swift.Int]
+  public static let faceOvalIndices: [Swift.Int]
+  public init()
+  final public func convertToSnapcutLandmarks(rawPoints: [CoreFoundation.CGPoint], size: CoreFoundation.CGSize) -> snapcut.SnapcutFaceLandmarksData
+  final public func extractSmoothPath(points: [CoreFoundation.CGPoint], size: CoreFoundation.CGSize, closed: Swift.Bool = true, alpha: CoreFoundation.CGFloat = 0.5) -> CoreGraphics.CGPath
+  final public func generateFeatheredMask(path: CoreGraphics.CGPath, extent: CoreFoundation.CGRect, blurRadius: Swift.Double = 4.0) -> CoreImage.CIImage?
+  final public func applyEyebrowRetouch(image: CoreImage.CIImage, landmarks: snapcut.SnapcutFaceLandmarksData, color: UIKit.UIColor, opacity: Swift.Double) -> CoreImage.CIImage
+  @objc deinit
+}
+public class MetalRetouchProcessor {
+  public static let shared: snapcut.MetalRetouchProcessor
+  public init()
+  public func applyReshape(to image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings, landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  @objc deinit
+}
+public struct SnapcutRetouchSettings : Swift.Equatable {
+  public var skinSmooth: Swift.Double
+  public var skinBlemish: Swift.Double
+  public var skinDarkSpots: Swift.Double
+  public var skinWrinkles: Swift.Double
+  public var skinTone: Swift.Double
+  public var skinBrightening: Swift.Double
+  public var skinGlow: Swift.Double
+  public var skinWhitening: Swift.Double
+  public var skinOilControl: Swift.Double
+  public var skinTexture: Swift.Double
+  public var faceSlim: Swift.Double
+  public var faceWidth: Swift.Double
+  public var faceJawline: Swift.Double
+  public var faceChin: Swift.Double
+  public var faceCheekbones: Swift.Double
+  public var faceForehead: Swift.Double
+  public var faceReshape: Swift.Double
+  public var noseSlim: Swift.Double
+  public var noseWidth: Swift.Double
+  public var noseLength: Swift.Double
+  public var noseHeight: Swift.Double
+  public var noseTip: Swift.Double
+  public var noseBridge: Swift.Double
+  public var noseReshape: Swift.Double
+  public var eyeSize: Swift.Double
+  public var eyeBrighten: Swift.Double
+  public var eyeColorHex: Swift.String
+  public var eyeDarkCircles: Swift.Double
+  public var eyeRedEye: Swift.Double
+  public var eyeEyeliner: Swift.Double
+  public var eyeEyeshadow: Swift.Double
+  public var eyeEyeshadowColorHex: Swift.String
+  public var eyeMascara: Swift.Double
+  public var eyeEyelashes: Swift.Double
+  public var eyebrowShape: Swift.Double
+  public var eyebrowThickness: Swift.Double
+  public var eyebrowFill: Swift.Double
+  public var eyebrowColorHex: Swift.String
+  public var eyebrowArch: Swift.Double
+  public var eyebrowPosition: Swift.Double
+  public var eyebrowIntensity: Swift.Double
+  public var lipstickShadeName: Swift.String
+  public var lipstickColorHex: Swift.String
+  public var lipstickFinish: Swift.String
+  public var lipPlump: Swift.Double
+  public var lipShape: Swift.Double
+  public var lipBrightness: Swift.Double
+  public var lipstickIntensity: Swift.Double
+  public var lipstickOpacity: Swift.Double
+  public var makeupFoundation: Swift.Double
+  public var makeupFoundationShade: Swift.String
+  public var makeupConcealer: Swift.Double
+  public var makeupBlush: Swift.Double
+  public var makeupBlushColorHex: Swift.String
+  public var makeupContour: Swift.Double
+  public var makeupHighlighter: Swift.Double
+  public var makeupBronzer: Swift.Double
+  public var makeupPreset: Swift.String
+  public var hairColorHex: Swift.String
+  public var hairHighlights: Swift.Double
+  public var hairShine: Swift.Double
+  public var hairSmoothness: Swift.Double
+  public var hairVolume: Swift.Double
+  public var hairLine: Swift.Double
+  public var hairFlyaway: Swift.Double
+  public var teethWhitening: Swift.Double
+  public var teethBrightness: Swift.Double
+  public var cheeksBlush: Swift.Double
+  public var cheeksSlim: Swift.Double
+  public var cheeksLift: Swift.Double
+  public var extraFreckles: Swift.Double
+  public var extraBeautyMarks: Swift.Double
+  public var extraFaceGlow: Swift.Double
+  public var extraAutoBeautify: Swift.Double
+  public var extraNaturalMakeup: Swift.Double
+  public var extraGlamMakeup: Swift.Double
+  public init()
+  public var isDefault: Swift.Bool {
+    get
+  }
+  public mutating func resetCategory(_ category: Swift.String)
+  public mutating func resetAll()
+  public mutating func applyPreset(_ name: Swift.String)
+  public static func == (a: snapcut.SnapcutRetouchSettings, b: snapcut.SnapcutRetouchSettings) -> Swift.Bool
+}
+public struct SnapcutFaceLandmarksData {
+  public let boundingBox: CoreFoundation.CGRect
+  public let faceContour: [CoreFoundation.CGPoint]
+  public let leftEye: [CoreFoundation.CGPoint]
+  public let rightEye: [CoreFoundation.CGPoint]
+  public let leftPupil: [CoreFoundation.CGPoint]
+  public let rightPupil: [CoreFoundation.CGPoint]
+  public let leftEyebrow: [CoreFoundation.CGPoint]
+  public let rightEyebrow: [CoreFoundation.CGPoint]
+  public let outerLips: [CoreFoundation.CGPoint]
+  public let innerLips: [CoreFoundation.CGPoint]
+  public let nose: [CoreFoundation.CGPoint]
+  public let noseCrest: [CoreFoundation.CGPoint]
+  public let medianLine: [CoreFoundation.CGPoint]
+  public init(boundingBox: CoreFoundation.CGRect, faceContour: [CoreFoundation.CGPoint] = [], leftEye: [CoreFoundation.CGPoint] = [], rightEye: [CoreFoundation.CGPoint] = [], leftPupil: [CoreFoundation.CGPoint] = [], rightPupil: [CoreFoundation.CGPoint] = [], leftEyebrow: [CoreFoundation.CGPoint] = [], rightEyebrow: [CoreFoundation.CGPoint] = [], outerLips: [CoreFoundation.CGPoint] = [], innerLips: [CoreFoundation.CGPoint] = [], nose: [CoreFoundation.CGPoint] = [], noseCrest: [CoreFoundation.CGPoint] = [], medianLine: [CoreFoundation.CGPoint] = [])
+}
+extension CoreImage.CIColor {
+  public static func from(hex: Swift.String, alpha: CoreFoundation.CGFloat = 1.0) -> CoreImage.CIColor
+}
+extension UIKit.UIImage {
+  public func fixOrientation() -> UIKit.UIImage
+}
+public typealias SnapcutRetouchProcessor = snapcut.RetouchProcessor
+public class RetouchProcessor {
+  public static let shared: snapcut.RetouchProcessor
+  public init()
+  public func clearCache()
+  public func detectFaceLandmarks(in image: CoreImage.CIImage) -> snapcut.SnapcutFaceLandmarksData?
+  public func applyRetouch(to image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings) -> CoreImage.CIImage
+  public func renderToUIImage(image: CoreImage.CIImage, scale: CoreFoundation.CGFloat = 1.0) -> UIKit.UIImage?
+  public func createVideoComposition(for asset: AVFoundation.AVAsset, settingsHandler: @escaping () -> snapcut.SnapcutRetouchSettings, isHoldingCompareHandler: @escaping () -> Swift.Bool) -> AVFoundation.AVMutableVideoComposition
+  public func createVideoComposition(for asset: AVFoundation.AVAsset, settings: snapcut.SnapcutRetouchSettings) -> AVFoundation.AVMutableVideoComposition
+  public func processVideo(inputURL: Foundation.URL, settings: snapcut.SnapcutRetouchSettings, progressHandler: ((Swift.Double) -> Swift.Void)? = nil, completion: @escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)
+  public func processVideo(asset: AVFoundation.AVAsset, settings: snapcut.SnapcutRetouchSettings, progressHandler: ((Swift.Double) -> Swift.Void)? = nil, completion: @escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)
+  @objc deinit
+}
+public class SkinRetouchProcessor {
+  public static let shared: snapcut.SkinRetouchProcessor
+  public init()
+  public func apply(to image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings, landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  @objc deinit
+}
+final public class SnapcutAIRetouchEngine {
+  public static let shared: snapcut.SnapcutAIRetouchEngine
+  public init()
+  final public func processRetouch(image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings, landmarks: snapcut.SnapcutFaceLandmarksData) -> CoreImage.CIImage
+  final public func applyFrequencySeparationSkinSmooth(image: CoreImage.CIImage, landmarks: snapcut.SnapcutFaceLandmarksData, intensity: Swift.Double) -> CoreImage.CIImage
+  final public func applyTeethWhitening(image: CoreImage.CIImage, landmarks: snapcut.SnapcutFaceLandmarksData, intensity: Swift.Double) -> CoreImage.CIImage
+  final public func applyLipstick(image: CoreImage.CIImage, landmarks: snapcut.SnapcutFaceLandmarksData, color: UIKit.UIColor, opacity: Swift.Double) -> CoreImage.CIImage
+  @objc deinit
+}
+public class TeethProcessor {
+  public static let shared: snapcut.TeethProcessor
+  public init()
+  public func apply(to image: CoreImage.CIImage, settings: snapcut.SnapcutRetouchSettings, landmarks: snapcut.SnapcutFaceLandmarksData?, imageExtent: CoreFoundation.CGRect) -> CoreImage.CIImage
+  @objc deinit
 }
 public protocol SnapcutFontProvider {
   func font(for style: snapcut.SnapcutSDKTypography.SnapcutStyle) -> UIKit.UIFont
@@ -869,6 +1627,187 @@ public struct SnapcutTimelineColors {
 }
 public struct SnapcutTimelineTheme {
   public static let colors: snapcut.SnapcutTimelineColors
+}
+@_Concurrency.MainActor @preconcurrency public struct SnapcutCollageScreen : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public var onBack: (() -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onApply: ((Foundation.URL) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public init(initialURLs: [Foundation.URL]? = nil, onBack: (() -> Swift.Void)? = nil, onApply: ((Foundation.URL) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut20SnapcutCollageScreenV4bodyQrvp", 0) __
+}
+final public class SnapcutCollageViewModel : Combine.ObservableObject {
+  @Combine.Published<[snapcut.SnapcutCollageItem]> @_projectedValueProperty($items) final public var items: [snapcut.SnapcutCollageItem] {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $items: Combine.Published<[snapcut.SnapcutCollageItem]>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<snapcut.SnapcutCollageAspectRatio> @_projectedValueProperty($selectedAspectRatio) final public var selectedAspectRatio: snapcut.SnapcutCollageAspectRatio {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $selectedAspectRatio: Combine.Published<snapcut.SnapcutCollageAspectRatio>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<snapcut.SnapcutCollageSpacing> @_projectedValueProperty($selectedSpacing) final public var selectedSpacing: snapcut.SnapcutCollageSpacing {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $selectedSpacing: Combine.Published<snapcut.SnapcutCollageSpacing>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<snapcut.SnapcutCollageTemplate> @_projectedValueProperty($selectedTemplate) final public var selectedTemplate: snapcut.SnapcutCollageTemplate {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $selectedTemplate: Combine.Published<snapcut.SnapcutCollageTemplate>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<SwiftUICore.Color> @_projectedValueProperty($selectedCanvasColor) final public var selectedCanvasColor: SwiftUICore.Color {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $selectedCanvasColor: Combine.Published<SwiftUICore.Color>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($isMutedAll) final public var isMutedAll: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $isMutedAll: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($isProcessing) final public var isProcessing: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $isProcessing: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Double> @_projectedValueProperty($processingProgress) final public var processingProgress: Swift.Double {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $processingProgress: Combine.Published<Swift.Double>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($showPhotosPicker) final public var showPhotosPicker: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $showPhotosPicker: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($showColorPicker) final public var showColorPicker: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $showColorPicker: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  final public let presetColors: [SwiftUICore.Color]
+  public init(initialURLs: [Foundation.URL]? = nil)
+  final public func addMedia(urls: [Foundation.URL])
+  final public func removeItem(at index: Swift.Int)
+  final public func toggleMute(for itemId: Foundation.UUID)
+  final public func toggleGlobalMute()
+  final public func adjustTemplateForCount()
+  final public func applyCollage(completion: @escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+@_Concurrency.MainActor @preconcurrency public struct MediaPipeTestView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init()
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut17MediaPipeTestViewV4bodyQrvp", 0) __
+}
+public enum RetouchMaskDebugMode : Swift.String, Swift.CaseIterable, Swift.Identifiable {
+  case original
+  case landmarks
+  case lipMask
+  case skinMask
+  case eyeMask
+  case eyebrowMask
+  case underEyeMask
+  case teethMask
+  case hairMask
+  public var id: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [snapcut.RetouchMaskDebugMode]
+  public typealias ID = Swift.String
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [snapcut.RetouchMaskDebugMode] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@_Concurrency.MainActor @preconcurrency public struct RetouchMaskVisualizerView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public var onDismiss: (() -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public let initialImage: UIKit.UIImage?
+  @_Concurrency.MainActor @preconcurrency public init(image: UIKit.UIImage? = nil, onDismiss: (() -> Swift.Void)? = nil)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut25RetouchMaskVisualizerViewV4bodyQrvp", 0) __
 }
 public struct SnapcutAIEnhanceOption : Swift.Identifiable, Swift.Equatable {
   public let id: Swift.String
@@ -1105,6 +2044,266 @@ final public class SnapcutNoiseRemovalViewModel : Combine.ObservableObject {
     get
   }
   public typealias Body = @_opaqueReturnTypeOf("$s7snapcut25SnapcutNoiseRemovalScreenV4bodyQrvp", 0) __
+}
+public enum BeautyFeatureTab : Swift.String, Swift.CaseIterable, Swift.Identifiable {
+  case lipstick
+  case skinSmooth
+  case blush
+  public var id: Swift.String {
+    get
+  }
+  public var title: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [snapcut.BeautyFeatureTab]
+  public typealias ID = Swift.String
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [snapcut.BeautyFeatureTab] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum BeautyDebugMode : Swift.String, Swift.CaseIterable, Swift.Identifiable {
+  case finalResult
+  case original
+  case landmarks
+  case lipMask
+  case skinMask
+  case blushMask
+  public var id: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [snapcut.BeautyDebugMode]
+  public typealias ID = Swift.String
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [snapcut.BeautyDebugMode] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct CoreBeautyPreset : Swift.Identifiable, Swift.Equatable {
+  public let id: Swift.String
+  public let name: Swift.String
+  public let hexColor: Swift.String
+  public let defaultIntensity: Swift.Double
+  public init(id: Swift.String, name: Swift.String, hexColor: Swift.String, defaultIntensity: Swift.Double)
+  public static func == (a: snapcut.CoreBeautyPreset, b: snapcut.CoreBeautyPreset) -> Swift.Bool
+  public typealias ID = Swift.String
+}
+public let lipstickPresets: [snapcut.CoreBeautyPreset]
+public let skinSmoothPresets: [snapcut.CoreBeautyPreset]
+public let blushPresets: [snapcut.CoreBeautyPreset]
+final public class SnapcutRetouchViewModel : Combine.ObservableObject {
+  @Combine.Published<snapcut.SnapcutRetouchSettings> @_projectedValueProperty($settings) final public var settings: snapcut.SnapcutRetouchSettings {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $settings: Combine.Published<snapcut.SnapcutRetouchSettings>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<snapcut.BeautyFeatureTab> @_projectedValueProperty($selectedFeature) final public var selectedFeature: snapcut.BeautyFeatureTab {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $selectedFeature: Combine.Published<snapcut.BeautyFeatureTab>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<snapcut.BeautyDebugMode> @_projectedValueProperty($selectedDebugMode) final public var selectedDebugMode: snapcut.BeautyDebugMode {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $selectedDebugMode: Combine.Published<snapcut.BeautyDebugMode>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($isFitScreen) final public var isFitScreen: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $isFitScreen: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.String> @_projectedValueProperty($selectedLipstickPresetID) final public var selectedLipstickPresetID: Swift.String {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $selectedLipstickPresetID: Combine.Published<Swift.String>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.String> @_projectedValueProperty($selectedSkinSmoothPresetID) final public var selectedSkinSmoothPresetID: Swift.String {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $selectedSkinSmoothPresetID: Combine.Published<Swift.String>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.String> @_projectedValueProperty($selectedBlushPresetID) final public var selectedBlushPresetID: Swift.String {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $selectedBlushPresetID: Combine.Published<Swift.String>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.String> @_projectedValueProperty($mainTab) final public var mainTab: Swift.String {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $mainTab: Combine.Published<Swift.String>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<[Foundation.URL]> @_projectedValueProperty($mediaURLs) final public var mediaURLs: [Foundation.URL] {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $mediaURLs: Combine.Published<[Foundation.URL]>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Int> @_projectedValueProperty($currentIndex) final public var currentIndex: Swift.Int {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $currentIndex: Combine.Published<Swift.Int>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<Swift.Bool> @_projectedValueProperty($isImage) final public var isImage: Swift.Bool {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $isImage: Combine.Published<Swift.Bool>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<UIKit.UIImage?> @_projectedValueProperty($previewImage) final public var previewImage: UIKit.UIImage? {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $previewImage: Combine.Published<UIKit.UIImage?>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  @Combine.Published<UIKit.UIImage?> @_projectedValueProperty($debugMaskImage) final public var debugMaskImage: UIKit.UIImage? {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  final public var $debugMaskImage: Combine.Published<UIKit.UIImage?>.Publisher {
+    get
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    set
+  }
+  final public var originalImage: UIKit.UIImage?
+  public init()
+  final public var hasChanges: Swift.Bool {
+    get
+  }
+  final public func setup(with urls: [Foundation.URL], initialIndex: Swift.Int = 0)
+  final public func selectLipstickPreset(_ preset: snapcut.CoreBeautyPreset)
+  final public func selectSkinSmoothPreset(_ preset: snapcut.CoreBeautyPreset)
+  final public func selectBlushPreset(_ preset: snapcut.CoreBeautyPreset)
+  final public func updateLiveFilter()
+  final public func tearDown()
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+@_Concurrency.MainActor @preconcurrency public struct SnapcutRetouchScreen : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public let mediaURLs: [Foundation.URL]
+  @_Concurrency.MainActor @preconcurrency public let initialIndex: Swift.Int
+  @_Concurrency.MainActor @preconcurrency public let onBack: () -> Swift.Void
+  @_Concurrency.MainActor @preconcurrency public let onApply: (Foundation.URL, snapcut.SnapcutRetouchSettings) -> Swift.Void
+  @_Concurrency.MainActor @preconcurrency public let onApplyMedia: (([Foundation.URL], snapcut.SnapcutRetouchSettings) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public let onRetouchProgress: ((Swift.Double) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public let onRetouchCompleted: ((Foundation.URL) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public let onRetouchFailed: ((any Swift.Error) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public init(mediaURLs: [Foundation.URL], initialIndex: Swift.Int = 0, onBack: @escaping () -> Swift.Void, onApply: @escaping (Foundation.URL, snapcut.SnapcutRetouchSettings) -> Swift.Void, onApplyMedia: (([Foundation.URL], snapcut.SnapcutRetouchSettings) -> Swift.Void)? = nil, onRetouchProgress: ((Swift.Double) -> Swift.Void)? = nil, onRetouchCompleted: ((Foundation.URL) -> Swift.Void)? = nil, onRetouchFailed: ((any Swift.Error) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut20SnapcutRetouchScreenV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct CompareSplitView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public let originalImage: UIKit.UIImage
+  @_Concurrency.MainActor @preconcurrency public let retouchedImage: UIKit.UIImage
+  @_Concurrency.MainActor @preconcurrency public let isFitScreen: Swift.Bool
+  @SwiftUICore.Binding @_projectedValueProperty($splitPosition) @_Concurrency.MainActor @preconcurrency public var splitPosition: CoreFoundation.CGFloat {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    nonmutating _modify
+  }
+  @_Concurrency.MainActor @preconcurrency public var $splitPosition: SwiftUICore.Binding<CoreFoundation.CGFloat> {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public init(originalImage: UIKit.UIImage, retouchedImage: UIKit.UIImage, isFitScreen: Swift.Bool, splitPosition: SwiftUICore.Binding<CoreFoundation.CGFloat>)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7snapcut16CompareSplitViewV4bodyQrvp", 0) __
 }
 public enum SnapcutStickerType : Swift.String, Swift.Codable {
   case gif
@@ -1610,6 +2809,16 @@ public class SnapcutLayoutRecordingViewModel : Combine.ObservableObject {
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
+extension snapcut.BeautyEditorView : Swift.Sendable {}
+extension snapcut.PaywallSheetView : Swift.Sendable {}
+extension snapcut.BeautySuiteDemoView : Swift.Sendable {}
+extension snapcut.PresetThumbnailCard : Swift.Sendable {}
+extension snapcut.PresetScrollRow : Swift.Sendable {}
+extension snapcut.SubTabSelector : Swift.Sendable {}
+extension snapcut.CategoryTabBar : Swift.Sendable {}
+extension snapcut.TopLevelTabBar : Swift.Sendable {}
+extension snapcut.BeautyCategoryStackBar : Swift.Sendable {}
+extension snapcut.FitScreenPill : Swift.Sendable {}
 extension snapcut.SnapcutMediaType : Swift.Equatable {}
 extension snapcut.SnapcutMediaType : Swift.Hashable {}
 extension snapcut.SnapcutMediaType : Swift.RawRepresentable {}
@@ -1619,11 +2828,26 @@ extension snapcut.SnapcutFilterType : Swift.RawRepresentable {}
 extension snapcut.SnapcutExportPreset : Swift.Equatable {}
 extension snapcut.SnapcutExportPreset : Swift.Hashable {}
 extension snapcut.SnapcutExportPreset : Swift.RawRepresentable {}
+extension snapcut.SnapcutCollageAspectRatio : Swift.Equatable {}
+extension snapcut.SnapcutCollageAspectRatio : Swift.Hashable {}
+extension snapcut.SnapcutCollageAspectRatio : Swift.RawRepresentable {}
+extension snapcut.SnapcutCollageSpacing : Swift.Equatable {}
+extension snapcut.SnapcutCollageSpacing : Swift.Hashable {}
+extension snapcut.SnapcutCollageSpacing : Swift.RawRepresentable {}
+extension snapcut.SnapcutCollageTemplate : Swift.Equatable {}
+extension snapcut.SnapcutCollageTemplate : Swift.Hashable {}
+extension snapcut.SnapcutCollageTemplate : Swift.RawRepresentable {}
 extension snapcut.SnapcutLayoutType : Swift.Equatable {}
 extension snapcut.SnapcutLayoutType : Swift.Hashable {}
 extension snapcut.SnapcutLayoutType : Swift.RawRepresentable {}
 extension snapcut.SnapcutSDKTypography.SnapcutStyle : Swift.Equatable {}
 extension snapcut.SnapcutSDKTypography.SnapcutStyle : Swift.Hashable {}
+extension snapcut.SnapcutCollageScreen : Swift.Sendable {}
+extension snapcut.MediaPipeTestView : Swift.Sendable {}
+extension snapcut.RetouchMaskDebugMode : Swift.Equatable {}
+extension snapcut.RetouchMaskDebugMode : Swift.Hashable {}
+extension snapcut.RetouchMaskDebugMode : Swift.RawRepresentable {}
+extension snapcut.RetouchMaskVisualizerView : Swift.Sendable {}
 extension snapcut.SnapcutAIEnhanceState : Swift.Equatable {}
 extension snapcut.SnapcutAIEnhanceState : Swift.Hashable {}
 extension snapcut.SnapcutAIEnhanceScreen : Swift.Sendable {}
@@ -1632,6 +2856,14 @@ extension snapcut.SnapcutGalleryLayoutSelectionView : Swift.Sendable {}
 extension snapcut.SnapcutGiphyPickerView : Swift.Sendable {}
 extension snapcut.SnapcutLayoutRecordingView : Swift.Sendable {}
 extension snapcut.SnapcutNoiseRemovalScreen : Swift.Sendable {}
+extension snapcut.BeautyFeatureTab : Swift.Equatable {}
+extension snapcut.BeautyFeatureTab : Swift.Hashable {}
+extension snapcut.BeautyFeatureTab : Swift.RawRepresentable {}
+extension snapcut.BeautyDebugMode : Swift.Equatable {}
+extension snapcut.BeautyDebugMode : Swift.Hashable {}
+extension snapcut.BeautyDebugMode : Swift.RawRepresentable {}
+extension snapcut.SnapcutRetouchScreen : Swift.Sendable {}
+extension snapcut.CompareSplitView : Swift.Sendable {}
 extension snapcut.SnapcutStickerType : Swift.Equatable {}
 extension snapcut.SnapcutStickerType : Swift.Hashable {}
 extension snapcut.SnapcutStickerType : Swift.RawRepresentable {}
